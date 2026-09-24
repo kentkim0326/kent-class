@@ -59,6 +59,20 @@ section{padding-block:56px 0;display:grid;gap:24px}
 .stage .btn-ghost{color:#EEF1F8;border-color:rgba(255,255,255,.3)}
 .stage .btn-primary{background:#F2B035;color:#2A1E00}
 @media (max-width:860px){.hero-grid{grid-template-columns:1fr}}
+.vids{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.vid{display:grid;grid-template-rows:auto 1fr;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;color:var(--ink)}
+.vid:hover{border-color:var(--accent)}
+.th{position:relative;aspect-ratio:16/9;background:linear-gradient(135deg,#1E2640,#0B1020);display:block}
+.th img{width:100%;height:100%;object-fit:cover;display:block}
+.pl{position:absolute;left:50%;top:50%;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;background:rgba(255,255,255,.9)}
+.pl::after{content:"";position:absolute;left:16px;top:12px;border-style:solid;border-width:8px 0 8px 13px;border-color:transparent transparent transparent #E3342F}
+.vt{padding:12px 14px 14px;display:grid;gap:2px;font-size:14px;line-height:1.45}
+.vt small{color:var(--accent);font-size:12px;font-weight:700}
+.vt em{font-style:normal;color:var(--muted);font-size:12px;font-family:var(--mono)}
+.press{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.press a{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;gap:2px;text-decoration:none;color:var(--ink);font-size:14px}
+.press a:hover{border-color:var(--accent)}
+.press small{color:var(--accent);font-size:12px;font-weight:700}
 .format{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
 .format div{padding:20px;display:grid;gap:6px;align-content:start}
 .format div+div{border-left:1px solid var(--line)}
@@ -138,7 +152,7 @@ footer{padding-block:32px 0;font-size:13px;color:var(--muted)}
 .cart-actions{display:flex;gap:8px;align-items:center}
 .cart .btn{min-height:42px;padding:0 18px;font-size:15px}
 .link-btn{background:none;border:0;color:var(--muted);font-size:14px;cursor:pointer;text-decoration:underline;font-family:var(--body)}
-@media (max-width:860px){.tickets{grid-template-columns:repeat(2,1fr)}.courses,.policy,.bio{grid-template-columns:1fr}}
+@media (max-width:860px){.tickets,.vids{grid-template-columns:repeat(2,1fr)}.courses,.policy,.bio,.press{grid-template-columns:1fr}}
 @media (max-width:620px){.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(3){padding-left:0;border-left:0}.stat:nth-child(n+3){border-top:1px solid var(--line)}.format,.tickets,.career,.awards{grid-template-columns:1fr}.format div+div{border-left:0;border-top:1px solid var(--line)}.log div{grid-template-columns:1fr;gap:2px}}
 </style>
 </head>
@@ -272,6 +286,15 @@ footer{padding-block:32px 0;font-size:13px;color:var(--muted)}
 <div class="rule"><h3>업그레이드</h3><p>1강권이나 3강권을 산 뒤에도 차액만 내면 상위 이용권이나 올패스로 바꿀 수 있습니다.</p></div>
 <div class="rule"><h3>유효기간 6개월</h3><p>이용권은 구매일로부터 6개월 동안 쓸 수 있습니다. 강의는 순차적으로 열리고, 일정은 이메일로 안내합니다.</p></div>
 <div class="rule"><h3>환불</h3><p>첫 강의 시작 전에는 전액 환불합니다. 수강을 시작한 뒤에는 들은 강의를 1강권 가격(일반 49,000원, 동기 44,000원)으로 계산해 뺀 금액을 돌려드립니다.</p></div>
+</div>
+</section>
+<section>
+<div class="sec-head"><span class="eyebrow">영상 · 언론</span><h2>켄트 김의 강연과 방송</h2></div>
+<div class="vids"><a class="vid" href="https://www.youtube.com/watch?v=WL6M1ZloXMs" target="_blank" rel="noopener"><span class="th"><img src="https://i.ytimg.com/vi/WL6M1ZloXMs/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="pl" aria-hidden="true"></span></span><span class="vt"><small>CBS 세바시 154회</small><b>젊을 때 '미치지 않으면' 미친 것이다</b><em>조회수 49만+</em></span></a><a class="vid" href="https://www.youtube.com/watch?v=1btSBp9HYlA" target="_blank" rel="noopener"><span class="th"><img src="https://i.ytimg.com/vi/1btSBp9HYlA/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="pl" aria-hidden="true"></span></span><span class="vt"><small>MBC 특강</small><b>켄트김의 하버드식 학습전략 1강</b><em>조회수 7.9만+</em></span></a><a class="vid" href="https://www.youtube.com/watch?v=RlkOqXnEBVY" target="_blank" rel="noopener"><span class="th"><img src="https://i.ytimg.com/vi/RlkOqXnEBVY/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="pl" aria-hidden="true"></span></span><span class="vt"><small>CTS 4인4색 시즌3</small><b>켄트김의 하버드식 자녀교육 1강</b><em>조회수 8.9천+</em></span></a><a class="vid" href="https://www.youtube.com/watch?v=Ewkft496jPY" target="_blank" rel="noopener"><span class="th"><img src="https://i.ytimg.com/vi/Ewkft496jPY/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="pl" aria-hidden="true"></span></span><span class="vt"><small>TV조선 박종진 라이브쇼</small><b>젊을 때 '미치지 않으면' 미친 것이다</b></span></a><a class="vid" href="https://www.youtube.com/watch?v=pItLC5JgFu4" target="_blank" rel="noopener"><span class="th"><img src="https://i.ytimg.com/vi/pItLC5JgFu4/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="pl" aria-hidden="true"></span></span><span class="vt"><small>인천광역시 초청 강연</small><b>초연결시대의 시공간 공감혁명</b></span></a><a class="vid" href="https://www.youtube.com/watch?v=N51ell1GEtE" target="_blank" rel="noopener"><span class="th"><img src="https://i.ytimg.com/vi/N51ell1GEtE/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="pl" aria-hidden="true"></span></span><span class="vt"><small>강의쇼 청산유수</small><b>20대, 계산보다 경험이 먼저다</b></span></a><a class="vid" href="https://www.youtube.com/watch?v=SH3pABxfV8Q" target="_blank" rel="noopener"><span class="th"><img src="https://i.ytimg.com/vi/SH3pABxfV8Q/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="pl" aria-hidden="true"></span></span><span class="vt"><small>SBS 이숙영의 러브FM</small><b>미국으로 가기 전에는 공부 못 했다</b></span></a><a class="vid" href="https://www.youtube.com/watch?v=hTXTCEHpSV4" target="_blank" rel="noopener"><span class="th"><img src="https://i.ytimg.com/vi/hTXTCEHpSV4/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="pl" aria-hidden="true"></span></span><span class="vt"><small>켄트김의 용기백배</small><b>직접 진행한 인터뷰 토크쇼 (한국HRD교육센터)</b></span></a></div>
+<div class="press">
+<a href="https://www.youtube.com/playlist?list=PL8PojxtTERUh-Ulc9ri1ziX90I0fJSr_9" target="_blank" rel="noopener"><small>YouTube 재생목록</small><b>켄트김의 하버드식 자녀교육 (2021 대치포럼 강연 포함)</b></a>
+<a href="https://news.kbs.co.kr/news/view.do?ncd=143117" target="_blank" rel="noopener"><small>KBS 뉴스</small><b>&lt;이사람&gt; 만화는 내 인생</b></a>
+<a href="https://viva100.com/article/201603113614122" target="_blank" rel="noopener"><small>브릿지경제</small><b>건국대 글로컬캠퍼스 '성공창업 CEO 특강'</b></a>
 </div>
 </section>
 <section id="apply">
