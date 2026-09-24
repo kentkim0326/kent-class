@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:type" content="website">
+<meta property="og:title" content="켄트 김의 '직접 해본 것만' 클래스 — 16번의 2시간">
+<meta property="og:description" content="사단법인·미국 법인 설립, 30억 투자 유치, 블록체인 거래소, 국제 포럼, AI 게임·앱, 깃허브 70개 프로젝트, 해외 공공기관 협업까지. 2시간 Zoom 라이브 16강. 동기 최대 47% 할인.">
+<meta name="twitter:card" content="summary">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>켄트 김의 '직접 해본 것만' 클래스</title>
+<meta name="description" content="켄트 김이 직접 해본 것만 가르치는 2시간 Zoom 라이브 클래스 16강">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+:root{
+color-scheme:dark;
+--bg:#0E121A; --surface:#161C27; --ink:#E9EDF5; --muted:#9AA4B8; --line:#283144;
+--accent:#8497FF; --accent-ink:#0E121A; --accent-soft:#1E2640;
+--tag:#F2B035; --tag-ink:#2A1E00;
+--display:"Black Han Sans","Noto Sans KR",system-ui,sans-serif;
+--body:"Noto Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo",sans-serif;
+--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65;padding-inline:20px;padding-block:0 120px}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3{text-wrap:balance;margin:0}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+section{padding-block:56px 0;display:grid;gap:24px}
+.sec-head{display:grid;gap:8px;max-width:640px}
+.sec-head h2{font-family:var(--display);font-weight:400;font-size:clamp(26px,4vw,36px);line-height:1.25}
+.sec-head p{color:var(--muted)}
+.hero{padding-block:8px;display:grid;gap:22px}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(38px,7.2vw,76px);line-height:1.12;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lead{font-size:clamp(16px,2vw,19px);color:var(--muted);max-width:620px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink);border-bottom:1px solid var(--line);margin-top:10px}
+.stat{padding:16px 14px 14px 0;display:grid;gap:2px}
+.stat+.stat{padding-left:14px;border-left:1px solid var(--line)}
+.stat b{font-family:var(--display);font-weight:400;font-size:clamp(24px,3.4vw,34px);line-height:1.1;font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;border:0;cursor:pointer;font-family:var(--body)}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.hero-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:28px;align-items:center}
+.hero-text{display:grid;gap:22px}
+.video{position:relative;display:block;border-radius:16px;overflow:hidden;aspect-ratio:16/9;background:#000;box-shadow:0 20px 50px rgba(0,0,0,.5);outline:1px solid rgba(255,255,255,.12);max-width:100%}
+.stage{background:#070A12;border:1px solid #283144;color:#EEF1F8;border-radius:22px;padding:44px clamp(20px,4vw,48px) 40px;display:grid;gap:22px;margin-top:20px;position:relative;overflow:hidden}
+.stage::before{content:"";position:absolute;inset:auto -10% -40% auto;width:60%;height:120%;background:radial-gradient(closest-side,rgba(45,70,230,.45),transparent);pointer-events:none}
+.stage > *{position:relative}
+.stage .eyebrow{color:#9FB0FF}
+.stage h1 em{color:#7E93FF}
+.stage .lead{color:#C4CAD8}
+.stage .btn-ghost{color:#EEF1F8;border-color:rgba(255,255,255,.3)}
+.stage .btn-primary{background:#F2B035;color:#2A1E00}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}}
+.format{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.format div{padding:20px;display:grid;gap:6px;align-content:start}
+.format div+div{border-left:1px solid var(--line)}
+.format h3{font-size:17px;font-weight:700}
+.format p{color:var(--muted);font-size:15px}
+.format .k{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600}
+.tickets{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ticket{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:14px;display:grid;grid-template-rows:auto auto 1fr;overflow:hidden}
+.ticket .top{padding:20px 18px 18px;display:grid;gap:4px}
+.ticket .name{font-weight:700;font-size:15px}
+.ticket .price{font-family:var(--display);font-size:34px;line-height:1.15;font-variant-numeric:tabular-nums}
+.ticket .price small{font-family:var(--body);font-size:15px;font-weight:500;margin-left:2px}
+.ticket .per{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.ticket .bottom{padding:14px 18px 18px;display:grid;gap:6px;align-content:start;font-size:14px;color:var(--muted)}
+.ticket.best{border:2px solid var(--accent)}
+.ticket.best .flag{position:absolute;top:0;right:0;background:var(--accent);color:var(--accent-ink);font-size:12px;font-weight:700;padding:4px 10px;border-bottom-left-radius:10px}
+.ticket ul{margin:4px 0 0;padding-left:18px;color:var(--ink)}
+.ticket .was{font-family:var(--mono);font-size:13px;color:var(--muted);text-decoration:line-through}
+.combos{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;color:var(--muted)}
+.combo{background:var(--accent-soft);color:var(--ink);padding:6px 12px;border-radius:999px;font-size:14px;border:0;cursor:pointer;font-family:var(--body)}
+.combo b{color:var(--accent)}
+.mate{background:var(--tag);color:var(--tag-ink);padding:12px 18px 14px;display:grid;gap:2px}
+.mate .ml{font-size:12px;font-weight:700;letter-spacing:.02em;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.mate .ml b{font-family:var(--mono);font-size:12px;background:var(--tag-ink);color:var(--tag);padding:1px 7px;border-radius:5px}
+.mate .mp{font-family:var(--display);font-size:28px;line-height:1.2;font-variant-numeric:tabular-nums}
+.mate .mp small{font-family:var(--body);font-size:14px;font-weight:500;margin-left:2px}
+.mate .mper{font-family:var(--mono);font-size:12px;opacity:.8}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:14px;color:var(--muted);align-items:center}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--tag)}
+.rules{display:grid;grid-template-columns:1fr;gap:14px}
+.rule{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:6px;align-content:start}
+.rule h3{font-size:17px;font-weight:700;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.rule h3 .pct{font-family:var(--mono);color:var(--accent);font-size:15px}
+.rule p{color:var(--muted);font-size:15px}
+.awards{grid-template-columns:repeat(2,1fr);column-gap:24px}
+.awards b{display:inline-block;min-width:56px;color:var(--accent);font-weight:700;margin-right:6px}
+.mates{margin:4px 0 0;padding-left:18px;display:grid;gap:2px;font-size:14px;color:var(--ink)}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 14px;font-size:14px;cursor:pointer;font-family:var(--body)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.courses{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.course{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:12px;align-content:start;grid-template-rows:auto auto 1fr auto}
+.course.on{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.c-head{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start}
+.num{font-family:var(--mono);font-weight:600;font-size:14px;color:var(--accent);background:var(--accent-soft);border-radius:8px;width:36px;height:36px;display:grid;place-items:center}
+.c-head h3{font-size:18px;line-height:1.4;font-weight:700}
+.cat{font-size:12px;color:var(--muted);font-family:var(--mono);letter-spacing:.04em}
+.course ol{margin:0;padding-left:20px;display:grid;gap:4px;font-size:15px}
+.course .disc{font-size:13px;color:var(--muted)}
+.pick{justify-self:start;display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:500;cursor:pointer;font-family:var(--body)}
+.course.on .pick{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.bio{display:grid;grid-template-columns:1fr 1.4fr;gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px}
+.bio h2{font-family:var(--display);font-weight:400;font-size:32px;line-height:1.2}
+.bio .kr{color:var(--muted);font-size:15px;margin-top:4px}
+.bio ul{margin:0;padding-left:18px;display:grid;gap:6px}
+.career{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.career .rule ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:15px;color:var(--ink)}
+.career .rule h3{font-size:16px}
+.career .wide{grid-column:1/-1}
+.log{display:grid;border-top:2px solid var(--ink)}
+.log div{display:grid;grid-template-columns:160px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
+.log time{font-family:var(--mono);font-size:14px;color:var(--accent);font-weight:600}
+.policy{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.policy .rule h3{font-size:16px}
+.final{background:var(--ink);color:var(--bg);border-radius:18px;padding:36px 28px;display:grid;gap:14px;justify-items:start}
+.final h2{font-family:var(--display);font-weight:400;font-size:clamp(26px,4vw,38px);line-height:1.2}
+.final p{opacity:.8}
+.final .btn-primary{background:var(--bg);color:var(--ink)}
+footer{padding-block:32px 0;font-size:13px;color:var(--muted)}
+.cart{position:fixed;left:0;right:0;bottom:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:var(--surface);border-top:1px solid var(--line);box-shadow:0 -6px 24px rgba(0,0,0,.08);z-index:10}
+.cart-in{max-width:1040px;margin:0 auto;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.cart-info{display:grid;gap:0;min-width:0}
+.cart-info b{font-size:16px}
+.cart-info span{font-size:13px;color:var(--muted)}
+.cart-info .mate-amt{background:var(--tag);color:var(--tag-ink);padding:0 6px;border-radius:5px}
+.cart-info .amt{font-family:var(--mono)}
+.cart-actions{display:flex;gap:8px;align-items:center}
+.cart .btn{min-height:42px;padding:0 18px;font-size:15px}
+.link-btn{background:none;border:0;color:var(--muted);font-size:14px;cursor:pointer;text-decoration:underline;font-family:var(--body)}
+@media (max-width:860px){.tickets{grid-template-columns:repeat(2,1fr)}.courses,.policy,.bio{grid-template-columns:1fr}}
+@media (max-width:620px){.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(3){padding-left:0;border-left:0}.stat:nth-child(n+3){border-top:1px solid var(--line)}.format,.tickets,.career,.awards{grid-template-columns:1fr}.format div+div{border-left:0;border-top:1px solid var(--line)}.log div{grid-template-columns:1fr;gap:2px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="stage">
+<span class="eyebrow">2시간 Zoom 라이브 · 16강</span>
+<h1>직접 해본 사람만<br>말할 수 있는 <em>16번의 2시간</em></h1>
+<div class="hero-grid">
+<div class="hero-text">
+<p class="lead">사단법인과 미국 법인을 세우고, 30억을 투자받고, 암호화폐 거래소 대표를 지내고, 공모전 300개에 도전하고, AI로 앱 50개와 게임 10개, 깃허브 프로젝트 70개를 만든 켄트 김이 과정과 비용, 실패까지 그대로 공개합니다.</p>
+<div class="hero-cta">
+<a class="btn btn-primary apply" href="#apply">수강 신청하기</a>
+<a class="btn btn-ghost" href="#courses">16개 강의 보기</a>
+</div>
+</div>
+<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/WL6M1ZloXMs?rel=0" title="CBS 세바시 154회 켄트 김 강연" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>
+</div>
+</div>
+<div class="stats" aria-label="켄트 김의 실제 이력">
+<div class="stat"><b>30억</b><span>투자 유치 (2018·2021)</span></div>
+<div class="stat"><b>300개</b><span>2년간 도전한 공모전</span></div>
+<div class="stat"><b>50 · 10</b><span>AI로 만든 앱 · 게임</span></div>
+<div class="stat"><b>100만+</b><span>누적 강연 청중 (1996~)</span></div>
+</div>
+</header>
+<section>
+<div class="sec-head"><span class="eyebrow">진행 방식</span><h2>서로 얼굴을 보고 이름을 부르는 수업</h2></div>
+<div class="format">
+<div><span class="k">2 HOURS</span><h3>Zoom 라이브</h3><p>강의마다 2시간. 화면 공유로 실제 서류, 사이트, 메일을 보여 드립니다.</p></div>
+<div><span class="k">FACE · NAME</span><h3>얼굴과 이름 공개</h3><p>모든 유료 프로그램은 참가자 모두 얼굴과 이름을 공개하고 진행합니다. 그래서 녹화본은 제공하지 않습니다.</p></div>
+<div><span class="k">CHAT</span><h3>질문하고 응원하기</h3><p>채팅으로 궁금한 점과 질문을 자유롭게 나누고 서로 응원합니다.</p></div>
+</div>
+</section>
+<section id="price">
+<div class="sec-head"><span class="eyebrow">이용권</span><h2>많이 들을수록 1강당 가격이 내려갑니다</h2>
+<p>16개 강의 중 원하는 강의를 골라 이용권으로 수강합니다. 1강은 2시간이고, 16강을 정가로 다 들으면 784,000원입니다.</p>
+<p class="legend"><span><i></i>노란 띠가 함께 수업을 들은 동기 가격입니다 (대상은 아래 참고)</span></p></div>
+<div class="tickets" id="tickets"></div>
+<div class="combos"><span>3강권 추천 조합</span>
+<button class="combo" type="button" data-combo="1,2,4"><b>법인 3부작</b> ①②④</button>
+<button class="combo" type="button" data-combo="5,7,8"><b>글로벌 진출 3부작</b> ⑤⑦⑧</button>
+<button class="combo" type="button" data-combo="6,9,10"><b>AI 실전 3부작</b> ⑥⑨⑩</button></div>
+</section>
+<section>
+<div class="sec-head"><span class="eyebrow">동기 혜택</span><h2>함께 공부한 동기에게는 따로 가격을 둡니다</h2></div>
+<div class="rules">
+<div class="rule"><h3>동기 가격 <span class="pct">올패스 415,000원 · 약 47% 할인</span></h3><p>켄트와 함께 수업을 들은 아래 과정의 동기·수료생에게 모든 이용권을 동기 가격으로 드립니다. 신청서에서 소속 과정을 고르시면 확인 후 안내합니다.</p><ul class="mates"><li>동그라미재단 AI 커뮤니티 동기</li><li>동그라미재단 프롬프트 엔지니어링 수료생</li><li>경기콘텐츠진흥원 AI 음악 수업 동기</li><li>경기콘텐츠진흥원 메타버스 유니티 과정 동기</li><li>인천콘텐츠코리아랩 AI 웹소설 과정 동기</li><li>K-META 메타버스산업협회 언리얼 과정 동기</li></ul></div>
+</div>
+</section>
+<section id="courses">
+<div class="sec-head"><span class="eyebrow">강의 16개</span><h2>어떤 강의를 고르시겠어요?</h2><p>듣고 싶은 강의를 담으면 가장 저렴한 이용권 조합을 아래에서 바로 계산해 드립니다.</p></div>
+<div class="filters" role="group" aria-label="분야 필터" id="filters"></div>
+<div class="courses" id="courseList"></div>
+</section>
+<section>
+<div class="bio">
+<div><span class="eyebrow">강사</span><h2>켄트 김</h2><p class="kr">김형섭 · 디아더(Deother) 대표</p></div>
+<ul>
+<li>하버드 대학교 경제학 졸업</li>
+<li>사단법인 국제브레인스포츠협회 대표</li>
+<li>2018년 8억, 2021년 22억 투자 유치 · 메타버스 플랫폼 2개 개발</li>
+<li>2년간 공모전 300개 도전, AI로 앱 50개 · 게임 10개 제작</li>
+<li><a href="https://product.kyobobook.co.kr/detail/S000220165482" target="_blank" rel="noopener" style="color:var(--accent)">『플라토 스쿨 프리메드』</a> 500페이지 출간 (교보문고)</li>
+<li>2017년부터 블록체인 · 前 코인빗 대표이사</li>
+<li>999 Seoul Forum, AI Summer Korea 기획</li>
+<li>세바시 154회 출연 · <a href="https://www.de-other.com" style="color:var(--accent)">www.de-other.com</a>에서 직접 만든 게임 10종 공개</li>
+</ul>
+</div>
+</section>
+<section>
+<div class="sec-head"><span class="eyebrow">1996 — 2026</span><h2>30년 동안 해 온 일</h2></div>
+<div class="career">
+<div class="rule wide"><h3>하버드 재학 중, 전 세계 리더 1만 명에게 편지를 썼습니다</h3><p>1996년 정치·경제 리더 1만 명에게 편지를 보내 워런 버핏의 친필 답장을 비롯해 300여 통의 회신을 받았습니다. 재학 중에는 아이비리그와 한국 학생 200명이 함께한 Korean Global Society를 만들었습니다.</p></div>
+<div class="rule"><h3>방송</h3><ul>
+<li>KBS 아침마당 3회 출연</li>
+<li>KBS 9시 뉴스 · CBS 세바시 154회</li>
+<li>EBS 반기문 UN 사무총장 초청 UNAI 좌담회 MC</li>
+<li>EBS 다큐프라임 · JTBC 힘있는 이야기 쇼</li>
+<li>MBC 「켄트김의 하버드식 학습전략」 20편</li>
+</ul></div>
+<div class="rule"><h3>강연</h3><ul>
+<li>1996년부터 대학·기업·기관 누적 청중 100만 명 이상</li>
+<li>LG전자 · 삼성중공업 · SK케미컬 · 중소기업진흥원 임직원 특강</li>
+<li>서울대 · 이화여대 · 서강대 · 한동대 · 인하대 · 국민대 · 단국대 · 서울여대 · 성균관대, 대전대 신입생 2,500명 등</li>
+<li>미국 뉴욕 · 뉴저지 · LA · 시애틀(워싱턴대 KASCON) 초청 강연</li>
+</ul></div>
+<div class="rule"><h3>저서 23권 이상 · 소설 12권 연재 중</h3><ul>
+<li>『만화보다가 하버드 갔습니다』(2000)</li>
+<li>『하버드식 인생성공법』 · 『만 명에게 편지를 써라』</li>
+<li>『시간관리 타임블럭』 · 『나도 하버드에 갈 수 있다』</li>
+<li><a href="https://product.kyobobook.co.kr/detail/S000220165482" target="_blank" rel="noopener" style="color:var(--accent)">『플라토 스쿨 프리메드』</a>(2026, 500페이지) · 교보문고 판매 중</li>
+<li>현재 소설 12권 연재 중</li>
+</ul></div>
+<div class="rule"><h3>설립 · 활동</h3><ul>
+<li>봉사단체 「봉사특공대」 설립 (8명에서 1,000명 규모로)</li>
+<li>영어교육신문 와이즈맘 설립 (2011)</li>
+<li>남수단을 돕는 희망고 재단 서포터즈 총단장 · 前 한국연예예술학교 교수</li>
+</ul></div>
+<div class="rule wide"><h3>공모전 수상</h3><ul class="awards">
+<li><b>최우수상</b> 인천공항 AI Port 공모전</li>
+<li><b>대상</b> 국악방송 UCC 영상콘텐츠 공모전</li>
+<li><b>최우수상</b> 강남노인종합복지관 노인사랑 UCC 공모전</li>
+<li><b>최우수상</b> 은평 골목이야기 UCC 공모전</li>
+<li><b>은상</b> SBS 「국민 DJ를 찾습니다」</li>
+<li><b>우수상</b> 대구 글로벌에너지 UCC 공모전</li>
+<li><b>우수상</b> 제2회 고양방송영상축전 메이드인고양 부문</li>
+<li><b>특별상</b> S-OIL 좋은 기름 UCC 공모전</li>
+<li><b>장려상</b> 굿모닝병원 UCC 공모전 · 서초 HCN UCC 공모전</li>
+</ul></div>
+</div>
+</section>
+<section>
+<div class="sec-head"><span class="eyebrow">2026 활동 기록</span><h2>AI 덕분에 올해 생긴 일들</h2></div>
+<div class="log">
+<div><time>8월 15일</time><p>중국 텐센트 게임 어워즈 참가</p></div>
+<div><time>8월</time><p>미국 마이크로소프트 XBOX와 NDA 체결</p></div>
+<div><time>9월 14–16일</time><p>코엑스 BCWW 방송영상마켓, 12개국 29개 업체와 IP 판매 미팅</p></div>
+<div><time>9월 18–19일</time><p>경기콘텐츠진흥원 국제웹툰페어 초청, 해외 16개 업체와 IP 미팅</p></div>
+<div><time>9월 19일</time><p>교육부 주최 단국대 10개 대학생 팀 멘토링 (Meta Quest 교육 콘텐츠)</p></div>
+<div><time>10월 12–18일</time><p>문체부·한콘진 초대 스웨덴 게임 콘퍼런스 부스</p></div>
+<div><time>10월 29일–11월 1일</time><p>한국인공지능협회 초청 태국 게임스컴 부스</p></div>
+<div><time>11월</time><p>광화문 인사동, 세종대왕국민위원회와 라이브 페인팅 퍼포먼스</p></div>
+<div><time>2027년</time><p>CES·MWC·GDC AI 연사 신청, 미국 박물관·도서관 라이브 페인팅 제안 중</p></div>
+</div>
+</section>
+<section>
+<div class="sec-head"><span class="eyebrow">이용 안내</span><h2>업그레이드 · 유효기간 · 환불</h2></div>
+<div class="policy">
+<div class="rule"><h3>업그레이드</h3><p>1강권이나 3강권을 산 뒤에도 차액만 내면 상위 이용권이나 올패스로 바꿀 수 있습니다.</p></div>
+<div class="rule"><h3>유효기간 6개월</h3><p>이용권은 구매일로부터 6개월 동안 쓸 수 있습니다. 강의는 순차적으로 열리고, 일정은 이메일로 안내합니다.</p></div>
+<div class="rule"><h3>환불</h3><p>첫 강의 시작 전에는 전액 환불합니다. 수강을 시작한 뒤에는 들은 강의를 1강권 가격(일반 49,000원, 동기 44,000원)으로 계산해 뺀 금액을 돌려드립니다.</p></div>
+</div>
+</section>
+<section id="apply">
+<div class="final">
+<span class="eyebrow" style="color:inherit;opacity:.7">수강 신청</span>
+<h2>첫 강의는 30명 안팎으로 엽니다</h2>
+<p>신청서에 이용권과 듣고 싶은 강의를 적어 주시면 결제와 일정 안내를 이메일로 보내 드립니다.</p>
+<a class="btn btn-primary apply" href="#apply">수강 신청하기</a>
+</div>
+</section>
+<footer>© 켄트 김 · 디아더(Deother). 법인 설립 관련 강의는 경험 공유이며 법률·세무 자문이 아닙니다.</footer>
+</div>
+<div class="cart" id="cart" hidden>
+<div class="cart-in">
+<div class="cart-info"><b id="cartTitle"></b><span id="cartSub"></span></div>
+<div class="cart-actions"><button class="link-btn" type="button" id="cartClear">비우기</button><a class="btn btn-primary apply" href="#apply">신청하기</a></div>
+</div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
