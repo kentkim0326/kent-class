@@ -120,7 +120,7 @@ const PASS_SOLD = 0;
 // covers: 이 날까지 열리는 강의를 모두 포함(없으면 구매일부터 1년).
 const PASS_TIERS = [{k:"1차 · 선착순 30명",from:1,to:30,p:590000,until:"2026-12-31",covers:"2027-12-31"},{k:"2차 · 60번까지",from:31,to:60,p:690000},{k:"3차 · 61~90번",from:61,to:90,p:790000},{k:"4차 · 91번부터",from:91,to:Infinity,p:990000,minLive:25}];
 // 강의 목표: 진행 막대와 올패스 안내에 쓰입니다.
-const GOAL = 100, GOAL_BY = "2027년 말", PACE_MIN = 5, PACE_MAX = 6, PACE = `매달 ${PACE_MIN}~${PACE_MAX}강`;
+const GOAL = 100, GOAL_BY = "2027년 말", PACE_MIN = 6, PACE_MAX = 7, PACE = `매달 ${PACE_MIN}~${PACE_MAX}강`;
 const BONUS_MAX = 7; // 1강권 1개마다 AI 특강 1편 증정, 최대 7편
 const LIVE = COURSES.filter(c=>c.cat!=="talk").length, TALKS = COURSES.length-LIVE;
 const tierOpen = t => !t.minLive || LIVE >= t.minLive;
@@ -223,7 +223,7 @@ el.appendChild(d);
 document.getElementById("single").innerHTML =
 `<div class="s-main"><span class="name">1강권</span><span class="price">${LIST.toLocaleString("ko-KR")}<small>원</small></span></div>`+
 `<div class="s-info"><span class="seats">1개 사면 AI 특강 1편 증정</span><span>원하는 강의 1개 · 원하는 AI 특강을 1편씩 최대 ${BONUS_MAX}편까지 드립니다 · 나중에 올패스로 바꾸면 낸 금액을 빼 드립니다</span></div>`;
-const lo = Math.min(GOAL, total + 12*PACE_MIN), hi = Math.min(GOAL, total + 12*PACE_MAX);
+const lo = Math.min(GOAL, TALKS + 12*PACE_MIN), hi = Math.min(GOAL, TALKS + 12*PACE_MAX);
 const range = (a,b,f) => a===b ? f(a) : `${f(a)}~${f(b)}`;
 for(const t of PASS_TIERS){
 const cur = t===now, done = !cur && tierDone(t), open = tierOpen(t);
@@ -233,7 +233,7 @@ const perlec = t.covers
 ? `<span class="perlec">${GOAL}강 완성 시 1강당 ${won(Math.round(t.p/GOAL))}</span>`
 : `<span class="perlec">1강당 약 ${range(Math.round(t.p/hi/100)*100, Math.round(t.p/lo/100)*100, v=>v.toLocaleString("ko-KR"))}원</span>`;
 const detail = !open
-? `<span class="per">라이브 강의가 ${t.minLive}강 이상 되면 판매합니다 (지금 ${LIVE}강)</span>`
+? `<span class="per">라이브 강의가 ${t.minLive}강 이상으로 늘면 판매합니다 (지금 라이브 ${LIVE}강 예정)</span>`
 : t.covers
 ? `<span class="val">${GOAL}강을 1강권으로 들으면 ${won(GOAL*LIST)} → 약 ${Math.round((1-t.p/(GOAL*LIST))*100)}% 저렴</span><span class="per">${coverText(t)} 열리는 강의 모두 포함</span>`
 : `<span class="val">1강권 기준 약 ${range(lo*LIST/1e4, hi*LIST/1e4, v=>Math.round(v).toLocaleString("ko-KR"))}만원어치</span><span class="per">1년 동안 받을 강의 예상 ${range(lo,hi,v=>v)}강 · 약 ${Math.round((1-t.p/(lo*LIST))*100)}% 이상 저렴</span>`;
