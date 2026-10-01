@@ -107,7 +107,7 @@ const SECRETS = [
 ];
 const VOTE_MAX = 5;
 const CIRC = n => String.fromCharCode(n<=20 ? 0x245F+n : 0x323C+n);
-const LIST = 49000;
+const LIST = 50000;
 // 올패스 선착순 가격. 올패스가 한 장 팔릴 때마다 PASS_SOLD를 1씩 올려 주세요.
 // 3차는 라이브 강의가 minLive개 이상일 때만 열리고, 그 전에는 2차 가격이 이어집니다.
 const PASS_SOLD = 0;
