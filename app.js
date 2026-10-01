@@ -1,4 +1,9 @@
-const APPLY_URL = "https://docs.google.com/forms/d/1qd0H3X9hd6xrSrCkbiThR_vXxmcFDTY8SvibDWqLpKo/viewform";
+// 수강 신청 구글폼. 담은 강의와 비밀 시리즈 투표를 미리 채워서 엽니다.
+const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScdq_V-kakkuDQJNKgIKXyscEbBy1Rzm0HGp52HSZmZ9senKw/viewform";
+const FORM_PICK = "entry.127665552"; // 듣고 싶은 강의 (체크박스, 라이브 ①~⑯)
+const FORM_NOTE = "entry.889586095"; // 하고 싶은 말 (장문)
+// 폼 체크박스 문구와 글자 하나까지 같아야 미리 채워집니다.
+const FORM_LIVE = ["① 사단법인 만들기","② 미국 종교법인 만들기","③ 30억 투자 유치와 교훈","④ 혁신학교 만들기","⑤ 국제 포럼 만들기","⑥ AI로 앱인토스 게임 만들기","⑦ 세계 공공기관에 브랜드 팔기","⑧ 해외 게임쇼 부스 나가기","⑨ 공모전 300개 심화편","⑩ AI로 책 쓰고 출간하기","⑪ 해외 행사 연사 지원하기","⑫ 스폰서 구좌 모금 설계","⑬ 미국 대학·의대 입시","⑭ 1인 창업가 AI 업무 자동화","⑮ 블록체인 경험담 (이더리움부터 코인빗 대표까지)","⑯ 깃허브 프로젝트 70개 만든 경험"];
 const CATS = {law:"법인·조직", startup:"창업·투자", global:"글로벌 진출", ai:"AI 실전", edu:"교육·입시", web3:"블록체인", talk:"9월 강연 다시보기"};
 const COURSES = [
 {"n": 1, "cat": "law", "t": "문체부 산하 사단법인 만들기 — 국제브레인스포츠협회 설립기", "p": ["왜 사단법인인가: 주식회사·재단법인·비영리민간단체와 비교", "국제브레인스포츠협회를 만든 이유", "주무관청 선택과 사전 협의: 왜 문체부였는지", "설립 전 과정: 발기인 → 창립총회 → 정관 → 허가 → 등기", "행정사 비용 공개, 직접 할 수 있는 부분과 맡길 부분", "이사·감사 선출: 누구를 어떻게 모셨는지", "설립 후 운영: 보고·회계, 그리고 국제 행사 주최 기관으로 쓰기"]},
@@ -168,6 +173,7 @@ el.appendChild(art);
 }
 }
 function renderCart(){
+syncApply();
 const cart = document.getElementById("cart");
 const n = picked.size;
 if(!n){ cart.hidden = true; return; }
@@ -184,9 +190,20 @@ const sub = single <= pass.p
 document.getElementById("cartSub").textContent = sub;
 }
 document.getElementById("cartClear").addEventListener("click",()=>{picked.clear(); save(); renderCourses(); renderCart();});
-document.querySelectorAll(".apply").forEach(a=>{
-if(APPLY_URL){ a.href = APPLY_URL; a.target="_blank"; a.rel="noopener"; }
-});
+function applyUrl(){
+const q = new URLSearchParams({usp:"pp_url"});
+const pk = [...picked].sort((a,b)=>a-b);
+pk.filter(n=>n<=FORM_LIVE.length).forEach(n=>q.append(FORM_PICK, FORM_LIVE[n-1]));
+const notes = [];
+const talks = pk.filter(n=>n>FORM_LIVE.length).map(n=>CIRC(n)+" "+COURSES.find(c=>c.n===n).t);
+if(talks.length) notes.push("담은 9월 강연: " + talks.join(", "));
+if(votes.size) notes.push("먼저 듣고 싶은 비밀 시리즈: " + voteText());
+if(notes.length) q.set(FORM_NOTE, notes.join("\n"));
+return FORM_URL + "?" + q.toString().replace(/\+/g, "%20");
+}
+function syncApply(){
+document.querySelectorAll(".apply").forEach(a=>{ a.href = applyUrl(); a.target="_blank"; a.rel="noopener"; });
+}
 function renderTickets(){
 const el=document.getElementById("tickets"); el.innerHTML="";
 const total = COURSES.length, full = ticketsFor(LIVE, TALKS)*LIST, now = passNow();
@@ -257,13 +274,11 @@ more.textContent = `${shown.length}편 모두 보기`;
 document.getElementById("voteCount").textContent = `${votes.size} / ${VOTE_MAX}개 선택`;
 document.getElementById("voteText").textContent = votes.size ? voteText() : "듣고 싶은 주제를 눌러 골라 주세요.";
 document.getElementById("voteSend").disabled = !votes.size;
+syncApply();
 }
-document.getElementById("voteSend").addEventListener("click", async ()=>{
-const msg = document.getElementById("voteMsg"), text = "먼저 듣고 싶은 비밀 시리즈: " + voteText();
-let copied = false;
-try { await navigator.clipboard.writeText(text); copied = true; } catch(e){}
-msg.textContent = copied ? "복사했어요. 신청서의 '먼저 듣고 싶은 강의' 칸에 붙여 넣어 주세요." : "위 목록을 신청서의 '먼저 듣고 싶은 강의' 칸에 적어 주세요.";
-if(APPLY_URL) window.open(APPLY_URL, "_blank", "noopener");
+document.getElementById("voteSend").addEventListener("click", ()=>{
+window.open(applyUrl(), "_blank", "noopener");
+document.getElementById("voteMsg").textContent = "신청서를 열었어요. 고른 주제가 '하고 싶은 말' 칸에 채워져 있어요.";
 });
 document.getElementById("secretMore").addEventListener("click",()=>{sMore=true; renderSecrets();});
 renderGoal(); renderSecrets(); renderTickets(); renderFilters(); renderCourses(); renderCart();
