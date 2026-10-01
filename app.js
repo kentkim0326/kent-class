@@ -4,7 +4,7 @@ const FORM_PICK = "entry.127665552"; // 듣고 싶은 강의 (체크박스, 라�
 const FORM_NOTE = "entry.889586095"; // 하고 싶은 말 (장문)
 // 폼 체크박스 문구와 글자 하나까지 같아야 미리 채워집니다.
 const FORM_LIVE = ["① 사단법인 만들기","② 미국 종교법인 만들기","③ 30억 투자 유치와 교훈","④ 혁신학교 만들기","⑤ 국제 포럼 만들기","⑥ AI로 앱인토스 게임 만들기","⑦ 세계 공공기관에 브랜드 팔기","⑧ 해외 게임쇼 부스 나가기","⑨ 공모전 300개 심화편","⑩ AI로 책 쓰고 출간하기","⑪ 해외 행사 연사 지원하기","⑫ 스폰서 구좌 모금 설계","⑬ 미국 대학·의대 입시","⑭ 1인 창업가 AI 업무 자동화","⑮ 블록체인 경험담 (이더리움부터 코인빗 대표까지)","⑯ 깃허브 프로젝트 70개 만든 경험"];
-const CATS = {law:"법인·조직", startup:"창업·투자", global:"글로벌 진출", ai:"AI 실전", edu:"교육·입시", web3:"블록체인", talk:"9월 강연 다시보기"};
+const CATS = {law:"법인·조직", startup:"창업·투자", global:"글로벌 진출", ai:"AI 실전", edu:"교육·입시", web3:"블록체인", talk:"AI 특강 다시보기"};
 const COURSES = [
 {"n": 1, "cat": "law", "t": "문체부 산하 사단법인 만들기 — 국제브레인스포츠협회 설립기", "p": ["왜 사단법인인가: 주식회사·재단법인·비영리민간단체와 비교", "국제브레인스포츠협회를 만든 이유", "주무관청 선택과 사전 협의: 왜 문체부였는지", "설립 전 과정: 발기인 → 창립총회 → 정관 → 허가 → 등기", "행정사 비용 공개, 직접 할 수 있는 부분과 맡길 부분", "이사·감사 선출: 누구를 어떻게 모셨는지", "설립 후 운영: 보고·회계, 그리고 국제 행사 주최 기관으로 쓰기"]},
 {"n": 2, "cat": "law", "t": "미국 캘리포니아에 종교법인 만들기", "p": ["한국에서 종교법인 설립이 어려운 이유", "왜 샌프란시스코에, 왜 종교법인으로 만들었는지", "캘리포니아 비영리 종교법인의 구조 이해", "설립 서류 실무: Articles, 등록대리인, EIN, Bylaws", "한국에서 원격으로 진행한 방법과 실제 비용", "설립 후 유지: 신고·보고와 은행 계좌", "설립 후 활용: 교육 프로그램·국제 파트너십"], "d": "경험 공유이며 법률·세무 자문이 아닙니다."},
@@ -121,7 +121,7 @@ const PASS_SOLD = 0;
 const PASS_TIERS = [{k:"1차 · 선착순 30명",from:1,to:30,p:590000,until:"2026-12-31",covers:"2027-12-31"},{k:"2차 · 60번까지",from:31,to:60,p:690000},{k:"3차 · 61~90번",from:61,to:90,p:790000},{k:"4차 · 91번부터",from:91,to:Infinity,p:990000,minLive:25}];
 // 강의 목표: 진행 막대와 올패스 안내에 쓰입니다.
 const GOAL = 100, GOAL_BY = "2027년 말", PACE_MIN = 5, PACE_MAX = 6, PACE = `매달 ${PACE_MIN}~${PACE_MAX}강`;
-const BONUS_MAX = 7; // 1강권 1개마다 9월 강연 1편 증정, 최대 7편
+const BONUS_MAX = 7; // 1강권 1개마다 AI 특강 1편 증정, 최대 7편
 const LIVE = COURSES.filter(c=>c.cat!=="talk").length, TALKS = COURSES.length-LIVE;
 const tierOpen = t => !t.minLive || LIVE >= t.minLive;
 const untilMs = t => t.until ? Date.parse(t.until + "T24:00:00+09:00") : Infinity;
@@ -130,7 +130,7 @@ const tierDone = t => PASS_SOLD >= t.to || ended(t);
 const passNow = () => { const i = PASS_TIERS.findIndex(t=>!tierDone(t)); return tierOpen(PASS_TIERS[i]) ? PASS_TIERS[i] : PASS_TIERS[i-1]; };
 const coverText = t => { if(!t.covers) return "구매일부터 1년 동안"; const [y, m, d] = t.covers.split("-").map(Number); return `${y}년 ${m}월\u00a0${d}일까지`; };
 const untilText = t => { const [, m, d] = t.until.split("-").map(Number); return `${m}월\u00a0${d}일`; };
-// 라이브 live개와 9월 강연 talk개를 1강권으로만 들을 때 필요한 장수 (1강권은 어느 강의에나 쓸 수 있고, 장마다 9월 강연 1편 증정)
+// 라이브 live개와 AI 특강 talk개를 1강권으로만 들을 때 필요한 장수 (1강권은 어느 강의에나 쓸 수 있고, 장마다 AI 특강 1편 증정)
 const ticketsFor = (live, talk) => { let k = live; while(k + Math.min(k, BONUS_MAX) < live + talk) k++; return k; };
 const won = v => v.toLocaleString("ko-KR") + "원";
 let filter = "all";
@@ -192,8 +192,8 @@ const best = Math.min(single, pass.p);
 document.getElementById("cartTitle").innerHTML = `${n}개 담음 ${list} → <span class="amt">${won(best)}</span>`;
 const free = Math.min(k, BONUS_MAX), left = Math.min(free - Math.max(0, talk - (k - live)), TALKS - talk);
 const sub = single <= pass.p
-? `1강권 ×${k} (${won(single)}) + 9월 강연 ${free}편 증정` + (left>0?` · 9월 강연 ${left}편 더 고를 수 있어요`:"") + ` · 1강권 ${Math.floor(pass.p/LIST)+1}개부터는 올패스(${won(pass.p)})가 더 저렴해요`
-: `올패스 ${pass.k} ${won(pass.p)} · 1강권으로 사면 ${won(single)} · 9월 강연 ${TALKS}편 + 곧 시작하는 라이브 ${LIVE}강 + ${coverText(pass)} 추가되는 강의 포함`;
+? `1강권 ×${k} (${won(single)}) + AI 특강 ${free}편 증정` + (left>0?` · AI 특강 ${left}편 더 고를 수 있어요`:"") + ` · 1강권 ${Math.floor(pass.p/LIST)+1}개부터는 올패스(${won(pass.p)})가 더 저렴해요`
+: `올패스 ${pass.k} ${won(pass.p)} · 1강권으로 사면 ${won(single)} · AI 특강 ${TALKS}편 + 곧 시작하는 라이브 ${LIVE}강 + ${coverText(pass)} 추가되는 강의 포함`;
 document.getElementById("cartSub").textContent = sub;
 }
 document.getElementById("cartClear").addEventListener("click",()=>{picked.clear(); save(); renderCourses(); renderCart();});
@@ -203,7 +203,7 @@ const pk = [...picked].sort((a,b)=>a-b);
 pk.filter(n=>n<=FORM_LIVE.length).forEach(n=>q.append(FORM_PICK, FORM_LIVE[n-1]));
 const notes = [];
 const talks = pk.filter(n=>n>FORM_LIVE.length).map(n=>CIRC(n)+" "+COURSES.find(c=>c.n===n).t);
-if(talks.length) notes.push("담은 9월 강연: " + talks.join(", "));
+if(talks.length) notes.push("담은 AI 특강: " + talks.join(", "));
 if(votes.size) notes.push("먼저 듣고 싶은 비밀 시리즈: " + voteText());
 if(notes.length) q.set(FORM_NOTE, notes.join("\n"));
 return FORM_URL + "?" + q.toString().replace(/\+/g, "%20");
@@ -222,7 +222,7 @@ el.appendChild(d);
 };
 document.getElementById("single").innerHTML =
 `<div class="s-main"><span class="name">1강권</span><span class="price">${LIST.toLocaleString("ko-KR")}<small>원</small></span></div>`+
-`<div class="s-info"><span class="seats">1개 사면 9월 강연 1편 증정</span><span>원하는 강의 1개 · 원하는 9월 강연을 1편씩 최대 ${BONUS_MAX}편까지 드립니다 · 나중에 올패스로 바꾸면 낸 금액을 빼 드립니다</span></div>`;
+`<div class="s-info"><span class="seats">1개 사면 AI 특강 1편 증정</span><span>원하는 강의 1개 · 원하는 AI 특강을 1편씩 최대 ${BONUS_MAX}편까지 드립니다 · 나중에 올패스로 바꾸면 낸 금액을 빼 드립니다</span></div>`;
 const lo = Math.min(GOAL, total + 12*PACE_MIN), hi = Math.min(GOAL, total + 12*PACE_MAX);
 const range = (a,b,f) => a===b ? f(a) : `${f(a)}~${f(b)}`;
 for(const t of PASS_TIERS){
@@ -239,7 +239,7 @@ const detail = !open
 : `<span class="val">1강권 기준 약 ${range(lo*LIST/1e4, hi*LIST/1e4, v=>Math.round(v).toLocaleString("ko-KR"))}만원어치</span><span class="per">1년 동안 받을 강의 예상 ${range(lo,hi,v=>v)}강 · 약 ${Math.round((1-t.p/(lo*LIST))*100)}% 이상 저렴</span>`;
 card(done?"done":cur?"best":"", done?"마감":cur?"지금 가격":"",
 `<span class="name">올패스</span><span class="tier">${t.k}${t.until?` · ${untilText(t)}까지`:""}</span><span class="price">${t.p.toLocaleString("ko-KR")}<small>원</small></span>`+perlec+detail+seats,
-cur?`<ul><li>9월 강연 ${TALKS}편 바로 시청 + 곧 시작하는 라이브 ${LIVE}강 전부</li><li>${coverText(t)} 새로 열리는 강의 모두 포함, 비밀 시리즈도 포함, 추가 비용 없음 (${PACE}씩, ${GOAL_BY} 목표 ${GOAL}강)</li><li>모든 라이브 강의 녹화본 제공, 놓쳐도 다시 보기</li><li>강의 자료 제공 (체크리스트 · 템플릿 · 슬라이드 PDF)</li><li>올패스 전용 단톡방 · 켄트와의 그룹 Q&amp;A</li></ul>`
+cur?`<ul><li>AI 특강 ${TALKS}편 바로 시청 + 곧 시작하는 라이브 ${LIVE}강 전부</li><li>${coverText(t)} 새로 열리는 강의 모두 포함, 비밀 시리즈도 포함, 추가 비용 없음 (${PACE}씩, ${GOAL_BY} 목표 ${GOAL}강)</li><li>모든 라이브 강의 녹화본 제공, 놓쳐도 다시 보기</li><li>강의 자료 제공 (체크리스트 · 템플릿 · 슬라이드 PDF)</li><li>올패스 전용 단톡방 · 켄트와의 그룹 Q&amp;A</li></ul>`
 :`<span>${done?(PASS_SOLD>=t.to?"선착순 마감":"기간 마감"):"앞 차수가 마감되면 이 가격이 됩니다"}</span><span>${coverText(t)} 새로 열리는 강의 포함 · 혜택은 지금 가격과 같습니다</span>`);
 }
 }
@@ -294,7 +294,7 @@ document.getElementById("voteMsg").textContent = "신청서를 열었어요. 고
 });
 document.getElementById("secretMore").addEventListener("click",()=>{sMore=true; renderSecrets();});
 function renderSeries(){
-const parts = [["s-talk", TALKS, "9월 강연", "지금 다시보기", "#courses"], ["s-live", LIVE, "라이브 강의", "곧 시작 · 지금 신청", "#courses"], ["s-secret", SECRETS.length, "비밀 시리즈", "투표로 골라 제작", "#secrets"]];
+const parts = [["s-talk", TALKS, "AI 특강", "지금 다시보기", "#courses"], ["s-live", LIVE, "라이브 강의", "곧 시작 · 지금 신청", "#courses"], ["s-secret", SECRETS.length, "비밀 시리즈", "투표로 골라 제작", "#secrets"]];
 const total = parts.reduce((t,p)=>t+p[1],0);
 document.getElementById("series").innerHTML =
 `<div class="series-bar" role="img" aria-label="${parts.map(p=>p[2]+" "+p[1]+"강").join(", ")}, 합계 ${total}강">${parts.map(p=>`<span class="${p[0]}" style="flex:${p[1]}"></span>`).join("")}</div>`+
@@ -309,7 +309,7 @@ function renderTopbar(){
 const t = passNow(), bits = [];
 if(t.to > PASS_SOLD && isFinite(t.to)) bits.push(`남은 자리 ${t.to-PASS_SOLD}${t.from===1?` / ${t.to}`:""}`);
 if(t.until && !tierDone(t)) bits.push(`D-${Math.ceil((untilMs(t)-Date.now())/864e5)}`);
-bits.push(t.covers ? `${GOAL}강 완성 시 1강당 ${won(Math.round(t.p/GOAL))}` : `9월 강연 ${TALKS}편 + 라이브 ${LIVE}강 + 1년 동안 새 강의 포함`);
+bits.push(t.covers ? `${GOAL}강 완성 시 1강당 ${won(Math.round(t.p/GOAL))}` : `AI 특강 ${TALKS}편 + 라이브 ${LIVE}강 + 1년 동안 새 강의 포함`);
 document.getElementById("topbar").innerHTML = `<div><b></b><span>${bits.join(" · ")}</span></div><a class="btn apply" href="#apply">수강 신청하기</a>`;
 document.querySelector("#topbar b").textContent = passHeadline();
 document.getElementById("applyHead").textContent = passHeadline();
