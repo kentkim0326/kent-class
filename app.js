@@ -70,7 +70,7 @@ const SECRETS = [
 {"n": 36, "cat": "digital", "t": "코인 거래소의 비밀"},
 {"n": 37, "cat": "money", "t": "금융사기의 비밀"},
 {"n": 38, "cat": "money", "t": "금 투자의 비밀"},
-{"n": 39, "cat": "money", "t": "복권의 비밀"},
+{"n": 39, "cat": "world", "t": "미국 대마 산업의 비밀"},
 {"n": 40, "cat": "law", "t": "유언장의 비밀"},
 {"n": 41, "cat": "money", "t": "미국 주식의 비밀"},
 {"n": 42, "cat": "law", "t": "결혼의 비밀"},
@@ -247,8 +247,8 @@ el.innerHTML=`<div class="goal-top"><b>지금 ${n}강</b><span>비밀 시리즈 
 let sFilter = "all", sMore = false;
 const SECRET_PREVIEW = 21;
 const votes = new Set();
-try { JSON.parse(localStorage.getItem("kc-votes6")||"[]").forEach(n=>votes.add(n)); } catch(e){}
-function saveVotes(){ try{ localStorage.setItem("kc-votes6", JSON.stringify([...votes])); }catch(e){} }
+try { JSON.parse(localStorage.getItem("kc-votes7")||"[]").forEach(n=>votes.add(n)); } catch(e){}
+function saveVotes(){ try{ localStorage.setItem("kc-votes7", JSON.stringify([...votes])); }catch(e){} }
 const voteText = () => [...votes].sort((a,b)=>a-b).map(n=>SECRETS.find(x=>x.n===n).t).join(", ");
 function renderSecrets(){
 const f = document.getElementById("secretFilters"); f.innerHTML = "";
