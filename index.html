@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta property="og:type" content="website">
-<meta property="og:title" content="켄트 김의 '직접 해본 것만' 클래스 — 16번의 2시간">
-<meta property="og:description" content="사단법인·미국 법인 설립, 30억 투자 유치, 블록체인 거래소, 국제 포럼, AI 게임·앱, 깃허브 70개 프로젝트, 해외 공공기관 협업까지. 2시간 Zoom 라이브 16강. 동기 최대 47% 할인.">
+<meta property="og:title" content="켄트 김의 '직접 해본 것만' 클래스 — 라이브 16강 + 9월 강연 7편">
+<meta property="og:description" content="사단법인·미국 법인 설립, 30억 투자 유치, 블록체인 거래소, 국제 포럼, AI 게임·앱, 깃허브 70개 프로젝트, 해외 공공기관 협업까지. Zoom 라이브 16강과 9월 강연 다시보기 7편. 평생 올패스 선착순 30명 590,000원.">
 <meta name="twitter:card" content="summary">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>켄트 김의 '직접 해본 것만' 클래스</title>
-<meta name="description" content="켄트 김이 직접 해본 것만 가르치는 2시간 Zoom 라이브 클래스 16강">
+<meta name="description" content="켄트 김이 직접 해본 것만 가르치는 Zoom 라이브 16강과 9월 강연 다시보기 7편">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
@@ -90,18 +90,15 @@ section{padding-block:56px 0;display:grid;gap:24px}
 .ticket.best{border:2px solid var(--accent)}
 .ticket.best .flag{position:absolute;top:0;right:0;background:var(--accent);color:var(--accent-ink);font-size:12px;font-weight:700;padding:4px 10px;border-bottom-left-radius:10px}
 .ticket ul{margin:4px 0 0;padding-left:18px;color:var(--ink)}
+.ticket .tier{font-size:13px;font-weight:700;color:var(--accent)}
+.ticket.done{opacity:.55}
+.ticket.done .price{text-decoration:line-through}
+.ticket.done .flag{position:absolute;top:0;right:0;background:var(--line);color:var(--muted);font-size:12px;font-weight:700;padding:4px 10px;border-bottom-left-radius:10px}
+.ticket .seats{justify-self:start;margin-top:6px;background:var(--tag);color:var(--tag-ink);font-size:13px;font-weight:700;padding:2px 10px;border-radius:999px}
+.course .talk{display:grid;gap:6px;font-size:15px}
+.course .talk .when{font-family:var(--mono);font-size:13px;color:var(--accent)}
+.course .talk .rel{color:var(--muted);font-size:14px}
 .ticket .was{font-family:var(--mono);font-size:13px;color:var(--muted);text-decoration:line-through}
-.combos{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;color:var(--muted)}
-.combo{background:var(--accent-soft);color:var(--ink);padding:6px 12px;border-radius:999px;font-size:14px;border:0;cursor:pointer;font-family:var(--body)}
-.combo b{color:var(--accent)}
-.mate{background:var(--tag);color:var(--tag-ink);padding:12px 18px 14px;display:grid;gap:2px}
-.mate .ml{font-size:12px;font-weight:700;letter-spacing:.02em;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
-.mate .ml b{font-family:var(--mono);font-size:12px;background:var(--tag-ink);color:var(--tag);padding:1px 7px;border-radius:5px}
-.mate .mp{font-family:var(--display);font-size:28px;line-height:1.2;font-variant-numeric:tabular-nums}
-.mate .mp small{font-family:var(--body);font-size:14px;font-weight:500;margin-left:2px}
-.mate .mper{font-family:var(--mono);font-size:12px;opacity:.8}
-.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:14px;color:var(--muted);align-items:center}
-.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--tag)}
 .rules{display:grid;grid-template-columns:1fr;gap:14px}
 .rule{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:6px;align-content:start}
 .rule h3{font-size:17px;font-weight:700;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
@@ -109,7 +106,6 @@ section{padding-block:56px 0;display:grid;gap:24px}
 .rule p{color:var(--muted);font-size:15px}
 .awards{grid-template-columns:repeat(2,1fr);column-gap:24px}
 .awards b{display:inline-block;min-width:56px;color:var(--accent);font-weight:700;margin-right:6px}
-.mates{margin:4px 0 0;padding-left:18px;display:grid;gap:2px;font-size:14px;color:var(--ink)}
 .filters{display:flex;flex-wrap:wrap;gap:8px}
 .chip{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 14px;font-size:14px;cursor:pointer;font-family:var(--body)}
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
@@ -147,7 +143,6 @@ footer{padding-block:32px 0;font-size:13px;color:var(--muted)}
 .cart-info{display:grid;gap:0;min-width:0}
 .cart-info b{font-size:16px}
 .cart-info span{font-size:13px;color:var(--muted)}
-.cart-info .mate-amt{background:var(--tag);color:var(--tag-ink);padding:0 6px;border-radius:5px}
 .cart-info .amt{font-family:var(--mono)}
 .cart-actions{display:flex;gap:8px;align-items:center}
 .cart .btn{min-height:42px;padding:0 18px;font-size:15px}
@@ -160,14 +155,14 @@ footer{padding-block:32px 0;font-size:13px;color:var(--muted)}
 <div class="wrap">
 <header class="hero">
 <div class="stage">
-<span class="eyebrow">2시간 Zoom 라이브 · 16강</span>
-<h1>직접 해본 사람만<br>말할 수 있는 <em>16번의 2시간</em></h1>
+<span class="eyebrow">Zoom 라이브 16강 · 9월 강연 다시보기 7편</span>
+<h1>직접 해본 사람만<br>말할 수 있는 <em>23개의 강의</em></h1>
 <div class="hero-grid">
 <div class="hero-text">
 <p class="lead">사단법인과 미국 법인을 세우고, 30억을 투자받고, 암호화폐 거래소 대표를 지내고, 공모전 300개에 도전하고, AI로 앱 50개와 게임 10개, 깃허브 프로젝트 70개를 만든 켄트 김이 과정과 비용, 실패까지 그대로 공개합니다.</p>
 <div class="hero-cta">
 <a class="btn btn-primary apply" href="#apply">수강 신청하기</a>
-<a class="btn btn-ghost" href="#courses">16개 강의 보기</a>
+<a class="btn btn-ghost" href="#courses">23개 강의 보기</a>
 </div>
 </div>
 <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/WL6M1ZloXMs?rel=0" title="CBS 세바시 154회 켄트 김 강연" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>
@@ -183,29 +178,18 @@ footer{padding-block:32px 0;font-size:13px;color:var(--muted)}
 <section>
 <div class="sec-head"><span class="eyebrow">진행 방식</span><h2>서로 얼굴을 보고 이름을 부르는 수업</h2></div>
 <div class="format">
-<div><span class="k">2 HOURS</span><h3>Zoom 라이브</h3><p>강의마다 2시간. 화면 공유로 실제 서류, 사이트, 메일을 보여 드립니다.</p></div>
-<div><span class="k">FACE · NAME</span><h3>얼굴과 이름 공개</h3><p>모든 유료 프로그램은 참가자 모두 얼굴과 이름을 공개하고 진행합니다. 그래서 녹화본은 제공하지 않습니다.</p></div>
+<div><span class="k">LIVE · REPLAY</span><h3>Zoom 라이브 + 다시보기</h3><p>라이브 16강은 강의마다 2시간, 화면 공유로 실제 서류·사이트·메일을 보여 드립니다. 9월 강연 7편은 90분 녹화본으로 언제든 다시 봅니다.</p></div>
+<div><span class="k">FACE · NAME</span><h3>얼굴과 이름 공개</h3><p>라이브 수업은 참가자 모두 얼굴과 이름을 공개하고 진행합니다. 다시보기 영상은 강사 화면만 남기고 편집해 제공합니다.</p></div>
 <div><span class="k">CHAT</span><h3>질문하고 응원하기</h3><p>채팅으로 궁금한 점과 질문을 자유롭게 나누고 서로 응원합니다.</p></div>
 </div>
 </section>
 <section id="price">
-<div class="sec-head"><span class="eyebrow">이용권</span><h2>많이 들을수록 1강당 가격이 내려갑니다</h2>
-<p>16개 강의 중 원하는 강의를 골라 이용권으로 수강합니다. 1강은 2시간이고, 16강을 정가로 다 들으면 784,000원입니다.</p>
-<p class="legend"><span><i></i>노란 띠가 함께 수업을 들은 동기 가격입니다 (대상은 아래 참고)</span></p></div>
+<div class="sec-head"><span class="eyebrow">이용권</span><h2>먼저 신청할수록 쌉니다</h2>
+<p>가격은 누구에게나 같습니다. 1강씩 사거나, 지금 열린 23강과 100강까지 추가되는 강의를 모두 듣는 평생 올패스를 고르세요. 평생 올패스는 선착순으로 가격이 오릅니다.</p></div>
 <div class="tickets" id="tickets"></div>
-<div class="combos"><span>3강권 추천 조합</span>
-<button class="combo" type="button" data-combo="1,2,4"><b>법인 3부작</b> ①②④</button>
-<button class="combo" type="button" data-combo="5,7,8"><b>글로벌 진출 3부작</b> ⑤⑦⑧</button>
-<button class="combo" type="button" data-combo="6,9,10"><b>AI 실전 3부작</b> ⑥⑨⑩</button></div>
-</section>
-<section>
-<div class="sec-head"><span class="eyebrow">동기 혜택</span><h2>함께 공부한 동기에게는 따로 가격을 둡니다</h2></div>
-<div class="rules">
-<div class="rule"><h3>동기 가격 <span class="pct">올패스 415,000원 · 약 47% 할인</span></h3><p>켄트와 함께 수업을 들은 아래 과정의 동기·수료생에게 모든 이용권을 동기 가격으로 드립니다. 신청서에서 소속 과정을 고르시면 확인 후 안내합니다.</p><ul class="mates"><li>동그라미재단 AI 커뮤니티 동기</li><li>동그라미재단 프롬프트 엔지니어링 수료생</li><li>경기콘텐츠진흥원 AI 음악 수업 동기</li><li>경기콘텐츠진흥원 메타버스 유니티 과정 동기</li><li>인천콘텐츠코리아랩 AI 웹소설 과정 동기</li><li>K-META 메타버스산업협회 언리얼 과정 동기</li></ul></div>
-</div>
 </section>
 <section id="courses">
-<div class="sec-head"><span class="eyebrow">강의 16개</span><h2>어떤 강의를 고르시겠어요?</h2><p>듣고 싶은 강의를 담으면 가장 저렴한 이용권 조합을 아래에서 바로 계산해 드립니다.</p></div>
+<div class="sec-head"><span class="eyebrow">강의 23개</span><h2>어떤 강의를 고르시겠어요?</h2><p>듣고 싶은 강의를 담으면 1강권과 평생 올패스 중 무엇이 더 저렴한지 아래에서 바로 계산해 드립니다.</p></div>
 <div class="filters" role="group" aria-label="분야 필터" id="filters"></div>
 <div class="courses" id="courseList"></div>
 </section>
@@ -290,9 +274,9 @@ footer{padding-block:32px 0;font-size:13px;color:var(--muted)}
 <section>
 <div class="sec-head"><span class="eyebrow">이용 안내</span><h2>업그레이드 · 유효기간 · 환불</h2></div>
 <div class="policy">
-<div class="rule"><h3>업그레이드</h3><p>1강권이나 3강권을 산 뒤에도 차액만 내면 상위 이용권이나 올패스로 바꿀 수 있습니다.</p></div>
-<div class="rule"><h3>유효기간 6개월</h3><p>이용권은 구매일로부터 6개월 동안 쓸 수 있습니다. 강의는 순차적으로 열리고, 일정은 이메일로 안내합니다.</p></div>
-<div class="rule"><h3>환불</h3><p>첫 강의 시작 전에는 전액 환불합니다. 수강을 시작한 뒤에는 들은 강의를 1강권 가격(일반 49,000원, 동기 44,000원)으로 계산해 뺀 금액을 돌려드립니다.</p></div>
+<div class="rule"><h3>업그레이드</h3><p>1강권을 산 뒤에도 올패스로 바꿀 수 있습니다. 그때의 올패스 가격에서 이미 낸 1강권 금액을 빼 드립니다.</p></div>
+<div class="rule"><h3>유효기간</h3><p>1강권은 구매일로부터 6개월, 평생 올패스는 기간 제한이 없습니다. 새 강의가 열리면 이메일로 안내합니다.</p></div>
+<div class="rule"><h3>환불</h3><p>첫 강의를 듣거나 보기 전에는 전액 환불합니다. 그 뒤에는 들은 강의를 1강 49,000원으로 계산해 뺀 금액을 돌려드립니다.</p></div>
 </div>
 </section>
 <section>
@@ -338,8 +322,8 @@ footer{padding-block:32px 0;font-size:13px;color:var(--muted)}
 <section id="apply">
 <div class="final">
 <span class="eyebrow" style="color:inherit;opacity:.7">수강 신청</span>
-<h2>첫 강의는 30명 안팎으로 엽니다</h2>
-<p>신청서에 이용권과 듣고 싶은 강의를 적어 주시면 결제와 일정 안내를 이메일로 보내 드립니다.</p>
+<h2>평생 올패스 590,000원은 선착순 30명까지입니다</h2>
+<p>신청서에 이용권과 듣고 싶은 강의를 적어 주시면 결제와 일정 안내를 이메일로 보내 드립니다. 신청 순서대로 차수 가격이 정해집니다.</p>
 <a class="btn btn-primary apply" href="#apply">수강 신청하기</a>
 </div>
 </section>

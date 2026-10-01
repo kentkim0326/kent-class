@@ -1,5 +1,5 @@
 const APPLY_URL = "https://docs.google.com/forms/d/1qd0H3X9hd6xrSrCkbiThR_vXxmcFDTY8SvibDWqLpKo/viewform";
-const CATS = {law:"법인·조직", startup:"창업·투자", global:"글로벌 진출", ai:"AI 실전", edu:"교육·입시", web3:"블록체인"};
+const CATS = {law:"법인·조직", startup:"창업·투자", global:"글로벌 진출", ai:"AI 실전", edu:"교육·입시", web3:"블록체인", talk:"9월 강연 다시보기"};
 const COURSES = [
 {"n": 1, "cat": "law", "t": "문체부 산하 사단법인 만들기 — 국제브레인스포츠협회 설립기", "p": ["왜 사단법인인가: 주식회사·재단법인·비영리민간단체와 비교", "국제브레인스포츠협회를 만든 이유", "주무관청 선택과 사전 협의: 왜 문체부였는지", "설립 전 과정: 발기인 → 창립총회 → 정관 → 허가 → 등기", "행정사 비용 공개, 직접 할 수 있는 부분과 맡길 부분", "이사·감사 선출: 누구를 어떻게 모셨는지", "설립 후 운영: 보고·회계, 그리고 국제 행사 주최 기관으로 쓰기"]},
 {"n": 2, "cat": "law", "t": "미국 캘리포니아에 종교법인 만들기", "p": ["한국에서 종교법인 설립이 어려운 이유", "왜 샌프란시스코에, 왜 종교법인으로 만들었는지", "캘리포니아 비영리 종교법인의 구조 이해", "설립 서류 실무: Articles, 등록대리인, EIN, Bylaws", "한국에서 원격으로 진행한 방법과 실제 비용", "설립 후 유지: 신고·보고와 은행 계좌", "설립 후 활용: 교육 프로그램·국제 파트너십"], "d": "경험 공유이며 법률·세무 자문이 아닙니다."},
@@ -16,31 +16,26 @@ const COURSES = [
 {"n": 13, "cat": "edu", "t": "하버드 경제학 출신이 말하는 미국 대학·의대 입시", "p": ["미국 대학 입시의 구조와 한국 학생의 약점", "아이비리그가 보는 것: 성적 밖의 이야기", "에세이 쓰는 법", "활동·추천서 준비 전략", "한국에서 미국 의대를 준비하는 로드맵", "프리메드 과정에서 흔한 실수", "학부모가 지금 해야 할 일"]},
 {"n": 14, "cat": "ai", "t": "1인 창업가의 AI 업무 자동화", "p": ["혼자 여러 사업을 운영하는 하루 공개", "AI로 이메일 쓰고 보내기", "AI로 문서·제안서 만들기", "AI로 자료 조사하기", "AI로 웹사이트·앱을 만들고 배포하기", "대량 이메일 캠페인 운영 방법", "나만의 AI 업무 시스템 만들기"]},
 {"n": 15, "cat": "web3", "t": "2017년부터 블록체인 — 이더리움 공부부터 코인빗 대표이사까지", "p": ["2017년 비트코인 열풍, 무엇을 보고 뛰어들었나", "이더리움과 솔리디티를 직접 배운 과정", "윙클보스 형제가 세운 미국 제미나이 거래소 직접 방문기", "2018년 바이낸스 본사 이전 소식에 몰타까지 찾아간 이야기", "거래소 플랫폼을 만들다 1억 원 사기당한 경험", "중국 체인업(ChainUP) 솔루션 사용기", "코인빗 대표이사로 일하며 배운 것"], "d": "투자 권유가 아닌 경험 공유입니다."},
-{"n": 16, "cat": "ai", "t": "혼자서 깃허브 프로젝트 70개 만든 경험", "p": ["깃허브 사용법: 저장소 만들기부터 버전 관리까지", "Supabase 사용법: 로그인과 데이터베이스 붙이기", "Firebase 사용법", "Vercel 사용법: 올리면 바로 배포되는 구조", "클로드와 함께 사이트와 앱 만들기 실전", "Cloudflare로 도메인 구매와 연결", "무료 이메일 활용법"]}
+{"n": 16, "cat": "ai", "t": "혼자서 깃허브 프로젝트 70개 만든 경험", "p": ["깃허브 사용법: 저장소 만들기부터 버전 관리까지", "Supabase 사용법: 로그인과 데이터베이스 붙이기", "Firebase 사용법", "Vercel 사용법: 올리면 바로 배포되는 구조", "클로드와 함께 사이트와 앱 만들기 실전", "Cloudflare로 도메인 구매와 연결", "무료 이메일 활용법"]},
+{"n": 17, "cat": "talk", "t": "AI로 6개월 동안 앱 50개, 게임 10개 만들기 (개요)", "w": "9월 9일(수)", "rel": [6, 16]},
+{"n": 18, "cat": "talk", "t": "AI로 IP 만들어 해외 배급사와 미팅 잡기", "w": "9월 10일(목)", "rel": [8]},
+{"n": 19, "cat": "talk", "t": "AI로 게임 만들어 전 세계 게임 컨퍼런스 도전하기", "w": "9월 22일(화)", "rel": [8, 11]},
+{"n": 20, "cat": "talk", "t": "2년간 AI로 공모전 300개 도전하기: 발견과 실천", "w": "9월 21일(월)", "rel": [9]},
+{"n": 21, "cat": "talk", "t": "AI로 글로벌 GP·LP 등 해외 500개 기관 연결해 프로젝트 만들기", "w": "9월 28일(월)", "rel": [5, 7]},
+{"n": 22, "cat": "talk", "t": "AI로 메일 1만 통 보내기: 세계에 내 브랜드 알리기", "w": "9월 29일(화)", "rel": [7, 14]},
+{"n": 23, "cat": "talk", "t": "AI와 함께 웹소설·소설 만들고 배포하기", "w": "9월 30일(수)", "rel": [10]}
 ];
-const CIRC = ["","①","②","③","④","⑤","⑥","⑦","⑧","⑨","⑩","⑪","⑫","⑬","⑭","⑮","⑯"];
-const PRICES = {
-gen:  [{k:"1강권",n:1,p:49000},{k:"3강권",n:3,p:132000},{k:"7강권",n:7,p:259000},{k:"16강 올패스",n:16,p:549000}],
-mate: [{k:"1강권",n:1,p:44000},{k:"3강권",n:3,p:117000},{k:"7강권",n:7,p:206000},{k:"16강 올패스",n:16,p:415000}]
-};
+const CIRC = n => String.fromCharCode(n<=20 ? 0x245F+n : 0x323C+n);
 const LIST = 49000;
+// 평생 올패스 선착순 가격. 올패스가 한 장 팔릴 때마다 PASS_SOLD를 1씩 올려 주세요.
+const PASS_SOLD = 0;
+const PASS_TIERS = [{k:"1차 · 선착순 30명",from:1,to:30,p:590000},{k:"2차 · 31~60번",from:31,to:60,p:790000},{k:"3차 · 61번부터",from:61,to:Infinity,p:990000}];
+const passNow = () => PASS_TIERS.find(t=>PASS_SOLD<t.to);
 const won = v => v.toLocaleString("ko-KR") + "원";
 let filter = "all";
 const picked = new Set();
 try { JSON.parse(localStorage.getItem("kc-picked")||"[]").forEach(n=>picked.add(n)); } catch(e){}
 function save(){ try{ localStorage.setItem("kc-picked", JSON.stringify([...picked])); }catch(e){} }
-function bestPlan(n, trk){
-if(n<=0) return null;
-const best = Array(17).fill(null); best[0] = {cost:0, items:[]};
-for(let i=1;i<=16;i++){
-for(const t of PRICES[trk]){
-const prev = best[Math.max(0,i-t.n)];
-const cost = prev.cost + t.p;
-if(!best[i] || cost < best[i].cost) best[i] = {cost, items:[...prev.items, t.k]};
-}
-}
-return best[n];
-}
 function renderFilters(){
 const el = document.getElementById("filters");
 const opts = [["all","전체 "+COURSES.length], ...Object.entries(CATS).map(([k,v])=>[k, v+" "+COURSES.filter(c=>c.cat===k).length])];
@@ -61,14 +56,21 @@ if(filter!=="all" && c.cat!==filter) continue;
 const on = picked.has(c.n);
 const art = document.createElement("article");
 art.className = "course" + (on?" on":"");
+const body = c.p
+? `<ol>${c.p.map(()=>"<li></li>").join("")}</ol>`
+: `<div class="talk"><p class="when"></p><p class="rel"></p></div>`;
 art.innerHTML = `
 <div class="c-head"><span class="num">${String(c.n).padStart(2,"0")}</span>
 <div><div class="cat">${CATS[c.cat]}</div><h3></h3></div></div>
-<ol>${c.p.map(()=>"<li></li>").join("")}</ol>
+${body}
 ${c.d?'<p class="disc"></p>':'<span></span>'}
 <button class="pick" type="button" aria-pressed="${on}">${on?"✓ 담았어요":"+ 담기"}</button>`;
 art.querySelector("h3").textContent = c.t;
-art.querySelectorAll("li").forEach((li,i)=>li.textContent=c.p[i]);
+if(c.p) art.querySelectorAll("li").forEach((li,i)=>li.textContent=c.p[i]);
+else {
+art.querySelector(".when").textContent = `${c.w} 저녁 8시 Zoom 라이브 · 90분 녹화본`;
+art.querySelector(".rel").textContent = "함께 들으면 좋은 라이브 강의: " + c.rel.map(r=>CIRC(r)+" "+COURSES.find(x=>x.n===r).t).join(" / ");
+}
 if(c.d) art.querySelector(".disc").textContent = "※ " + c.d;
 art.querySelector(".pick").addEventListener("click",()=>{
 picked.has(c.n)?picked.delete(c.n):picked.add(c.n); save(); renderCourses(); renderCart();
@@ -81,46 +83,41 @@ const cart = document.getElementById("cart");
 const n = picked.size;
 if(!n){ cart.hidden = true; return; }
 cart.hidden = false;
-const g = bestPlan(n,"gen"), m = bestPlan(n,"mate");
-const list = [...picked].sort((a,b)=>a-b).map(x=>CIRC[x]).join("");
-const full = n*LIST;
-const fmt = plan => { const c={}; plan.items.forEach(k=>c[k]=(c[k]||0)+1); return Object.entries(c).map(([k,v])=>v>1?`${k}×${v}`:k).join(" + "); };
-document.getElementById("cartTitle").innerHTML = `${n}개 담음 ${list} → 일반 <span class="amt">${won(g.cost)}</span> · 동기 <span class="amt mate-amt">${won(m.cost)}</span>`;
-let sub = `추천 이용권: ${fmt(g)}` + (fmt(m)!==fmt(g)?` (동기: ${fmt(m)})`:"");
-if(g.cost < full) sub += ` · 정가 ${won(full)}`;
-const covered = g.items.reduce((s,k)=>s+PRICES.gen.find(t=>t.k===k).n,0);
-if(covered > n) sub += ` · ${covered-n}강 더 고를 수 있어요`;
+const list = [...picked].sort((a,b)=>a-b).map(CIRC).join("");
+const single = n*LIST, pass = passNow();
+const best = Math.min(single, pass.p);
+document.getElementById("cartTitle").innerHTML = `${n}개 담음 ${list} → <span class="amt">${won(best)}</span>`;
+const sub = single <= pass.p
+? `1강권 ×${n} · ${Math.floor(pass.p/LIST)+1}강부터는 평생 올패스(${won(pass.p)})가 더 저렴해요`
+: `평생 올패스 ${pass.k} ${won(pass.p)} · 1강권으로 사면 ${won(single)} · 나머지 강의와 앞으로 추가되는 강의까지 모두 포함`;
 document.getElementById("cartSub").textContent = sub;
 }
 document.getElementById("cartClear").addEventListener("click",()=>{picked.clear(); save(); renderCourses(); renderCart();});
-document.querySelectorAll(".combo").forEach(b=>b.addEventListener("click",()=>{
-picked.clear(); b.dataset.combo.split(",").forEach(x=>picked.add(+x)); save();
-filter="all"; renderFilters(); renderCourses(); renderCart();
-document.getElementById("courses").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
-}));
 document.querySelectorAll(".apply").forEach(a=>{
 if(APPLY_URL){ a.href = APPLY_URL; a.target="_blank"; a.rel="noopener"; }
 });
 function renderTickets(){
 const el=document.getElementById("tickets"); el.innerHTML="";
-const info={1:["원하는 강의 1개","먼저 한 번 들어보고 싶은 분"],3:["원하는 강의 3개 선택"],7:["원하는 강의 7개 선택"],16:["전 강의 수강, 그리고"]};
-const perTxt=(p,n)=>{const v=p/n; return "1강당 "+(v%100===0?"":"약 ")+won(Math.round(v/100)*100);};
-PRICES.gen.forEach((t,i)=>{
-const m=PRICES.mate[i], full=t.n*LIST;
-const off=Math.round((1-t.p/full)*100), moff=Math.round((1-m.p/full)*100);
+const total = COURSES.length, full = total*LIST, now = passNow();
+const card = (cls, flag, top, bottom) => {
 const d=document.createElement("div");
-d.className="ticket"+(t.n===3?" best":"");
-d.innerHTML=(t.n===3?'<span class="flag">추천</span>':'')+
-`<div class="top"><span class="name">${t.k}</span>`+
-(off>0?`<span class="was">${won(full)}</span>`:'')+
-`<span class="price">${t.p.toLocaleString("ko-KR")}<small>원</small></span>`+
-`<span class="per">일반 · ${perTxt(t.p,t.n)}${off>0?` · 약 ${off}% 할인`:""}</span></div>`+
-`<div class="mate"><span class="ml">동기 가격 <b>${moff===50?"":"약 "}${moff}% 할인</b></span>`+
-`<span class="mp">${m.p.toLocaleString("ko-KR")}<small>원</small></span>`+
-`<span class="mper">${perTxt(m.p,m.n)}</span></div>`+
-`<div class="bottom">${info[t.n].map(x=>`<span>${x}</span>`).join("")}`+
-(t.n===16?'<ul><li>결석한 강의는 다음 기수에서 무료로 다시 듣기</li><li>강의 자료 제공 (체크리스트 · 템플릿 · 슬라이드 PDF)</li><li>올패스 전용 단톡방</li><li>켄트와의 30분 그룹 Q&amp;A 1회</li></ul>':'')+`</div>`;
+d.className="ticket"+(cls?" "+cls:"");
+d.innerHTML=(flag?`<span class="flag">${flag}</span>`:'')+`<div class="top">${top}</div><div class="bottom">${bottom}</div>`;
 el.appendChild(d);
-});
+};
+card("", "", `<span class="name">1강권</span><span class="price">${LIST.toLocaleString("ko-KR")}<small>원</small></span><span class="per">원하는 강의 1개</span>`,
+`<span>먼저 한 번 들어보고 싶은 분</span><span>나중에 올패스로 바꾸면 낸 금액을 빼 드립니다</span>`);
+for(const t of PASS_TIERS){
+const done = PASS_SOLD >= t.to, cur = t===now;
+const per = Math.round(t.p/total/100)*100;
+const off = Math.round((1-t.p/full)*100);
+const seats = cur && isFinite(t.to) ? `<span class="seats">남은 자리 ${t.to-PASS_SOLD} / ${t.to-t.from+1}</span>` : "";
+card(done?"done":cur?"best":"", done?"마감":cur?"지금 가격":"", 
+`<span class="name">평생 올패스</span><span class="tier">${t.k}</span><span class="price">${t.p.toLocaleString("ko-KR")}<small>원</small></span>`+
+`<span class="per">지금 ${total}강 기준 1강당 약 ${won(per)}</span>`+
+`<span class="per">${total}강을 1강씩 사는 것(${won(full)})보다 ${off}% 저렴</span>`+seats,
+cur?'<ul><li>지금 열린 강의 전부</li><li>100강까지 추가되는 강의 모두 포함, 추가 비용 없음</li><li>결석한 라이브 강의는 다음 기수에서 다시 듣기</li><li>강의 자료 제공 (체크리스트 · 템플릿 · 슬라이드 PDF)</li><li>올패스 전용 단톡방 · 켄트와의 그룹 Q&amp;A</li></ul>'
+:`<span>${done?"선착순 마감":"앞 차수가 마감되면 이 가격이 됩니다"}</span>`);
+}
 }
 renderTickets(); renderFilters(); renderCourses(); renderCart();
