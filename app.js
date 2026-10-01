@@ -117,7 +117,8 @@ const LIST = 50000;
 // 3차는 라이브 강의가 minLive개 이상일 때만 열리고, 그 전에는 2차 가격이 이어집니다.
 const PASS_SOLD = 0;
 // until: 이 날(한국 시간) 밤 12시가 지나면 자리가 남아도 다음 차수로 넘어갑니다.
-const PASS_TIERS = [{k:"1차 · 선착순 30명",from:1,to:30,p:590000,until:"2026-12-31"},{k:"2차 · 60번까지",from:31,to:60,p:690000},{k:"3차 · 61번부터",from:61,to:Infinity,p:990000,minLive:25}];
+// covers: 이 날까지 열리는 강의를 모두 포함(없으면 구매일부터 1년).
+const PASS_TIERS = [{k:"1차 · 선착순 30명",from:1,to:30,p:590000,until:"2026-12-31",covers:"2027-12-31"},{k:"2차 · 60번까지",from:31,to:60,p:690000},{k:"3차 · 61번부터",from:61,to:Infinity,p:990000,minLive:25}];
 // 강의 목표: 진행 막대와 올패스 안내에 쓰입니다.
 const GOAL = 100, GOAL_BY = "2027년 말", PACE_MIN = 5, PACE_MAX = 6, PACE = `매달 ${PACE_MIN}~${PACE_MAX}강`;
 const BONUS_MAX = 7; // 1강권 1개마다 9월 강연 1편 증정, 최대 7편
@@ -127,6 +128,7 @@ const untilMs = t => t.until ? Date.parse(t.until + "T24:00:00+09:00") : Infinit
 const ended = t => Date.now() >= untilMs(t);
 const tierDone = t => PASS_SOLD >= t.to || ended(t);
 const passNow = () => { const i = PASS_TIERS.findIndex(t=>!tierDone(t)); return tierOpen(PASS_TIERS[i]) ? PASS_TIERS[i] : PASS_TIERS[i-1]; };
+const coverText = t => { if(!t.covers) return "구매일부터 1년 동안"; const [y, m, d] = t.covers.split("-").map(Number); return `${y}년 ${m}월\u00a0${d}일까지`; };
 const untilText = t => { const [, m, d] = t.until.split("-").map(Number); return `${m}월\u00a0${d}일`; };
 // 라이브 live개와 9월 강연 talk개를 1강권으로만 들을 때 필요한 장수 (1강권은 어느 강의에나 쓸 수 있고, 장마다 9월 강연 1편 증정)
 const ticketsFor = (live, talk) => { let k = live; while(k + Math.min(k, BONUS_MAX) < live + talk) k++; return k; };
@@ -191,7 +193,7 @@ document.getElementById("cartTitle").innerHTML = `${n}개 담음 ${list} → <sp
 const free = Math.min(k, BONUS_MAX), left = Math.min(free - Math.max(0, talk - (k - live)), TALKS - talk);
 const sub = single <= pass.p
 ? `1강권 ×${k} (${won(single)}) + 9월 강연 ${free}편 증정` + (left>0?` · 9월 강연 ${left}편 더 고를 수 있어요`:"") + ` · 1강권 ${Math.floor(pass.p/LIST)+1}개부터는 올패스(${won(pass.p)})가 더 저렴해요`
-: `올패스 ${pass.k} ${won(pass.p)} · 1강권으로 사면 ${won(single)} · 지금 열린 ${COURSES.length}강 전부 + 1년 동안 추가되는 강의 포함`;
+: `올패스 ${pass.k} ${won(pass.p)} · 1강권으로 사면 ${won(single)} · 지금 열린 ${COURSES.length}강 전부 + ${coverText(pass)} 추가되는 강의 포함`;
 document.getElementById("cartSub").textContent = sub;
 }
 document.getElementById("cartClear").addEventListener("click",()=>{picked.clear(); save(); renderCourses(); renderCart();});
@@ -226,7 +228,12 @@ const dleft = Math.ceil((untilMs(t) - Date.now()) / 864e5);
 const seats = cur && isFinite(t.to) ? `<span class="badges"><span class="seats">남은 자리 ${t.to-PASS_SOLD}${t.from===1?` / ${t.to}`:""}</span>${t.until?`<span class="seats">${untilText(t)}까지 · D-${dleft}</span>`:""}</span>` : "";
 const lo = Math.min(GOAL, total + 12*PACE_MIN), hi = Math.min(GOAL, total + 12*PACE_MAX);
 const range = (a,b,f) => a===b ? f(a) : `${f(a)}~${f(b)}`;
-const value = open
+const value = open && t.covers
+? `<span class="perlec">${GOAL}강 완성 시 1강당 ${won(Math.round(t.p/GOAL))} <small>(1강권 ${won(LIST)})</small></span>`+
+`<span class="val">${GOAL}강을 1강권으로 들으면 ${won(GOAL*LIST)} → 약 ${Math.round((1-t.p/(GOAL*LIST))*100)}% 저렴</span>`+
+`<span class="per">${coverText(t)} 열리는 강의 모두 포함 (${GOAL_BY} 목표 ${GOAL}강)</span>`+
+`<span class="per">지금 열린 ${total}강만 1강권으로 들어도 ${won(full)}</span>`
+: open
 ? `<span class="perlec">1강당 약 ${range(Math.round(t.p/hi/100)*100, Math.round(t.p/lo/100)*100, v=>v.toLocaleString("ko-KR"))}원 <small>(1강권 ${won(LIST)})</small></span>`+
 `<span class="val">1강권 기준 약 ${range(lo*LIST/1e4, hi*LIST/1e4, v=>Math.round(v).toLocaleString("ko-KR"))}만원어치</span>`+
 `<span class="per">1년 동안 받을 강의 예상 ${range(lo,hi,v=>v)}강 · 약 ${Math.round((1-t.p/(lo*LIST))*100)}% 이상 저렴</span>`+
@@ -234,8 +241,8 @@ const value = open
 : `<span class="per">라이브 강의가 ${t.minLive}강 이상 되면 판매합니다 (지금 ${LIVE}강)</span>`;
 card(done?"done":cur?"best":"", done?"마감":cur?"지금 가격":"",
 `<span class="name">올패스</span><span class="tier">${t.k}</span><span class="price">${t.p.toLocaleString("ko-KR")}<small>원</small></span>`+value+seats,
-cur?`<ul><li>지금 열린 ${total}강 전부 (라이브 ${LIVE}강 + 9월 강연 ${TALKS}편${t.from===1?" 바로 시청":""})</li><li>구매일부터 1년 동안 새로 열리는 강의 모두 포함, 비밀 시리즈도 포함, 추가 비용 없음 (${PACE}씩, ${GOAL_BY} 목표 ${GOAL}강)</li><li>모든 라이브 강의 녹화본 제공, 놓쳐도 다시 보기</li><li>강의 자료 제공 (체크리스트 · 템플릿 · 슬라이드 PDF)</li><li>올패스 전용 단톡방 · 켄트와의 그룹 Q&amp;A</li></ul>`
-:`<span>${done?(PASS_SOLD>=t.to?"선착순 마감":"기간 마감"):"앞 차수가 마감되면 이 가격이 됩니다"}</span><span>9월 강연 ${TALKS}편 포함 · 1년 동안 추가 강의 포함</span>`);
+cur?`<ul><li>지금 열린 ${total}강 전부 (라이브 ${LIVE}강 + 9월 강연 ${TALKS}편${t.from===1?" 바로 시청":""})</li><li>${coverText(t)} 새로 열리는 강의 모두 포함, 비밀 시리즈도 포함, 추가 비용 없음 (${PACE}씩, ${GOAL_BY} 목표 ${GOAL}강)</li><li>모든 라이브 강의 녹화본 제공, 놓쳐도 다시 보기</li><li>강의 자료 제공 (체크리스트 · 템플릿 · 슬라이드 PDF)</li><li>올패스 전용 단톡방 · 켄트와의 그룹 Q&amp;A</li></ul>`
+:`<span>${done?(PASS_SOLD>=t.to?"선착순 마감":"기간 마감"):"앞 차수가 마감되면 이 가격이 됩니다"}</span><span>9월 강연 ${TALKS}편 포함 · ${coverText(t)} 추가 강의 포함</span>`);
 }
 }
 function renderGoal(){
@@ -243,7 +250,7 @@ const el=document.getElementById("goal"), n=COURSES.length, pct=Math.min(100, Ma
 el.innerHTML=`<div class="goal-top"><b>지금 ${n}강</b><span>비밀 시리즈 후보 ${SECRETS.length}편 · ${GOAL_BY}까지 목표 ${GOAL}강</span></div>`+
 `<p class="goal-sum">${GOAL}강을 1강권으로 모두 들으면 <b>${won(GOAL*LIST)}</b></p>`+
 `<div class="goal-track" role="progressbar" aria-valuemin="0" aria-valuemax="${GOAL}" aria-valuenow="${n}" aria-label="강의 ${GOAL}강 목표 중 ${n}강 공개"><span style="width:${pct}%"></span></div>`+
-`<p>${PACE}씩 새로 엽니다. 비밀 시리즈는 <a href="#secrets">먼저 듣고 싶다는 표가 많은 주제</a>부터 만들고, 수요에 따라 주제가 바뀔 수 있습니다. 올패스는 구매일부터 1년 동안 열리는 강의를 모두 포함합니다.</p>`;
+`<p>${PACE}씩 새로 엽니다. 비밀 시리즈는 <a href="#secrets">먼저 듣고 싶다는 표가 많은 주제</a>부터 만들고, 수요에 따라 주제가 바뀔 수 있습니다. 1차 올패스는 2027년 말까지, 2차부터는 구매일부터 1년 동안 열리는 강의를 모두 포함합니다.</p>`;
 }
 let sFilter = "all", sMore = false;
 const SECRET_PREVIEW = 21;
@@ -304,7 +311,7 @@ function renderTopbar(){
 const t = passNow(), bits = [];
 if(isFinite(t.to)) bits.push(`남은 자리 ${t.to-PASS_SOLD}${t.from===1?` / ${t.to}`:""}`);
 if(t.until && !tierDone(t)) bits.push(`D-${Math.ceil((untilMs(t)-Date.now())/864e5)}`);
-bits.push(`지금 ${COURSES.length}강 + 1년 동안 새 강의 포함`);
+bits.push(t.covers ? `${GOAL}강 완성 시 1강당 ${won(Math.round(t.p/GOAL))}` : `지금 ${COURSES.length}강 + 1년 동안 새 강의 포함`);
 document.getElementById("topbar").innerHTML = `<div><b></b><span>${bits.join(" · ")}</span></div><a class="btn apply" href="#apply">수강 신청하기</a>`;
 document.querySelector("#topbar b").textContent = passHeadline();
 document.getElementById("applyHead").textContent = passHeadline();
