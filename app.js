@@ -27,10 +27,16 @@ const COURSES = [
 ];
 const CIRC = n => String.fromCharCode(n<=20 ? 0x245F+n : 0x323C+n);
 const LIST = 49000;
-// 평생 올패스 선착순 가격. 올패스가 한 장 팔릴 때마다 PASS_SOLD를 1씩 올려 주세요.
+// 올패스 선착순 가격. 올패스가 한 장 팔릴 때마다 PASS_SOLD를 1씩 올려 주세요.
+// 3차는 라이브 강의가 minLive개 이상일 때만 열리고, 그 전에는 2차 가격이 이어집니다.
 const PASS_SOLD = 0;
-const PASS_TIERS = [{k:"1차 · 선착순 30명",from:1,to:30,p:590000},{k:"2차 · 31~60번",from:31,to:60,p:790000},{k:"3차 · 61번부터",from:61,to:Infinity,p:990000}];
-const passNow = () => PASS_TIERS.find(t=>PASS_SOLD<t.to);
+const PASS_TIERS = [{k:"1차 · 선착순 30명",from:1,to:30,p:590000},{k:"2차 · 31~60번",from:31,to:60,p:690000},{k:"3차 · 61번부터",from:61,to:Infinity,p:990000,minLive:25}];
+const BONUS_MAX = 7; // 1강권 1개마다 9월 강연 1편 증정, 최대 7편
+const LIVE = COURSES.filter(c=>c.cat!=="talk").length, TALKS = COURSES.length-LIVE;
+const tierOpen = t => !t.minLive || LIVE >= t.minLive;
+const passNow = () => { const i = PASS_TIERS.findIndex(t=>PASS_SOLD<t.to); return tierOpen(PASS_TIERS[i]) ? PASS_TIERS[i] : PASS_TIERS[i-1]; };
+// 라이브 live개와 9월 강연 talk개를 1강권으로만 들을 때 필요한 장수 (1강권은 어느 강의에나 쓸 수 있고, 장마다 9월 강연 1편 증정)
+const ticketsFor = (live, talk) => { let k = live; while(k + Math.min(k, BONUS_MAX) < live + talk) k++; return k; };
 const won = v => v.toLocaleString("ko-KR") + "원";
 let filter = "all";
 const picked = new Set();
@@ -68,7 +74,7 @@ ${c.d?'<p class="disc"></p>':'<span></span>'}
 art.querySelector("h3").textContent = c.t;
 if(c.p) art.querySelectorAll("li").forEach((li,i)=>li.textContent=c.p[i]);
 else {
-art.querySelector(".when").textContent = `${c.w} 저녁 8시 Zoom 라이브 · 90분 녹화본`;
+art.querySelector(".when").textContent = `${c.w} 저녁 8시 Zoom 라이브 · 90분 녹화본 · 1강권 구매 시 증정 · 올패스 포함`;
 art.querySelector(".rel").textContent = "함께 들으면 좋은 라이브 강의: " + c.rel.map(r=>CIRC(r)+" "+COURSES.find(x=>x.n===r).t).join(" / ");
 }
 if(c.d) art.querySelector(".disc").textContent = "※ " + c.d;
@@ -84,12 +90,14 @@ const n = picked.size;
 if(!n){ cart.hidden = true; return; }
 cart.hidden = false;
 const list = [...picked].sort((a,b)=>a-b).map(CIRC).join("");
-const single = n*LIST, pass = passNow();
+const talk = [...picked].filter(x=>COURSES.find(c=>c.n===x).cat==="talk").length, live = n - talk;
+const k = ticketsFor(live, talk), single = k*LIST, pass = passNow();
 const best = Math.min(single, pass.p);
 document.getElementById("cartTitle").innerHTML = `${n}개 담음 ${list} → <span class="amt">${won(best)}</span>`;
+const free = Math.min(k, BONUS_MAX), left = Math.min(free - Math.max(0, talk - (k - live)), TALKS - talk);
 const sub = single <= pass.p
-? `1강권 ×${n} · ${Math.floor(pass.p/LIST)+1}강부터는 평생 올패스(${won(pass.p)})가 더 저렴해요`
-: `평생 올패스 ${pass.k} ${won(pass.p)} · 1강권으로 사면 ${won(single)} · 나머지 강의와 앞으로 추가되는 강의까지 모두 포함`;
+? `1강권 ×${k} (${won(single)}) + 9월 강연 ${free}편 증정` + (left>0?` · 9월 강연 ${left}편 더 고를 수 있어요`:"") + ` · 1강권 ${Math.floor(pass.p/LIST)+1}개부터는 올패스(${won(pass.p)})가 더 저렴해요`
+: `올패스 ${pass.k} ${won(pass.p)} · 1강권으로 사면 ${won(single)} · 지금 열린 ${COURSES.length}강 전부 + 1년 동안 추가되는 강의 포함`;
 document.getElementById("cartSub").textContent = sub;
 }
 document.getElementById("cartClear").addEventListener("click",()=>{picked.clear(); save(); renderCourses(); renderCart();});
@@ -98,26 +106,27 @@ if(APPLY_URL){ a.href = APPLY_URL; a.target="_blank"; a.rel="noopener"; }
 });
 function renderTickets(){
 const el=document.getElementById("tickets"); el.innerHTML="";
-const total = COURSES.length, full = total*LIST, now = passNow();
+const total = COURSES.length, full = ticketsFor(LIVE, TALKS)*LIST, now = passNow();
 const card = (cls, flag, top, bottom) => {
 const d=document.createElement("div");
 d.className="ticket"+(cls?" "+cls:"");
 d.innerHTML=(flag?`<span class="flag">${flag}</span>`:'')+`<div class="top">${top}</div><div class="bottom">${bottom}</div>`;
 el.appendChild(d);
 };
-card("", "", `<span class="name">1강권</span><span class="price">${LIST.toLocaleString("ko-KR")}<small>원</small></span><span class="per">원하는 강의 1개</span>`,
-`<span>먼저 한 번 들어보고 싶은 분</span><span>나중에 올패스로 바꾸면 낸 금액을 빼 드립니다</span>`);
+card("", "", `<span class="name">1강권</span><span class="price">${LIST.toLocaleString("ko-KR")}<small>원</small></span><span class="per">원하는 강의 1개</span><span class="seats">1개 사면 9월 강연 1편 증정</span>`,
+`<span>원하는 9월 강연을 1편씩, 최대 ${BONUS_MAX}편까지 드립니다</span><span>나중에 올패스로 바꾸면 낸 금액을 빼 드립니다</span>`);
 for(const t of PASS_TIERS){
-const done = PASS_SOLD >= t.to, cur = t===now;
+const done = PASS_SOLD >= t.to, cur = t===now, open = tierOpen(t);
 const per = Math.round(t.p/total/100)*100;
 const off = Math.round((1-t.p/full)*100);
 const seats = cur && isFinite(t.to) ? `<span class="seats">남은 자리 ${t.to-PASS_SOLD} / ${t.to-t.from+1}</span>` : "";
-card(done?"done":cur?"best":"", done?"마감":cur?"지금 가격":"", 
-`<span class="name">평생 올패스</span><span class="tier">${t.k}</span><span class="price">${t.p.toLocaleString("ko-KR")}<small>원</small></span>`+
-`<span class="per">지금 ${total}강 기준 1강당 약 ${won(per)}</span>`+
-`<span class="per">${total}강을 1강씩 사는 것(${won(full)})보다 ${off}% 저렴</span>`+seats,
-cur?'<ul><li>지금 열린 강의 전부</li><li>100강까지 추가되는 강의 모두 포함, 추가 비용 없음</li><li>결석한 라이브 강의는 다음 기수에서 다시 듣기</li><li>강의 자료 제공 (체크리스트 · 템플릿 · 슬라이드 PDF)</li><li>올패스 전용 단톡방 · 켄트와의 그룹 Q&amp;A</li></ul>'
-:`<span>${done?"선착순 마감":"앞 차수가 마감되면 이 가격이 됩니다"}</span>`);
+const value = open
+? `<span class="per">지금 ${total}강 기준 1강당 약 ${won(per)}</span><span class="per">1강권으로 전부 듣는 것(${won(full)})보다 ${off}% 저렴</span>`
+: `<span class="per">라이브 강의가 ${t.minLive}강 이상 되면 판매합니다 (지금 ${LIVE}강)</span>`;
+card(done?"done":cur?"best":"", done?"마감":cur?"지금 가격":"",
+`<span class="name">올패스</span><span class="tier">${t.k}</span><span class="price">${t.p.toLocaleString("ko-KR")}<small>원</small></span>`+value+seats,
+cur?`<ul><li>지금 열린 ${total}강 전부 (라이브 ${LIVE}강 + 9월 강연 ${TALKS}편${t.from===1?" 바로 시청":""})</li><li>구매일부터 1년 동안 새로 열리는 강의 모두 포함, 추가 비용 없음</li><li>결석한 라이브 강의는 다음 기수에서 다시 듣기</li><li>강의 자료 제공 (체크리스트 · 템플릿 · 슬라이드 PDF)</li><li>올패스 전용 단톡방 · 켄트와의 그룹 Q&amp;A</li></ul>`
+:`<span>${done?"선착순 마감":"앞 차수가 마감되면 이 가격이 됩니다"}</span><span>9월 강연 ${TALKS}편 포함 · 1년 동안 추가 강의 포함</span>`);
 }
 }
 renderTickets(); renderFilters(); renderCourses(); renderCart();
