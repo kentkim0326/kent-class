@@ -97,6 +97,24 @@ section{padding-block:56px 0;display:grid;gap:24px}
 .goal-track{height:10px;border-radius:999px;background:var(--line);overflow:hidden}
 .goal-track span{display:block;height:100%;background:var(--accent);border-radius:999px}
 .goal p{font-size:14px;color:var(--muted)}
+.secrets{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.secret{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--ink);font-family:var(--body);font-size:15px;cursor:pointer}
+.secret .sn{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.secret .sv{font-family:var(--mono);color:var(--muted)}
+.secret.on{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.secret.on .sv{color:var(--accent)}
+.secret:disabled{opacity:.45;cursor:not-allowed}
+.vote{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--accent-soft);border-radius:14px;padding:14px 18px}
+.vote-info{display:grid;gap:2px;min-width:0;flex:1 1 260px}
+.vote-info span{font-size:14px;color:var(--muted)}
+.vote-info #voteMsg{color:var(--accent)}
+.vote .btn:disabled{opacity:.5;cursor:not-allowed}
+.ticket .val{font-size:14px;font-weight:700;color:var(--ink)}
+.more-btn{justify-self:center}
+.disc-note{font-size:13px;color:var(--muted)}
+.goal p a{color:var(--accent)}
+.goal .goal-sum{color:var(--ink);font-size:15px}
+.goal .goal-sum b{font-family:var(--mono)}
 .ticket .tier{font-size:13px;font-weight:700;color:var(--accent)}
 .ticket.done{opacity:.55}
 .ticket.done .price{text-decoration:line-through}
@@ -154,8 +172,8 @@ footer{padding-block:32px 0;font-size:13px;color:var(--muted)}
 .cart-actions{display:flex;gap:8px;align-items:center}
 .cart .btn{min-height:42px;padding:0 18px;font-size:15px}
 .link-btn{background:none;border:0;color:var(--muted);font-size:14px;cursor:pointer;text-decoration:underline;font-family:var(--body)}
-@media (max-width:860px){.tickets,.vids{grid-template-columns:repeat(2,1fr)}.courses,.policy,.bio,.press{grid-template-columns:1fr}}
-@media (max-width:620px){.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(3){padding-left:0;border-left:0}.stat:nth-child(n+3){border-top:1px solid var(--line)}.format,.tickets,.career,.awards{grid-template-columns:1fr}.format div+div{border-left:0;border-top:1px solid var(--line)}.log div{grid-template-columns:1fr;gap:2px}}
+@media (max-width:860px){.tickets,.vids,.secrets{grid-template-columns:repeat(2,1fr)}.courses,.policy,.bio,.press{grid-template-columns:1fr}}
+@media (max-width:620px){.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(3){padding-left:0;border-left:0}.stat:nth-child(n+3){border-top:1px solid var(--line)}.format,.tickets,.career,.awards,.secrets{grid-template-columns:1fr}.format div+div{border-left:0;border-top:1px solid var(--line)}.log div{grid-template-columns:1fr;gap:2px}}
 </style>
 </head>
 <body>
@@ -170,6 +188,7 @@ footer{padding-block:32px 0;font-size:13px;color:var(--muted)}
 <div class="hero-cta">
 <a class="btn btn-primary apply" href="#apply">수강 신청하기</a>
 <a class="btn btn-ghost" href="#courses">23개 강의 보기</a>
+<a class="btn btn-ghost" href="#secrets">비밀 시리즈 77편</a>
 </div>
 </div>
 <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/WL6M1ZloXMs?rel=0" title="CBS 세바시 154회 켄트 김 강연" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>
@@ -200,6 +219,19 @@ footer{padding-block:32px 0;font-size:13px;color:var(--muted)}
 <div class="sec-head"><span class="eyebrow">강의 23개</span><h2>어떤 강의를 고르시겠어요?</h2><p>듣고 싶은 강의를 담으면 1강권과 올패스 중 무엇이 더 저렴한지 아래에서 바로 계산해 드립니다.</p></div>
 <div class="filters" role="group" aria-label="분야 필터" id="filters"></div>
 <div class="courses" id="courseList"></div>
+</section>
+<section id="secrets">
+<div class="sec-head"><span class="eyebrow">공개 예정 · 비밀 시리즈 77편</span><h2>켄트김의 비밀 시리즈</h2>
+<p>우리가 매일 접하지만, 누구도 제대로 가르쳐주지 않았던 돈·권력·법률·종교·기술의 숨은 구조를 살펴봅니다. 90분 온라인 강의로 매달 5~6편씩 공개합니다.</p>
+<p><b style="color:var(--ink)">어떤 주제부터 만들까요?</b> 먼저 듣고 싶은 주제를 최대 5개 골라 신청서에 적어 주세요. 표가 많은 주제부터 만듭니다.</p></div>
+<div class="filters" role="group" aria-label="비밀 시리즈 분야 필터" id="secretFilters"></div>
+<div class="secrets" id="secretList"></div>
+<button class="btn btn-ghost more-btn" type="button" id="secretMore" hidden></button>
+<div class="vote">
+<div class="vote-info"><b id="voteCount"></b><span id="voteText"></span><span id="voteMsg" role="status"></span></div>
+<button class="btn btn-primary" type="button" id="voteSend">선택 복사하고 신청서 열기</button>
+</div>
+<p class="disc-note">비밀 시리즈는 공개된 자료를 바탕으로 구조와 관행을 해설하는 교양 강의입니다. 투자·법률·세무·의료 자문이 아니며, 특정 인물이나 단체를 비방하지 않습니다. 공개되면 1강권으로 들을 수 있고, 올패스는 구매일부터 1년 동안 공개되는 편을 모두 포함합니다.</p>
 </section>
 <section>
 <div class="bio">

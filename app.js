@@ -25,6 +25,87 @@ const COURSES = [
 {"n": 22, "cat": "talk", "s": 6, "t": "AI로 메일 1만통 보내기: 글로벌에 자신의 브랜드 알리기", "w": "9월 29일(화)", "rel": [7, 14]},
 {"n": 23, "cat": "talk", "s": 7, "t": "AI와 함께 웹소설/소설 만들고 배포하기", "w": "9월 30일(수)", "rel": [10]}
 ];
+const SECRET_CATS = {money:"돈·투자", law:"세금·법률·가족", power:"사회·권력", digital:"디지털·범죄", life:"건강·보험", faith:"종교·신념", world:"세계의 권력"};
+const SECRETS = [
+{"n": 1, "cat": "money", "t": "대한민국 부자의 비밀"},
+{"n": 2, "cat": "money", "t": "은행의 비밀"},
+{"n": 3, "cat": "money", "t": "부동산의 비밀"},
+{"n": 4, "cat": "money", "t": "대출의 비밀"},
+{"n": 5, "cat": "law", "t": "세무조사의 비밀"},
+{"n": 6, "cat": "law", "t": "증여와 상속의 비밀"},
+{"n": 7, "cat": "law", "t": "이혼과 재산분할의 비밀"},
+{"n": 8, "cat": "life", "t": "보험금의 비밀"},
+{"n": 9, "cat": "power", "t": "재벌가의 비밀"},
+{"n": 10, "cat": "money", "t": "주식시장의 비밀"},
+{"n": 11, "cat": "digital", "t": "코인의 비밀"},
+{"n": 12, "cat": "digital", "t": "보이스피싱의 비밀"},
+{"n": 13, "cat": "digital", "t": "해킹의 비밀"},
+{"n": 14, "cat": "digital", "t": "인공지능의 비밀"},
+{"n": 15, "cat": "digital", "t": "유튜브 알고리즘의 비밀"},
+{"n": 16, "cat": "power", "t": "사교육의 비밀"},
+{"n": 17, "cat": "power", "t": "명문대의 비밀"},
+{"n": 18, "cat": "world", "t": "미국 월가의 비밀"},
+{"n": 19, "cat": "world", "t": "미국의 비밀"},
+{"n": 20, "cat": "world", "t": "중국 삼합회의 비밀"},
+{"n": 21, "cat": "world", "t": "일본 야쿠자의 비밀"},
+{"n": 22, "cat": "world", "t": "미국 마피아의 비밀"},
+{"n": 23, "cat": "world", "t": "친일파의 비밀"},
+{"n": 24, "cat": "money", "t": "금융의 비밀"},
+{"n": 25, "cat": "money", "t": "신용등급의 비밀"},
+{"n": 26, "cat": "money", "t": "금리의 비밀"},
+{"n": 27, "cat": "money", "t": "펀드의 비밀"},
+{"n": 28, "cat": "money", "t": "ETF의 비밀"},
+{"n": 29, "cat": "money", "t": "배당의 비밀"},
+{"n": 30, "cat": "money", "t": "공매도의 비밀"},
+{"n": 31, "cat": "money", "t": "상장과 공모주의 비밀"},
+{"n": 32, "cat": "money", "t": "부동산 경매의 비밀"},
+{"n": 33, "cat": "money", "t": "재건축의 비밀"},
+{"n": 34, "cat": "money", "t": "전세와 월세의 비밀"},
+{"n": 35, "cat": "money", "t": "상가투자의 비밀"},
+{"n": 36, "cat": "money", "t": "빚의 비밀"},
+{"n": 37, "cat": "money", "t": "금융사기의 비밀"},
+{"n": 38, "cat": "money", "t": "다단계의 비밀"},
+{"n": 39, "cat": "money", "t": "복권의 비밀"},
+{"n": 40, "cat": "law", "t": "유언장의 비밀"},
+{"n": 41, "cat": "law", "t": "가족법의 비밀"},
+{"n": 42, "cat": "law", "t": "결혼의 비밀"},
+{"n": 43, "cat": "law", "t": "양육권의 비밀"},
+{"n": 44, "cat": "law", "t": "명의신탁의 비밀"},
+{"n": 45, "cat": "law", "t": "국세청의 비밀"},
+{"n": 46, "cat": "law", "t": "형사사건의 비밀"},
+{"n": 47, "cat": "law", "t": "민사소송의 비밀"},
+{"n": 48, "cat": "law", "t": "임대차계약의 비밀"},
+{"n": 49, "cat": "power", "t": "대한민국 권력의 비밀"},
+{"n": 50, "cat": "power", "t": "선거의 비밀"},
+{"n": 51, "cat": "power", "t": "관료사회의 비밀"},
+{"n": 52, "cat": "power", "t": "공기업의 비밀"},
+{"n": 53, "cat": "power", "t": "대기업의 비밀"},
+{"n": 54, "cat": "power", "t": "노조의 비밀"},
+{"n": 55, "cat": "power", "t": "학벌의 비밀"},
+{"n": 56, "cat": "power", "t": "입시의 비밀"},
+{"n": 57, "cat": "power", "t": "취업의 비밀"},
+{"n": 58, "cat": "power", "t": "직장인과 연봉의 비밀"},
+{"n": 59, "cat": "power", "t": "인맥의 비밀"},
+{"n": 60, "cat": "faith", "t": "종교의 비밀"},
+{"n": 61, "cat": "faith", "t": "불교의 비밀"},
+{"n": 62, "cat": "faith", "t": "기독교의 비밀"},
+{"n": 63, "cat": "faith", "t": "가톨릭의 비밀"},
+{"n": 64, "cat": "faith", "t": "이슬람의 비밀"},
+{"n": 65, "cat": "faith", "t": "사이비 종교의 비밀"},
+{"n": 66, "cat": "faith", "t": "믿음과 세뇌의 비밀"},
+{"n": 67, "cat": "digital", "t": "SNS의 비밀"},
+{"n": 68, "cat": "digital", "t": "ChatGPT의 비밀"},
+{"n": 69, "cat": "digital", "t": "개인정보의 비밀"},
+{"n": 70, "cat": "digital", "t": "랜섬웨어의 비밀"},
+{"n": 71, "cat": "digital", "t": "딥페이크의 비밀"},
+{"n": 72, "cat": "digital", "t": "중고거래 사기의 비밀"},
+{"n": 73, "cat": "life", "t": "실손보험의 비밀"},
+{"n": 74, "cat": "life", "t": "국민연금의 비밀"},
+{"n": 75, "cat": "life", "t": "병원의 비밀"},
+{"n": 76, "cat": "life", "t": "의사의 비밀"},
+{"n": 77, "cat": "life", "t": "제약회사의 비밀"}
+];
+const VOTE_MAX = 5;
 const CIRC = n => String.fromCharCode(n<=20 ? 0x245F+n : 0x323C+n);
 const LIST = 49000;
 // 올패스 선착순 가격. 올패스가 한 장 팔릴 때마다 PASS_SOLD를 1씩 올려 주세요.
@@ -32,7 +113,7 @@ const LIST = 49000;
 const PASS_SOLD = 0;
 const PASS_TIERS = [{k:"1차 · 선착순 30명",from:1,to:30,p:590000},{k:"2차 · 31~60번",from:31,to:60,p:690000},{k:"3차 · 61번부터",from:61,to:Infinity,p:990000,minLive:25}];
 // 강의 목표: 진행 막대와 올패스 안내에 쓰입니다.
-const GOAL = 100, GOAL_BY = "2027년 말", PACE = "매달 5~6강";
+const GOAL = 100, GOAL_BY = "2027년 말", PACE_MIN = 5, PACE_MAX = 6, PACE = `매달 ${PACE_MIN}~${PACE_MAX}강`;
 const BONUS_MAX = 7; // 1강권 1개마다 9월 강연 1편 증정, 최대 7편
 const LIVE = COURSES.filter(c=>c.cat!=="talk").length, TALKS = COURSES.length-LIVE;
 const tierOpen = t => !t.minLive || LIVE >= t.minLive;
@@ -119,22 +200,70 @@ card("", "", `<span class="name">1강권</span><span class="price">${LIST.toLoca
 `<span>원하는 9월 강연을 1편씩, 최대 ${BONUS_MAX}편까지 드립니다</span><span>나중에 올패스로 바꾸면 낸 금액을 빼 드립니다</span>`);
 for(const t of PASS_TIERS){
 const done = PASS_SOLD >= t.to, cur = t===now, open = tierOpen(t);
-const per = Math.round(t.p/total/100)*100;
-const off = Math.round((1-t.p/full)*100);
 const seats = cur && isFinite(t.to) ? `<span class="seats">남은 자리 ${t.to-PASS_SOLD} / ${t.to-t.from+1}</span>` : "";
+const lo = Math.min(GOAL, total + 12*PACE_MIN), hi = Math.min(GOAL, total + 12*PACE_MAX);
+const range = (a,b,f) => a===b ? f(a) : `${f(a)}~${f(b)}`;
 const value = open
-? `<span class="per">지금 ${total}강 기준 1강당 약 ${won(per)}</span><span class="per">1강권으로 전부 듣는 것(${won(full)})보다 ${off}% 저렴</span>`
+? `<span class="val">1강권 기준 약 ${range(lo*LIST/1e4, hi*LIST/1e4, v=>Math.round(v).toLocaleString("ko-KR"))}만원어치</span>`+
+`<span class="per">1년 동안 받을 강의 예상 ${range(lo,hi,v=>v)}강 · 약 ${Math.round((1-t.p/(lo*LIST))*100)}% 이상 저렴</span>`+
+`<span class="per">지금 열린 ${total}강만 1강권으로 들어도 ${won(full)}</span>`
 : `<span class="per">라이브 강의가 ${t.minLive}강 이상 되면 판매합니다 (지금 ${LIVE}강)</span>`;
 card(done?"done":cur?"best":"", done?"마감":cur?"지금 가격":"",
 `<span class="name">올패스</span><span class="tier">${t.k}</span><span class="price">${t.p.toLocaleString("ko-KR")}<small>원</small></span>`+value+seats,
-cur?`<ul><li>지금 열린 ${total}강 전부 (라이브 ${LIVE}강 + 9월 강연 ${TALKS}편${t.from===1?" 바로 시청":""})</li><li>구매일부터 1년 동안 새로 열리는 강의 모두 포함, 추가 비용 없음 (${PACE}씩, ${GOAL_BY} 목표 ${GOAL}강)</li><li>결석한 라이브 강의는 다음 기수에서 다시 듣기</li><li>강의 자료 제공 (체크리스트 · 템플릿 · 슬라이드 PDF)</li><li>올패스 전용 단톡방 · 켄트와의 그룹 Q&amp;A</li></ul>`
+cur?`<ul><li>지금 열린 ${total}강 전부 (라이브 ${LIVE}강 + 9월 강연 ${TALKS}편${t.from===1?" 바로 시청":""})</li><li>구매일부터 1년 동안 새로 열리는 강의 모두 포함, 비밀 시리즈도 포함, 추가 비용 없음 (${PACE}씩, ${GOAL_BY} 목표 ${GOAL}강)</li><li>결석한 라이브 강의는 다음 기수에서 다시 듣기</li><li>강의 자료 제공 (체크리스트 · 템플릿 · 슬라이드 PDF)</li><li>올패스 전용 단톡방 · 켄트와의 그룹 Q&amp;A</li></ul>`
 :`<span>${done?"선착순 마감":"앞 차수가 마감되면 이 가격이 됩니다"}</span><span>9월 강연 ${TALKS}편 포함 · 1년 동안 추가 강의 포함</span>`);
 }
 }
 function renderGoal(){
 const el=document.getElementById("goal"), n=COURSES.length, pct=Math.min(100, Math.round(n/GOAL*100));
-el.innerHTML=`<div class="goal-top"><b>지금 ${n}강</b><span>${GOAL_BY}까지 목표 ${GOAL}강</span></div>`+
+el.innerHTML=`<div class="goal-top"><b>지금 ${n}강</b><span>비밀 시리즈 ${SECRETS.length}편 준비 중 · ${GOAL_BY}까지 목표 ${GOAL}강</span></div>`+
+`<p class="goal-sum">${GOAL}강을 1강권으로 모두 들으면 <b>${won(GOAL*LIST)}</b></p>`+
 `<div class="goal-track" role="progressbar" aria-valuemin="0" aria-valuemax="${GOAL}" aria-valuenow="${n}" aria-label="강의 ${GOAL}강 목표 중 ${n}강 공개"><span style="width:${pct}%"></span></div>`+
-`<p>${PACE}씩 새로 엽니다. 올패스는 구매일부터 1년 동안 열리는 강의를 모두 포함합니다.</p>`;
+`<p>${PACE}씩 새로 엽니다. 비밀 시리즈는 <a href="#secrets">먼저 듣고 싶다는 표가 많은 주제</a>부터 만듭니다. 올패스는 구매일부터 1년 동안 열리는 강의를 모두 포함합니다.</p>`;
 }
-renderGoal(); renderTickets(); renderFilters(); renderCourses(); renderCart();
+let sFilter = "all", sMore = false;
+const SECRET_PREVIEW = 21;
+const votes = new Set();
+try { JSON.parse(localStorage.getItem("kc-votes")||"[]").forEach(n=>votes.add(n)); } catch(e){}
+function saveVotes(){ try{ localStorage.setItem("kc-votes", JSON.stringify([...votes])); }catch(e){} }
+const voteText = () => [...votes].sort((a,b)=>a-b).map(n=>SECRETS.find(x=>x.n===n).t).join(", ");
+function renderSecrets(){
+const f = document.getElementById("secretFilters"); f.innerHTML = "";
+for(const [k,label] of [["all","전체 "+SECRETS.length], ...Object.entries(SECRET_CATS).map(([k,v])=>[k, v+" "+SECRETS.filter(x=>x.cat===k).length])]){
+const b = document.createElement("button");
+b.type="button"; b.className="chip"; b.textContent=label;
+b.setAttribute("aria-pressed", String(sFilter===k));
+b.addEventListener("click",()=>{sFilter=k; sMore=false; renderSecrets();});
+f.appendChild(b);
+}
+const el = document.getElementById("secretList"); el.innerHTML = "";
+const full = votes.size >= VOTE_MAX;
+const shown = SECRETS.filter(x=>sFilter==="all" || x.cat===sFilter);
+const cut = !sMore && shown.length > SECRET_PREVIEW;
+for(const x of cut ? shown.slice(0, SECRET_PREVIEW) : shown){
+const on = votes.has(x.n);
+const b = document.createElement("button");
+b.type="button"; b.className="secret"+(on?" on":"");
+b.setAttribute("aria-pressed", String(on));
+b.disabled = full && !on;
+b.innerHTML = `<span class="sn">${String(x.n).padStart(2,"0")}</span><span class="st"></span><span class="sv">${on?"✓":"+"}</span>`;
+b.querySelector(".st").textContent = x.t;
+b.addEventListener("click",()=>{ votes.has(x.n)?votes.delete(x.n):votes.add(x.n); saveVotes(); renderSecrets(); });
+el.appendChild(b);
+}
+const more = document.getElementById("secretMore");
+more.hidden = !cut;
+more.textContent = `${shown.length}편 모두 보기`;
+document.getElementById("voteCount").textContent = `${votes.size} / ${VOTE_MAX}개 선택`;
+document.getElementById("voteText").textContent = votes.size ? voteText() : "듣고 싶은 주제를 눌러 골라 주세요.";
+document.getElementById("voteSend").disabled = !votes.size;
+}
+document.getElementById("voteSend").addEventListener("click", async ()=>{
+const msg = document.getElementById("voteMsg"), text = "먼저 듣고 싶은 비밀 시리즈: " + voteText();
+let copied = false;
+try { await navigator.clipboard.writeText(text); copied = true; } catch(e){}
+msg.textContent = copied ? "복사했어요. 신청서의 '먼저 듣고 싶은 강의' 칸에 붙여 넣어 주세요." : "위 목록을 신청서의 '먼저 듣고 싶은 강의' 칸에 적어 주세요.";
+if(APPLY_URL) window.open(APPLY_URL, "_blank", "noopener");
+});
+document.getElementById("secretMore").addEventListener("click",()=>{sMore=true; renderSecrets();});
+renderGoal(); renderSecrets(); renderTickets(); renderFilters(); renderCourses(); renderCart();
