@@ -131,6 +131,8 @@ section{padding-block:56px 0;display:grid;gap:24px}
 .ticket.done{opacity:.55}
 .ticket.done .price{text-decoration:line-through}
 .ticket.done .flag{position:absolute;top:0;right:0;background:var(--line);color:var(--muted);font-size:12px;font-weight:700;padding:4px 10px;border-bottom-left-radius:10px}
+.ticket .badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.ticket .badges .seats{margin-top:0}
 .ticket .seats{justify-self:start;margin-top:6px;background:var(--tag);color:var(--tag-ink);font-size:13px;font-weight:700;padding:2px 10px;border-radius:999px}
 .course .talk{display:grid;gap:6px;font-size:15px}
 .course .talk .when{font-family:var(--mono);font-size:13px;color:var(--accent)}
@@ -223,7 +225,7 @@ footer{padding-block:32px 0;font-size:13px;color:var(--muted)}
 </section>
 <section id="price">
 <div class="sec-head"><span class="eyebrow">이용권</span><h2>먼저 신청할수록 쌉니다</h2>
-<p>가격은 누구에게나 같습니다. 1강권은 1개 살 때마다 9월 강연 1편을 드립니다. 올패스는 지금 열린 23강 전부와 구매일부터 1년 동안 새로 열리는 강의를 모두 포함하고, 선착순으로 가격이 오릅니다.</p></div>
+<p>가격은 누구에게나 같습니다. 1강권은 1개 살 때마다 9월 강연 1편을 드립니다. 올패스는 지금 열린 23강 전부와 구매일부터 1년 동안 새로 열리는 강의를 모두 포함하고, 선착순 인원이 차거나 기간이 끝나면 가격이 오릅니다.</p></div>
 <div class="goal" id="goal"></div>
 <div class="tickets" id="tickets"></div>
 </section>
@@ -374,7 +376,7 @@ footer{padding-block:32px 0;font-size:13px;color:var(--muted)}
 <section id="apply">
 <div class="final">
 <span class="eyebrow" style="color:inherit;opacity:.7">수강 신청</span>
-<h2>올패스 590,000원은 선착순 30명까지입니다</h2>
+<h2>올패스 590,000원은 선착순 30명, 12월 31일까지입니다</h2>
 <p>신청서에 이용권과 듣고 싶은 강의를 적어 주시면 결제와 일정 안내를 이메일로 보내 드립니다. 신청 순서대로 차수 가격이 정해집니다.</p>
 <a class="btn btn-primary apply" href="#apply">수강 신청하기</a>
 </div>

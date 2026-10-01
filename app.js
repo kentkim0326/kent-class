@@ -116,13 +116,18 @@ const LIST = 50000;
 // 올패스 선착순 가격. 올패스가 한 장 팔릴 때마다 PASS_SOLD를 1씩 올려 주세요.
 // 3차는 라이브 강의가 minLive개 이상일 때만 열리고, 그 전에는 2차 가격이 이어집니다.
 const PASS_SOLD = 0;
-const PASS_TIERS = [{k:"1차 · 선착순 30명",from:1,to:30,p:590000},{k:"2차 · 31~60번",from:31,to:60,p:690000},{k:"3차 · 61번부터",from:61,to:Infinity,p:990000,minLive:25}];
+// until: 이 날(한국 시간) 밤 12시가 지나면 자리가 남아도 다음 차수로 넘어갑니다.
+const PASS_TIERS = [{k:"1차 · 선착순 30명",from:1,to:30,p:590000,until:"2026-12-31"},{k:"2차 · 60번까지",from:31,to:60,p:690000},{k:"3차 · 61번부터",from:61,to:Infinity,p:990000,minLive:25}];
 // 강의 목표: 진행 막대와 올패스 안내에 쓰입니다.
 const GOAL = 100, GOAL_BY = "2027년 말", PACE_MIN = 5, PACE_MAX = 6, PACE = `매달 ${PACE_MIN}~${PACE_MAX}강`;
 const BONUS_MAX = 7; // 1강권 1개마다 9월 강연 1편 증정, 최대 7편
 const LIVE = COURSES.filter(c=>c.cat!=="talk").length, TALKS = COURSES.length-LIVE;
 const tierOpen = t => !t.minLive || LIVE >= t.minLive;
-const passNow = () => { const i = PASS_TIERS.findIndex(t=>PASS_SOLD<t.to); return tierOpen(PASS_TIERS[i]) ? PASS_TIERS[i] : PASS_TIERS[i-1]; };
+const untilMs = t => t.until ? Date.parse(t.until + "T24:00:00+09:00") : Infinity;
+const ended = t => Date.now() >= untilMs(t);
+const tierDone = t => PASS_SOLD >= t.to || ended(t);
+const passNow = () => { const i = PASS_TIERS.findIndex(t=>!tierDone(t)); return tierOpen(PASS_TIERS[i]) ? PASS_TIERS[i] : PASS_TIERS[i-1]; };
+const untilText = t => { const [, m, d] = t.until.split("-").map(Number); return `${m}월 ${d}일`; };
 // 라이브 live개와 9월 강연 talk개를 1강권으로만 들을 때 필요한 장수 (1강권은 어느 강의에나 쓸 수 있고, 장마다 9월 강연 1편 증정)
 const ticketsFor = (live, talk) => { let k = live; while(k + Math.min(k, BONUS_MAX) < live + talk) k++; return k; };
 const won = v => v.toLocaleString("ko-KR") + "원";
@@ -216,8 +221,9 @@ el.appendChild(d);
 card("", "", `<span class="name">1강권</span><span class="price">${LIST.toLocaleString("ko-KR")}<small>원</small></span><span class="per">원하는 강의 1개</span><span class="seats">1개 사면 9월 강연 1편 증정</span>`,
 `<span>원하는 9월 강연을 1편씩, 최대 ${BONUS_MAX}편까지 드립니다</span><span>나중에 올패스로 바꾸면 낸 금액을 빼 드립니다</span>`);
 for(const t of PASS_TIERS){
-const done = PASS_SOLD >= t.to, cur = t===now, open = tierOpen(t);
-const seats = cur && isFinite(t.to) ? `<span class="seats">남은 자리 ${t.to-PASS_SOLD} / ${t.to-t.from+1}</span>` : "";
+const done = tierDone(t), cur = t===now, open = tierOpen(t);
+const dleft = Math.ceil((untilMs(t) - Date.now()) / 864e5);
+const seats = cur && isFinite(t.to) ? `<span class="badges"><span class="seats">남은 자리 ${t.to-PASS_SOLD}${t.from===1?` / ${t.to}`:""}</span>${t.until?`<span class="seats">${untilText(t)}까지 · D-${dleft}</span>`:""}</span>` : "";
 const lo = Math.min(GOAL, total + 12*PACE_MIN), hi = Math.min(GOAL, total + 12*PACE_MAX);
 const range = (a,b,f) => a===b ? f(a) : `${f(a)}~${f(b)}`;
 const value = open
@@ -228,7 +234,7 @@ const value = open
 card(done?"done":cur?"best":"", done?"마감":cur?"지금 가격":"",
 `<span class="name">올패스</span><span class="tier">${t.k}</span><span class="price">${t.p.toLocaleString("ko-KR")}<small>원</small></span>`+value+seats,
 cur?`<ul><li>지금 열린 ${total}강 전부 (라이브 ${LIVE}강 + 9월 강연 ${TALKS}편${t.from===1?" 바로 시청":""})</li><li>구매일부터 1년 동안 새로 열리는 강의 모두 포함, 비밀 시리즈도 포함, 추가 비용 없음 (${PACE}씩, ${GOAL_BY} 목표 ${GOAL}강)</li><li>결석한 라이브 강의는 다음 기수에서 다시 듣기</li><li>강의 자료 제공 (체크리스트 · 템플릿 · 슬라이드 PDF)</li><li>올패스 전용 단톡방 · 켄트와의 그룹 Q&amp;A</li></ul>`
-:`<span>${done?"선착순 마감":"앞 차수가 마감되면 이 가격이 됩니다"}</span><span>9월 강연 ${TALKS}편 포함 · 1년 동안 추가 강의 포함</span>`);
+:`<span>${done?(PASS_SOLD>=t.to?"선착순 마감":"기간 마감"):"앞 차수가 마감되면 이 가격이 됩니다"}</span><span>9월 강연 ${TALKS}편 포함 · 1년 동안 추가 강의 포함</span>`);
 }
 }
 function renderGoal(){
