@@ -227,7 +227,8 @@ const seats = cur && isFinite(t.to) ? `<span class="badges"><span class="seats">
 const lo = Math.min(GOAL, total + 12*PACE_MIN), hi = Math.min(GOAL, total + 12*PACE_MAX);
 const range = (a,b,f) => a===b ? f(a) : `${f(a)}~${f(b)}`;
 const value = open
-? `<span class="val">1강권 기준 약 ${range(lo*LIST/1e4, hi*LIST/1e4, v=>Math.round(v).toLocaleString("ko-KR"))}만원어치</span>`+
+? `<span class="perlec">1강당 약 ${range(Math.round(t.p/hi/100)*100, Math.round(t.p/lo/100)*100, v=>v.toLocaleString("ko-KR"))}원 <small>(1강권 ${won(LIST)})</small></span>`+
+`<span class="val">1강권 기준 약 ${range(lo*LIST/1e4, hi*LIST/1e4, v=>Math.round(v).toLocaleString("ko-KR"))}만원어치</span>`+
 `<span class="per">1년 동안 받을 강의 예상 ${range(lo,hi,v=>v)}강 · 약 ${Math.round((1-t.p/(lo*LIST))*100)}% 이상 저렴</span>`+
 `<span class="per">지금 열린 ${total}강만 1강권으로 들어도 ${won(full)}</span>`
 : `<span class="per">라이브 강의가 ${t.minLive}강 이상 되면 판매합니다 (지금 ${LIVE}강)</span>`;
