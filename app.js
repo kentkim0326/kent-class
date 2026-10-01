@@ -281,4 +281,12 @@ window.open(applyUrl(), "_blank", "noopener");
 document.getElementById("voteMsg").textContent = "신청서를 열었어요. 고른 주제가 '하고 싶은 말' 칸에 채워져 있어요.";
 });
 document.getElementById("secretMore").addEventListener("click",()=>{sMore=true; renderSecrets();});
-renderGoal(); renderSecrets(); renderTickets(); renderFilters(); renderCourses(); renderCart();
+function renderSeries(){
+const parts = [["s-live", LIVE, "라이브 강의", "지금 신청", "#courses"], ["s-talk", TALKS, "9월 강연", "다시보기", "#courses"], ["s-secret", SECRETS.length, "비밀 시리즈", "투표로 골라 제작", "#secrets"]];
+const total = parts.reduce((t,p)=>t+p[1],0);
+document.getElementById("series").innerHTML =
+`<div class="series-bar" role="img" aria-label="${parts.map(p=>p[2]+" "+p[1]+"강").join(", ")}, 합계 ${total}강">${parts.map(p=>`<span class="${p[0]}" style="flex:${p[1]}"></span>`).join("")}</div>`+
+`<ul class="series-list">${parts.map(p=>`<li><a href="${p[4]}"><i class="${p[0]}"></i><b>${p[2]} ${p[1]}${p[0]==="s-secret"?"편":"강"}</b><em>${p[3]}</em></a></li>`).join("")}</ul>`+
+`<p class="series-note">지금 ${LIVE+TALKS}강 공개 · ${PACE}씩 추가 · ${GOAL_BY}까지 ${GOAL}강</p>`;
+}
+renderSeries(); renderGoal(); renderSecrets(); renderTickets(); renderFilters(); renderCourses(); renderCart();
