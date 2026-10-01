@@ -233,10 +233,10 @@ cur?`<ul><li>지금 열린 ${total}강 전부 (라이브 ${LIVE}강 + 9월 강�
 }
 function renderGoal(){
 const el=document.getElementById("goal"), n=COURSES.length, pct=Math.min(100, Math.round(n/GOAL*100));
-el.innerHTML=`<div class="goal-top"><b>지금 ${n}강</b><span>비밀 시리즈 ${SECRETS.length}편 준비 중 · ${GOAL_BY}까지 목표 ${GOAL}강</span></div>`+
+el.innerHTML=`<div class="goal-top"><b>지금 ${n}강</b><span>비밀 시리즈 후보 ${SECRETS.length}편 · ${GOAL_BY}까지 목표 ${GOAL}강</span></div>`+
 `<p class="goal-sum">${GOAL}강을 1강권으로 모두 들으면 <b>${won(GOAL*LIST)}</b></p>`+
 `<div class="goal-track" role="progressbar" aria-valuemin="0" aria-valuemax="${GOAL}" aria-valuenow="${n}" aria-label="강의 ${GOAL}강 목표 중 ${n}강 공개"><span style="width:${pct}%"></span></div>`+
-`<p>${PACE}씩 새로 엽니다. 비밀 시리즈는 <a href="#secrets">먼저 듣고 싶다는 표가 많은 주제</a>부터 만듭니다. 올패스는 구매일부터 1년 동안 열리는 강의를 모두 포함합니다.</p>`;
+`<p>${PACE}씩 새로 엽니다. 비밀 시리즈는 <a href="#secrets">먼저 듣고 싶다는 표가 많은 주제</a>부터 만들고, 수요에 따라 주제가 바뀔 수 있습니다. 올패스는 구매일부터 1년 동안 열리는 강의를 모두 포함합니다.</p>`;
 }
 let sFilter = "all", sMore = false;
 const SECRET_PREVIEW = 21;
