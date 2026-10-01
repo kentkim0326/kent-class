@@ -63,8 +63,8 @@ const SECRETS = [
 {"n": 29, "cat": "money", "t": "달러의 비밀"},
 {"n": 30, "cat": "money", "t": "공매도의 비밀"},
 {"n": 31, "cat": "money", "t": "상장과 공모주의 비밀"},
-{"n": 32, "cat": "money", "t": "부동산 경매의 비밀"},
-{"n": 33, "cat": "money", "t": "재건축의 비밀"},
+{"n": 32, "cat": "world", "t": "미국 카지노 산업의 비밀"},
+{"n": 33, "cat": "money", "t": "로또의 비밀"},
 {"n": 34, "cat": "money", "t": "전세와 월세의 비밀"},
 {"n": 35, "cat": "money", "t": "환율의 비밀"},
 {"n": 36, "cat": "money", "t": "빚의 비밀"},
@@ -83,7 +83,7 @@ const SECRETS = [
 {"n": 49, "cat": "world", "t": "실리콘밸리의 비밀"},
 {"n": 50, "cat": "power", "t": "선거의 비밀"},
 {"n": 51, "cat": "grow", "t": "하버드의 비밀"},
-{"n": 52, "cat": "power", "t": "공기업의 비밀"},
+{"n": 52, "cat": "digital", "t": "데이팅앱의 비밀"},
 {"n": 53, "cat": "grow", "t": "미국 유학의 비밀"},
 {"n": 54, "cat": "grow", "t": "영어 공부의 비밀"},
 {"n": 55, "cat": "grow", "t": "학벌의 비밀"},
@@ -104,7 +104,7 @@ const SECRETS = [
 {"n": 70, "cat": "digital", "t": "랜섬웨어의 비밀"},
 {"n": 71, "cat": "digital", "t": "AI 에이전트의 비밀"},
 {"n": 72, "cat": "digital", "t": "반도체의 비밀"},
-{"n": 73, "cat": "life", "t": "실손보험의 비밀"},
+{"n": 73, "cat": "digital", "t": "다크웹의 비밀"},
 {"n": 74, "cat": "life", "t": "국민연금의 비밀"},
 {"n": 75, "cat": "life", "t": "병원의 비밀"},
 {"n": 76, "cat": "life", "t": "의사의 비밀"},
@@ -247,8 +247,8 @@ el.innerHTML=`<div class="goal-top"><b>지금 ${n}강</b><span>비밀 시리즈 
 let sFilter = "all", sMore = false;
 const SECRET_PREVIEW = 21;
 const votes = new Set();
-try { JSON.parse(localStorage.getItem("kc-votes2")||"[]").forEach(n=>votes.add(n)); } catch(e){}
-function saveVotes(){ try{ localStorage.setItem("kc-votes2", JSON.stringify([...votes])); }catch(e){} }
+try { JSON.parse(localStorage.getItem("kc-votes3")||"[]").forEach(n=>votes.add(n)); } catch(e){}
+function saveVotes(){ try{ localStorage.setItem("kc-votes3", JSON.stringify([...votes])); }catch(e){} }
 const voteText = () => [...votes].sort((a,b)=>a-b).map(n=>SECRETS.find(x=>x.n===n).t).join(", ");
 function renderSecrets(){
 const f = document.getElementById("secretFilters"); f.innerHTML = "";
