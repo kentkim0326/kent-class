@@ -162,7 +162,7 @@ const body = c.p
 : `<div class="talk"><p class="when"></p><p class="rel"></p></div>`;
 art.innerHTML = `
 <div class="c-head"><span class="num">${String(c.n).padStart(2,"0")}</span>
-<div><div class="cat">${CATS[c.cat]}</div><h3></h3></div></div>
+<div><div class="cat">${CATS[c.cat]}${c.cat==="talk"?" · 지금 다시보기":" · 라이브 · 곧 시작"}</div><h3></h3></div></div>
 ${body}
 ${c.d?'<p class="disc"></p>':'<span></span>'}
 <button class="pick" type="button" aria-pressed="${on}">${on?"✓ 담았어요":"+ 담기"}</button>`;
@@ -193,7 +193,7 @@ document.getElementById("cartTitle").innerHTML = `${n}개 담음 ${list} → <sp
 const free = Math.min(k, BONUS_MAX), left = Math.min(free - Math.max(0, talk - (k - live)), TALKS - talk);
 const sub = single <= pass.p
 ? `1강권 ×${k} (${won(single)}) + 9월 강연 ${free}편 증정` + (left>0?` · 9월 강연 ${left}편 더 고를 수 있어요`:"") + ` · 1강권 ${Math.floor(pass.p/LIST)+1}개부터는 올패스(${won(pass.p)})가 더 저렴해요`
-: `올패스 ${pass.k} ${won(pass.p)} · 1강권으로 사면 ${won(single)} · 지금 열린 ${COURSES.length}강 전부 + ${coverText(pass)} 추가되는 강의 포함`;
+: `올패스 ${pass.k} ${won(pass.p)} · 1강권으로 사면 ${won(single)} · 9월 강연 ${TALKS}편 + 곧 시작하는 라이브 ${LIVE}강 + ${coverText(pass)} 추가되는 강의 포함`;
 document.getElementById("cartSub").textContent = sub;
 }
 document.getElementById("cartClear").addEventListener("click",()=>{picked.clear(); save(); renderCourses(); renderCart();});
@@ -239,13 +239,13 @@ const detail = !open
 : `<span class="val">1강권 기준 약 ${range(lo*LIST/1e4, hi*LIST/1e4, v=>Math.round(v).toLocaleString("ko-KR"))}만원어치</span><span class="per">1년 동안 받을 강의 예상 ${range(lo,hi,v=>v)}강 · 약 ${Math.round((1-t.p/(lo*LIST))*100)}% 이상 저렴</span>`;
 card(done?"done":cur?"best":"", done?"마감":cur?"지금 가격":"",
 `<span class="name">올패스</span><span class="tier">${t.k}${t.until?` · ${untilText(t)}까지`:""}</span><span class="price">${t.p.toLocaleString("ko-KR")}<small>원</small></span>`+perlec+detail+seats,
-cur?`<ul><li>지금 열린 ${total}강 전부 (라이브 ${LIVE}강 + 9월 강연 ${TALKS}편${t.from===1?" 바로 시청":""})</li><li>${coverText(t)} 새로 열리는 강의 모두 포함, 비밀 시리즈도 포함, 추가 비용 없음 (${PACE}씩, ${GOAL_BY} 목표 ${GOAL}강)</li><li>모든 라이브 강의 녹화본 제공, 놓쳐도 다시 보기</li><li>강의 자료 제공 (체크리스트 · 템플릿 · 슬라이드 PDF)</li><li>올패스 전용 단톡방 · 켄트와의 그룹 Q&amp;A</li></ul>`
+cur?`<ul><li>9월 강연 ${TALKS}편 바로 시청 + 곧 시작하는 라이브 ${LIVE}강 전부</li><li>${coverText(t)} 새로 열리는 강의 모두 포함, 비밀 시리즈도 포함, 추가 비용 없음 (${PACE}씩, ${GOAL_BY} 목표 ${GOAL}강)</li><li>모든 라이브 강의 녹화본 제공, 놓쳐도 다시 보기</li><li>강의 자료 제공 (체크리스트 · 템플릿 · 슬라이드 PDF)</li><li>올패스 전용 단톡방 · 켄트와의 그룹 Q&amp;A</li></ul>`
 :`<span>${done?(PASS_SOLD>=t.to?"선착순 마감":"기간 마감"):"앞 차수가 마감되면 이 가격이 됩니다"}</span><span>${coverText(t)} 새로 열리는 강의 포함 · 혜택은 지금 가격과 같습니다</span>`);
 }
 }
 function renderGoal(){
-const el=document.getElementById("goal"), n=COURSES.length, pct=Math.min(100, Math.round(n/GOAL*100));
-el.innerHTML=`<div class="goal-top"><b>지금 ${n}강</b><span>비밀 시리즈 후보 ${SECRETS.length}편 · ${GOAL_BY}까지 목표 ${GOAL}강</span></div>`+
+const el=document.getElementById("goal"), n=TALKS, pct=Math.min(100, Math.round(n/GOAL*100));
+el.innerHTML=`<div class="goal-top"><b>지금 볼 수 있는 강의 ${TALKS}편</b><span>라이브 ${LIVE}강 곧 시작 · 비밀 시리즈 후보 ${SECRETS.length}편 · ${GOAL_BY}까지 목표 ${GOAL}강</span></div>`+
 `<p class="goal-sum">${GOAL}강을 1강권으로 모두 들으면 <b>${won(GOAL*LIST)}</b></p>`+
 `<div class="goal-track" role="progressbar" aria-valuemin="0" aria-valuemax="${GOAL}" aria-valuenow="${n}" aria-label="강의 ${GOAL}강 목표 중 ${n}강 공개"><span style="width:${pct}%"></span></div>`+
 `<p>${PACE}씩 새로 엽니다. 비밀 시리즈는 <a href="#secrets">먼저 듣고 싶다는 표가 많은 주제</a>부터 만들고, 수요에 따라 주제가 바뀔 수 있습니다. 1차 올패스는 2027년 말까지, 2차부터는 구매일부터 1년 동안 열리는 강의를 모두 포함합니다.</p>`;
@@ -294,12 +294,12 @@ document.getElementById("voteMsg").textContent = "신청서를 열었어요. 고
 });
 document.getElementById("secretMore").addEventListener("click",()=>{sMore=true; renderSecrets();});
 function renderSeries(){
-const parts = [["s-live", LIVE, "라이브 강의", "지금 신청", "#courses"], ["s-talk", TALKS, "9월 강연", "다시보기", "#courses"], ["s-secret", SECRETS.length, "비밀 시리즈", "투표로 골라 제작", "#secrets"]];
+const parts = [["s-talk", TALKS, "9월 강연", "지금 다시보기", "#courses"], ["s-live", LIVE, "라이브 강의", "곧 시작 · 지금 신청", "#courses"], ["s-secret", SECRETS.length, "비밀 시리즈", "투표로 골라 제작", "#secrets"]];
 const total = parts.reduce((t,p)=>t+p[1],0);
 document.getElementById("series").innerHTML =
 `<div class="series-bar" role="img" aria-label="${parts.map(p=>p[2]+" "+p[1]+"강").join(", ")}, 합계 ${total}강">${parts.map(p=>`<span class="${p[0]}" style="flex:${p[1]}"></span>`).join("")}</div>`+
-`<ul class="series-list">${parts.map(p=>`<li><a href="${p[4]}"><i class="${p[0]}"></i><b>${p[2]} ${p[1]}${p[0]==="s-secret"?"편":"강"}</b><em>${p[3]}</em></a></li>`).join("")}</ul>`+
-`<p class="series-note">지금 ${LIVE+TALKS}강 공개 · ${PACE}씩 추가 · ${GOAL_BY}까지 ${GOAL}강</p>`;
+`<ul class="series-list">${parts.map(p=>`<li><a href="${p[4]}"><i class="${p[0]}"></i><b>${p[2]} ${p[1]}${p[0]==="s-live"?"강":"편"}</b><em>${p[3]}</em></a></li>`).join("")}</ul>`+
+`<p class="series-note">지금 ${TALKS}편 공개 · 라이브 ${LIVE}강 곧 시작 · ${PACE}씩 추가 · ${GOAL_BY}까지 ${GOAL}강</p>`;
 }
 function passHeadline(){
 const t = passNow();
@@ -309,7 +309,7 @@ function renderTopbar(){
 const t = passNow(), bits = [];
 if(t.to > PASS_SOLD && isFinite(t.to)) bits.push(`남은 자리 ${t.to-PASS_SOLD}${t.from===1?` / ${t.to}`:""}`);
 if(t.until && !tierDone(t)) bits.push(`D-${Math.ceil((untilMs(t)-Date.now())/864e5)}`);
-bits.push(t.covers ? `${GOAL}강 완성 시 1강당 ${won(Math.round(t.p/GOAL))}` : `지금 ${COURSES.length}강 + 1년 동안 새 강의 포함`);
+bits.push(t.covers ? `${GOAL}강 완성 시 1강당 ${won(Math.round(t.p/GOAL))}` : `9월 강연 ${TALKS}편 + 라이브 ${LIVE}강 + 1년 동안 새 강의 포함`);
 document.getElementById("topbar").innerHTML = `<div><b></b><span>${bits.join(" · ")}</span></div><a class="btn apply" href="#apply">수강 신청하기</a>`;
 document.querySelector("#topbar b").textContent = passHeadline();
 document.getElementById("applyHead").textContent = passHeadline();
