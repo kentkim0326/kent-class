@@ -31,6 +31,8 @@ const LIST = 49000;
 // 3차는 라이브 강의가 minLive개 이상일 때만 열리고, 그 전에는 2차 가격이 이어집니다.
 const PASS_SOLD = 0;
 const PASS_TIERS = [{k:"1차 · 선착순 30명",from:1,to:30,p:590000},{k:"2차 · 31~60번",from:31,to:60,p:690000},{k:"3차 · 61번부터",from:61,to:Infinity,p:990000,minLive:25}];
+// 강의 목표: 진행 막대와 올패스 안내에 쓰입니다.
+const GOAL = 100, GOAL_BY = "2027년 말", PACE = "매달 5~6강";
 const BONUS_MAX = 7; // 1강권 1개마다 9월 강연 1편 증정, 최대 7편
 const LIVE = COURSES.filter(c=>c.cat!=="talk").length, TALKS = COURSES.length-LIVE;
 const tierOpen = t => !t.minLive || LIVE >= t.minLive;
@@ -125,8 +127,14 @@ const value = open
 : `<span class="per">라이브 강의가 ${t.minLive}강 이상 되면 판매합니다 (지금 ${LIVE}강)</span>`;
 card(done?"done":cur?"best":"", done?"마감":cur?"지금 가격":"",
 `<span class="name">올패스</span><span class="tier">${t.k}</span><span class="price">${t.p.toLocaleString("ko-KR")}<small>원</small></span>`+value+seats,
-cur?`<ul><li>지금 열린 ${total}강 전부 (라이브 ${LIVE}강 + 9월 강연 ${TALKS}편${t.from===1?" 바로 시청":""})</li><li>구매일부터 1년 동안 새로 열리는 강의 모두 포함, 추가 비용 없음</li><li>결석한 라이브 강의는 다음 기수에서 다시 듣기</li><li>강의 자료 제공 (체크리스트 · 템플릿 · 슬라이드 PDF)</li><li>올패스 전용 단톡방 · 켄트와의 그룹 Q&amp;A</li></ul>`
+cur?`<ul><li>지금 열린 ${total}강 전부 (라이브 ${LIVE}강 + 9월 강연 ${TALKS}편${t.from===1?" 바로 시청":""})</li><li>구매일부터 1년 동안 새로 열리는 강의 모두 포함, 추가 비용 없음 (${PACE}씩, ${GOAL_BY} 목표 ${GOAL}강)</li><li>결석한 라이브 강의는 다음 기수에서 다시 듣기</li><li>강의 자료 제공 (체크리스트 · 템플릿 · 슬라이드 PDF)</li><li>올패스 전용 단톡방 · 켄트와의 그룹 Q&amp;A</li></ul>`
 :`<span>${done?"선착순 마감":"앞 차수가 마감되면 이 가격이 됩니다"}</span><span>9월 강연 ${TALKS}편 포함 · 1년 동안 추가 강의 포함</span>`);
 }
 }
-renderTickets(); renderFilters(); renderCourses(); renderCart();
+function renderGoal(){
+const el=document.getElementById("goal"), n=COURSES.length, pct=Math.min(100, Math.round(n/GOAL*100));
+el.innerHTML=`<div class="goal-top"><b>지금 ${n}강</b><span>${GOAL_BY}까지 목표 ${GOAL}강</span></div>`+
+`<div class="goal-track" role="progressbar" aria-valuemin="0" aria-valuemax="${GOAL}" aria-valuenow="${n}" aria-label="강의 ${GOAL}강 목표 중 ${n}강 공개"><span style="width:${pct}%"></span></div>`+
+`<p>${PACE}씩 새로 엽니다. 올패스는 구매일부터 1년 동안 열리는 강의를 모두 포함합니다.</p>`;
+}
+renderGoal(); renderTickets(); renderFilters(); renderCourses(); renderCart();
