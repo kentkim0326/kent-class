@@ -76,7 +76,7 @@ ${c.d?'<p class="disc"></p>':'<span></span>'}
 art.querySelector("h3").textContent = c.t;
 if(c.p) art.querySelectorAll("li").forEach((li,i)=>li.textContent=c.p[i]);
 else {
-art.querySelector(".when").textContent = `제${c.s}탄 · ${c.w} 저녁 8시 Zoom 라이브 · 90분 녹화본 · 1강권 구매 시 증정 · 올패스 포함`;
+art.querySelector(".when").textContent = `제${c.s}탄 · ${c.w} 오후 8시–9시 30분 Zoom 라이브 · 녹화본 · 1강권 구매 시 증정 · 올패스 포함`;
 art.querySelector(".rel").textContent = "함께 들으면 좋은 라이브 강의: " + c.rel.map(r=>CIRC(r)+" "+COURSES.find(x=>x.n===r).t).join(" / ");
 }
 if(c.d) art.querySelector(".disc").textContent = "※ " + c.d;
