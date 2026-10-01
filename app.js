@@ -118,7 +118,7 @@ const LIST = 50000;
 const PASS_SOLD = 0;
 // until: 이 날(한국 시간) 밤 12시가 지나면 자리가 남아도 다음 차수로 넘어갑니다.
 // covers: 이 날까지 열리는 강의를 모두 포함(없으면 구매일부터 1년).
-const PASS_TIERS = [{k:"1차 · 선착순 30명",from:1,to:30,p:590000,until:"2026-12-31",covers:"2027-12-31"},{k:"2차 · 60번까지",from:31,to:60,p:690000},{k:"3차 · 61~90번",from:61,to:90,p:790000},{k:"4차 · 91번부터",from:91,to:Infinity,p:990000,minLive:25}];
+const PASS_TIERS = [{k:"1차 · 선착순 30명",from:1,to:30,p:590000,until:"2026-12-31",covers:"2027-12-31",perk:"강의를 녹화할 때 Zoom으로 함께 참여하고 바로 질문 (1차 30명만, 녹화 일정은 단톡방으로 안내)"},{k:"2차 · 60번까지",from:31,to:60,p:690000},{k:"3차 · 61~90번",from:61,to:90,p:790000},{k:"4차 · 91번부터",from:91,to:Infinity,p:990000,minLive:25}];
 // 강의 목표: 진행 막대와 올패스 안내에 쓰입니다.
 const GOAL = 100, GOAL_BY = "2027년 말", PACE_MIN = 6, PACE_MAX = 7, PACE = `매달 ${PACE_MIN}~${PACE_MAX}강`;
 const BONUS_MAX = 7; // 1강권 1개마다 AI 특강 1편 증정, 최대 7편
@@ -242,7 +242,7 @@ const detail = !open
 : `<span class="val">1강권 기준 약 ${range(lo*LIST/1e4, hi*LIST/1e4, v=>Math.round(v).toLocaleString("ko-KR"))}만원어치</span><span class="per">1년 동안 받을 강의 예상 ${range(lo,hi,v=>v)}강 · 약 ${Math.round((1-t.p/(lo*LIST))*100)}% 이상 저렴</span>`;
 card(done?"done":cur?"best":"", done?"마감":cur?"지금 가격":"",
 `<span class="name">올패스</span><span class="tier">${t.k}${t.until?` · ${untilText(t)}까지`:""}</span><span class="price">${t.p.toLocaleString("ko-KR")}<small>원</small></span>`+perlec+detail+seats,
-cur?`<ul><li>지금 볼 수 있는 ${OPEN}편 바로 시청 + 순서대로 공개되는 ${SOON}강 전부</li><li>${coverText(t)} 새로 열리는 강의 모두 포함, 비밀 시리즈도 포함, 추가 비용 없음 (${PACE}씩, ${GOAL_BY} 목표 ${GOAL}강)</li><li>언제든 원하는 때에 보고, 몇 번이든 다시 보기</li><li>강의 자료 제공 (체크리스트 · 템플릿 · 슬라이드 PDF)</li><li>올패스 전용 단톡방에서 질문·답변</li></ul>`
+cur?`<ul>${t.perk?`<li><b>${t.perk}</b></li>`:""}<li>지금 볼 수 있는 ${OPEN}편 바로 시청 + 순서대로 공개되는 ${SOON}강 전부</li><li>${coverText(t)} 새로 열리는 강의 모두 포함, 비밀 시리즈도 포함, 추가 비용 없음 (${PACE}씩, ${GOAL_BY} 목표 ${GOAL}강)</li><li>언제든 원하는 때에 보고, 몇 번이든 다시 보기</li><li>강의 자료 제공 (체크리스트 · 템플릿 · 슬라이드 PDF)</li><li>올패스 전용 단톡방에서 질문·답변</li></ul>`
 :`<span>${done?(PASS_SOLD>=t.to?"선착순 마감":"기간 마감"):"앞 차수가 마감되면 이 가격이 됩니다"}</span><span>${coverText(t)} 새로 열리는 강의 포함 · 혜택은 지금 가격과 같습니다</span>`);
 }
 }
