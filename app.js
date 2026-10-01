@@ -1,6 +1,6 @@
 // 수강 신청 구글폼. 담은 강의와 비밀 시리즈 투표를 미리 채워서 엽니다.
 const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScdq_V-kakkuDQJNKgIKXyscEbBy1Rzm0HGp52HSZmZ9senKw/viewform";
-const FORM_PICK = "entry.127665552"; // 듣고 싶은 강의 (체크박스, 라이브 ①~⑯)
+const FORM_PICK = "entry.127665552"; // 듣고 싶은 강의 (체크박스, ①~⑯)
 const FORM_NOTE = "entry.889586095"; // 하고 싶은 말 (장문)
 // 폼 체크박스 문구와 글자 하나까지 같아야 미리 채워집니다.
 const FORM_LIVE = ["① 사단법인 만들기","② 미국 종교법인 만들기","③ 30억 투자 유치와 교훈","④ 혁신학교 만들기","⑤ 국제 포럼 만들기","⑥ AI로 앱인토스 게임 만들기","⑦ 세계 공공기관에 브랜드 팔기","⑧ 해외 게임쇼 부스 나가기","⑨ 공모전 300개 심화편","⑩ AI로 책 쓰고 출간하기","⑪ 해외 행사 연사 지원하기","⑫ 스폰서 구좌 모금 설계","⑬ 미국 대학·의대 입시","⑭ 1인 창업가 AI 업무 자동화","⑮ 블록체인 경험담 (이더리움부터 코인빗 대표까지)","⑯ 깃허브 프로젝트 70개 만든 경험"];
@@ -11,7 +11,7 @@ const COURSES = [
 {"n": 3, "cat": "startup", "t": "30억 투자받고 20명을 내보내며 배운 것", "p": ["2018년 8억: 첫 투자자를 만난 과정과 투자 조건", "2021년 22억: 메타버스 붐 속 투자 유치 전략", "투자 계약서에서 실제로 부딪힌 조항들", "30억을 어디에 썼는지: 인건비·개발비 비율 공개", "메타버스 플랫폼 2개를 만들고 얻은 결과", "20명 채용과 전원 정리", "AI 시대에 다시 창업한다면: 1인 회사로 다시 시작한 이유"]},
 {"n": 4, "cat": "law", "t": "미네르바 스쿨 같은 혁신학교 만들기", "p": ["2014년 미네르바 스쿨은 무엇이 혁신이었나", "오래전부터 그려 온 꿈의 학교, 플라토 스쿨의 비전", "샌프란시스코 비영리법인 설립 과정 공개", "500페이지 『플라토 스쿨 프리메드』 출간기", "학교 사이트를 직접 만든 과정과 투어", "학교보다 프로그램 먼저: AI Summer Korea 설계", "학부모·학생을 모으는 방법: 도서관·강연·네트워크"]},
 {"n": 5, "cat": "global", "t": "다보스 포럼 같은 국제 포럼 만들기 — 999 Seoul Forum", "p": ["999 포럼을 만든 배경: 왜 9월 9일인가", "다보스 포럼 모델 분석", "아무것도 없을 때 시작하는 법: 사이트와 한 장짜리 제안서", "LP·GP·글로벌 패밀리오피스를 찾는 방법", "제안서 구조와 첫 이메일 공개", "스폰서 구좌 설계", "서울에서 대만·하노이로: 도시 순회 구상과 학생 트랙"]},
-{"n": 6, "cat": "ai", "t": "AI로 앱인토스에 게임 만들어 올리기 (라이브 제작)", "p": ["Zoom으로 여러 AI에게 동시에 게임 아이디어 수집하기", "아이디어 고르는 기준: 작게, 빨리, 끝까지", "AI로 프로토타입 만들기 (라이브)", "테스트와 수정: 재미를 확인하는 방법", "게임물관리위원회 등급분류 신청 방법", "앱인토스 콘솔 등록과 심사 과정", "광고·인앱 수익화 구조"]},
+{"n": 6, "cat": "ai", "t": "AI로 앱인토스에 게임 만들어 올리기 (제작 과정 그대로)", "p": ["Zoom으로 여러 AI에게 동시에 게임 아이디어 수집하기", "아이디어 고르는 기준: 작게, 빨리, 끝까지", "AI로 프로토타입 만들기 (제작 화면 공개)", "테스트와 수정: 재미를 확인하는 방법", "게임물관리위원회 등급분류 신청 방법", "앱인토스 콘솔 등록과 심사 과정", "광고·인앱 수익화 구조"]},
 {"n": 7, "cat": "global", "t": "세계 공공기관에 나만의 브랜드 팔기", "p": ["나만의 브랜드 분석하기", "나만의 자산 찾기 워크시트: 책·그림·게임·강연", "미국 도서관·박물관 500곳을 찾는 방법과 담당자 찾기", "영국·독일·프랑스·일본 공공기관 리스트 만들기", "컨택 메일 작성법과 후속 연락 전략", "협업 형태: 라이브 페인팅·강연·전시·도서 기증", "실제 사례: 미국 박물관·해외 한국문화원·한인회와 주고받은 메일"]},
 {"n": 8, "cat": "global", "t": "정부 지원으로 해외 게임쇼 부스 나가기", "p": ["문체부·한콘진 해외 전시 지원사업 찾는 법", "선발되는 지원서 작성 포인트", "중국 텐센트 게임 어워즈 참가 경험", "스웨덴 게임 컨퍼런스·태국 게임스컴 준비 과정", "부스 운영: 빌드, 홍보물, 현장 미팅 잡기", "해외 바이어 미팅: 무엇을 보여 주고 무엇을 받아 오나", "전시 후 해외 파트너십으로 연결하기"]},
 {"n": 9, "cat": "ai", "t": "2년간 공모전 300개 도전 — 심화편", "p": ["300개 중 어떤 공모전을 골랐나: 선별 기준", "공고를 찾는 곳: 사이트·기관·뉴스레터", "AI로 지원서를 빠르게 만드는 워크플로", "당선작과 탈락작의 차이, 실제 사례 분석", "인천공항 AI Port 최우수상 수상작 해부", "공모전 결과를 사업·포트폴리오로 연결하기", "떨어져도 계속하는 루틴과 관리표 공개"]},
@@ -114,7 +114,7 @@ const VOTE_MAX = 5;
 const CIRC = n => String.fromCharCode(n<=20 ? 0x245F+n : 0x323C+n);
 const LIST = 50000;
 // 올패스 선착순 가격. 올패스가 한 장 팔릴 때마다 PASS_SOLD를 1씩 올려 주세요.
-// minLive가 있는 차수는 라이브 강의가 그 수 이상일 때만 열리고, 그 전에는 앞 차수 가격이 이어집니다.
+// minLive가 있는 차수는 공개된 강의가 그 수 이상일 때만 열리고, 그 전에는 앞 차수 가격이 이어집니다.
 const PASS_SOLD = 0;
 // until: 이 날(한국 시간) 밤 12시가 지나면 자리가 남아도 다음 차수로 넘어갑니다.
 // covers: 이 날까지 열리는 강의를 모두 포함(없으면 구매일부터 1년).
@@ -123,14 +123,17 @@ const PASS_TIERS = [{k:"1차 · 선착순 30명",from:1,to:30,p:590000,until:"20
 const GOAL = 100, GOAL_BY = "2027년 말", PACE_MIN = 6, PACE_MAX = 7, PACE = `매달 ${PACE_MIN}~${PACE_MAX}강`;
 const BONUS_MAX = 7; // 1강권 1개마다 AI 특강 1편 증정, 최대 7편
 const LIVE = COURSES.filter(c=>c.cat!=="talk").length, TALKS = COURSES.length-LIVE;
-const tierOpen = t => !t.minLive || LIVE >= t.minLive;
+// 강의를 올리면 그 강의에 "ready": true 를 붙여 주세요. 공개된 강의 수(OPEN)와 '지금 시청' 표시가 바뀝니다.
+const isOpen = c => c.cat==="talk" || c.ready;
+const OPEN = COURSES.filter(isOpen).length, SOON = COURSES.length - OPEN;
+const tierOpen = t => !t.minLive || OPEN >= t.minLive;
 const untilMs = t => t.until ? Date.parse(t.until + "T24:00:00+09:00") : Infinity;
 const ended = t => Date.now() >= untilMs(t);
 const tierDone = t => PASS_SOLD >= t.to || ended(t);
 const passNow = () => { const i = PASS_TIERS.findIndex(t=>!tierDone(t)); return tierOpen(PASS_TIERS[i]) ? PASS_TIERS[i] : PASS_TIERS[i-1]; };
 const coverText = t => { if(!t.covers) return "구매일부터 1년 동안"; const [y, m, d] = t.covers.split("-").map(Number); return `${y}년 ${m}월\u00a0${d}일까지`; };
 const untilText = t => { const [, m, d] = t.until.split("-").map(Number); return `${m}월\u00a0${d}일`; };
-// 라이브 live개와 AI 특강 talk개를 1강권으로만 들을 때 필요한 장수 (1강권은 어느 강의에나 쓸 수 있고, 장마다 AI 특강 1편 증정)
+// 일반 강의 live개와 AI 특강 talk개를 1강권으로만 들을 때 필요한 장수 (1강권은 어느 강의에나 쓸 수 있고, 장마다 AI 특강 1편 증정)
 const ticketsFor = (live, talk) => { let k = live; while(k + Math.min(k, BONUS_MAX) < live + talk) k++; return k; };
 const won = v => v.toLocaleString("ko-KR") + "원";
 let filter = "all";
@@ -162,7 +165,7 @@ const body = c.p
 : `<div class="talk"><p class="when"></p><p class="rel"></p></div>`;
 art.innerHTML = `
 <div class="c-head"><span class="num">${String(c.n).padStart(2,"0")}</span>
-<div><div class="cat">${CATS[c.cat]}${c.cat==="talk"?" · 지금 다시보기":" · 라이브 · 곧 시작"}</div><h3></h3></div></div>
+<div><div class="cat">${CATS[c.cat]}${isOpen(c)?" · 지금 시청":" · 공개 예정"}</div><h3></h3></div></div>
 ${body}
 ${c.d?'<p class="disc"></p>':'<span></span>'}
 <button class="pick" type="button" aria-pressed="${on}">${on?"✓ 담았어요":"+ 담기"}</button>`;
@@ -170,7 +173,7 @@ art.querySelector("h3").textContent = c.t;
 if(c.p) art.querySelectorAll("li").forEach((li,i)=>li.textContent=c.p[i]);
 else {
 art.querySelector(".when").textContent = `제${c.s}탄 · ${c.w} 오후 8시–9시 30분 Zoom 라이브 · 녹화본 · 1강권 구매 시 증정 · 올패스 포함`;
-art.querySelector(".rel").textContent = "함께 들으면 좋은 라이브 강의: " + c.rel.map(r=>CIRC(r)+" "+COURSES.find(x=>x.n===r).t).join(" / ");
+art.querySelector(".rel").textContent = "함께 들으면 좋은 강의: " + c.rel.map(r=>CIRC(r)+" "+COURSES.find(x=>x.n===r).t).join(" / ");
 }
 if(c.d) art.querySelector(".disc").textContent = "※ " + c.d;
 art.querySelector(".pick").addEventListener("click",()=>{
@@ -193,7 +196,7 @@ document.getElementById("cartTitle").innerHTML = `${n}개 담음 ${list} → <sp
 const free = Math.min(k, BONUS_MAX), left = Math.min(free - Math.max(0, talk - (k - live)), TALKS - talk);
 const sub = single <= pass.p
 ? `1강권 ×${k} (${won(single)}) + AI 특강 ${free}편 증정` + (left>0?` · AI 특강 ${left}편 더 고를 수 있어요`:"") + ` · 1강권 ${Math.floor(pass.p/LIST)+1}개부터는 올패스(${won(pass.p)})가 더 저렴해요`
-: `올패스 ${pass.k} ${won(pass.p)} · 1강권으로 사면 ${won(single)} · AI 특강 ${TALKS}편 + 곧 시작하는 라이브 ${LIVE}강 + ${coverText(pass)} 추가되는 강의 포함`;
+: `올패스 ${pass.k} ${won(pass.p)} · 1강권으로 사면 ${won(single)} · 지금 볼 수 있는 ${OPEN}편 + 공개 예정 ${SOON}강 + ${coverText(pass)} 추가되는 강의 포함`;
 document.getElementById("cartSub").textContent = sub;
 }
 document.getElementById("cartClear").addEventListener("click",()=>{picked.clear(); save(); renderCourses(); renderCart();});
@@ -223,7 +226,7 @@ el.appendChild(d);
 document.getElementById("single").innerHTML =
 `<div class="s-main"><span class="name">1강권</span><span class="price">${LIST.toLocaleString("ko-KR")}<small>원</small></span></div>`+
 `<div class="s-info"><span class="seats">1개 사면 AI 특강 1편 증정</span><span>원하는 강의 1개 · 원하는 AI 특강을 1편씩 최대 ${BONUS_MAX}편까지 드립니다 · 나중에 올패스로 바꾸면 낸 금액을 빼 드립니다</span></div>`;
-const lo = Math.min(GOAL, TALKS + 12*PACE_MIN), hi = Math.min(GOAL, TALKS + 12*PACE_MAX);
+const lo = Math.min(GOAL, OPEN + 12*PACE_MIN), hi = Math.min(GOAL, OPEN + 12*PACE_MAX);
 const range = (a,b,f) => a===b ? f(a) : `${f(a)}~${f(b)}`;
 for(const t of PASS_TIERS){
 const cur = t===now, done = !cur && tierDone(t), open = tierOpen(t);
@@ -233,19 +236,19 @@ const perlec = t.covers
 ? `<span class="perlec">${GOAL}강 완성 시 1강당 ${won(Math.round(t.p/GOAL))}</span>`
 : `<span class="perlec">1강당 약 ${range(Math.round(t.p/hi/100)*100, Math.round(t.p/lo/100)*100, v=>v.toLocaleString("ko-KR"))}원</span>`;
 const detail = !open
-? `<span class="per">라이브 강의가 ${t.minLive}강 이상으로 늘면 판매합니다 (지금 라이브 ${LIVE}강 예정)</span>`
+? `<span class="per">공개된 강의가 ${t.minLive}강 이상이 되면 판매합니다 (지금 ${OPEN}강)</span>`
 : t.covers
 ? `<span class="val">${GOAL}강을 1강권으로 들으면 ${won(GOAL*LIST)} → 약 ${Math.round((1-t.p/(GOAL*LIST))*100)}% 저렴</span><span class="per">${coverText(t)} 열리는 강의 모두 포함</span>`
 : `<span class="val">1강권 기준 약 ${range(lo*LIST/1e4, hi*LIST/1e4, v=>Math.round(v).toLocaleString("ko-KR"))}만원어치</span><span class="per">1년 동안 받을 강의 예상 ${range(lo,hi,v=>v)}강 · 약 ${Math.round((1-t.p/(lo*LIST))*100)}% 이상 저렴</span>`;
 card(done?"done":cur?"best":"", done?"마감":cur?"지금 가격":"",
 `<span class="name">올패스</span><span class="tier">${t.k}${t.until?` · ${untilText(t)}까지`:""}</span><span class="price">${t.p.toLocaleString("ko-KR")}<small>원</small></span>`+perlec+detail+seats,
-cur?`<ul><li>AI 특강 ${TALKS}편 바로 시청 + 곧 시작하는 라이브 ${LIVE}강 전부</li><li>${coverText(t)} 새로 열리는 강의 모두 포함, 비밀 시리즈도 포함, 추가 비용 없음 (${PACE}씩, ${GOAL_BY} 목표 ${GOAL}강)</li><li>모든 라이브 강의 녹화본 제공, 놓쳐도 다시 보기</li><li>강의 자료 제공 (체크리스트 · 템플릿 · 슬라이드 PDF)</li><li>올패스 전용 단톡방 · 켄트와의 그룹 Q&amp;A</li></ul>`
+cur?`<ul><li>지금 볼 수 있는 ${OPEN}편 바로 시청 + 순서대로 공개되는 ${SOON}강 전부</li><li>${coverText(t)} 새로 열리는 강의 모두 포함, 비밀 시리즈도 포함, 추가 비용 없음 (${PACE}씩, ${GOAL_BY} 목표 ${GOAL}강)</li><li>언제든 원하는 때에 보고, 몇 번이든 다시 보기</li><li>강의 자료 제공 (체크리스트 · 템플릿 · 슬라이드 PDF)</li><li>올패스 전용 단톡방에서 질문·답변</li></ul>`
 :`<span>${done?(PASS_SOLD>=t.to?"선착순 마감":"기간 마감"):"앞 차수가 마감되면 이 가격이 됩니다"}</span><span>${coverText(t)} 새로 열리는 강의 포함 · 혜택은 지금 가격과 같습니다</span>`);
 }
 }
 function renderGoal(){
-const el=document.getElementById("goal"), n=TALKS, pct=Math.min(100, Math.round(n/GOAL*100));
-el.innerHTML=`<div class="goal-top"><b>지금 볼 수 있는 강의 ${TALKS}편</b><span>라이브 ${LIVE}강 곧 시작 · 비밀 시리즈 후보 ${SECRETS.length}편 · ${GOAL_BY}까지 목표 ${GOAL}강</span></div>`+
+const el=document.getElementById("goal"), n=OPEN, pct=Math.min(100, Math.round(n/GOAL*100));
+el.innerHTML=`<div class="goal-top"><b>지금 볼 수 있는 강의 ${OPEN}편</b><span>공개 예정 ${SOON}강 · 비밀 시리즈 후보 ${SECRETS.length}편 · ${GOAL_BY}까지 목표 ${GOAL}강</span></div>`+
 `<p class="goal-sum">${GOAL}강을 1강권으로 모두 들으면 <b>${won(GOAL*LIST)}</b></p>`+
 `<div class="goal-track" role="progressbar" aria-valuemin="0" aria-valuemax="${GOAL}" aria-valuenow="${n}" aria-label="강의 ${GOAL}강 목표 중 ${n}강 공개"><span style="width:${pct}%"></span></div>`+
 `<p>${PACE}씩 새로 엽니다. 비밀 시리즈는 <a href="#secrets">먼저 듣고 싶다는 표가 많은 주제</a>부터 만들고, 수요에 따라 주제가 바뀔 수 있습니다. 1차 올패스는 2027년 말까지, 2차부터는 구매일부터 1년 동안 열리는 강의를 모두 포함합니다.</p>`;
@@ -294,12 +297,12 @@ document.getElementById("voteMsg").textContent = "신청서를 열었어요. 고
 });
 document.getElementById("secretMore").addEventListener("click",()=>{sMore=true; renderSecrets();});
 function renderSeries(){
-const parts = [["s-talk", TALKS, "AI 특강", "지금 다시보기", "#courses"], ["s-live", LIVE, "라이브 강의", "곧 시작 · 지금 신청", "#courses"], ["s-secret", SECRETS.length, "비밀 시리즈", "투표로 골라 제작", "#secrets"]];
+const parts = [["s-talk", TALKS, "AI 특강", "지금 다시보기", "#courses"], ["s-live", LIVE, "직접 해본 것만 강의", "순서대로 공개 · 지금 신청", "#courses"], ["s-secret", SECRETS.length, "비밀 시리즈", "투표로 골라 제작", "#secrets"]];
 const total = parts.reduce((t,p)=>t+p[1],0);
 document.getElementById("series").innerHTML =
 `<div class="series-bar" role="img" aria-label="${parts.map(p=>p[2]+" "+p[1]+"강").join(", ")}, 합계 ${total}강">${parts.map(p=>`<span class="${p[0]}" style="flex:${p[1]}"></span>`).join("")}</div>`+
 `<ul class="series-list">${parts.map(p=>`<li><a href="${p[4]}"><i class="${p[0]}"></i><b>${p[2]} ${p[1]}${p[0]==="s-live"?"강":"편"}</b><em>${p[3]}</em></a></li>`).join("")}</ul>`+
-`<p class="series-note">지금 ${TALKS}편 공개 · 라이브 ${LIVE}강 곧 시작 · ${PACE}씩 추가 · ${GOAL_BY}까지 ${GOAL}강</p>`;
+`<p class="series-note">지금 ${OPEN}편 공개 · ${PACE}씩 새로 올림 · ${GOAL_BY}까지 ${GOAL}강</p>`;
 }
 function passHeadline(){
 const t = passNow();
@@ -309,7 +312,7 @@ function renderTopbar(){
 const t = passNow(), bits = [];
 if(t.to > PASS_SOLD && isFinite(t.to)) bits.push(`남은 자리 ${t.to-PASS_SOLD}${t.from===1?` / ${t.to}`:""}`);
 if(t.until && !tierDone(t)) bits.push(`D-${Math.ceil((untilMs(t)-Date.now())/864e5)}`);
-bits.push(t.covers ? `${GOAL}강 완성 시 1강당 ${won(Math.round(t.p/GOAL))}` : `AI 특강 ${TALKS}편 + 라이브 ${LIVE}강 + 1년 동안 새 강의 포함`);
+bits.push(t.covers ? `${GOAL}강 완성 시 1강당 ${won(Math.round(t.p/GOAL))}` : `지금 ${OPEN}편 + 공개 예정 ${SOON}강 + 1년 동안 새 강의 포함`);
 document.getElementById("topbar").innerHTML = `<div><b></b><span>${bits.join(" · ")}</span></div><a class="btn apply" href="#apply">수강 신청하기</a>`;
 document.querySelector("#topbar b").textContent = passHeadline();
 document.getElementById("applyHead").textContent = passHeadline();
