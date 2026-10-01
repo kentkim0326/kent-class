@@ -220,33 +220,28 @@ d.className="ticket"+(cls?" "+cls:"");
 d.innerHTML=(flag?`<span class="flag">${flag}</span>`:'')+`<div class="top">${top}</div><div class="bottom">${bottom}</div>`;
 el.appendChild(d);
 };
-card("", "", `<span class="name">1강권</span><span class="price">${LIST.toLocaleString("ko-KR")}<small>원</small></span><span class="per">원하는 강의 1개</span><span class="seats">1개 사면 9월 강연 1편 증정</span>`,
-`<span>원하는 9월 강연을 1편씩, 최대 ${BONUS_MAX}편까지 드립니다</span><span>나중에 올패스로 바꾸면 낸 금액을 빼 드립니다</span>`);
-{
-const t = now, done = false, cur = true, open = tierOpen(t);
-const dleft = Math.ceil((untilMs(t) - Date.now()) / 864e5);
-const seats = cur && t.to > PASS_SOLD ? `<span class="badges"><span class="seats">남은 자리 ${t.to-PASS_SOLD}${t.from===1?` / ${t.to}`:""}</span>${t.until?`<span class="seats">${untilText(t)}까지 · D-${dleft}</span>`:""}</span>` : "";
+document.getElementById("single").innerHTML =
+`<div class="s-main"><span class="name">1강권</span><span class="price">${LIST.toLocaleString("ko-KR")}<small>원</small></span></div>`+
+`<div class="s-info"><span class="seats">1개 사면 9월 강연 1편 증정</span><span>원하는 강의 1개 · 원하는 9월 강연을 1편씩 최대 ${BONUS_MAX}편까지 드립니다 · 나중에 올패스로 바꾸면 낸 금액을 빼 드립니다</span></div>`;
 const lo = Math.min(GOAL, total + 12*PACE_MIN), hi = Math.min(GOAL, total + 12*PACE_MAX);
 const range = (a,b,f) => a===b ? f(a) : `${f(a)}~${f(b)}`;
-const value = open && t.covers
-? `<span class="perlec">${GOAL}강 완성 시 1강당 ${won(Math.round(t.p/GOAL))} <small>(1강권 ${won(LIST)})</small></span>`+
-`<span class="val">${GOAL}강을 1강권으로 들으면 ${won(GOAL*LIST)} → 약 ${Math.round((1-t.p/(GOAL*LIST))*100)}% 저렴</span>`+
-`<span class="per">${coverText(t)} 열리는 강의 모두 포함 (${GOAL_BY} 목표 ${GOAL}강)</span>`+
-`<span class="per">지금 열린 ${total}강만 1강권으로 들어도 ${won(full)}</span>`
-: open
-? `<span class="perlec">1강당 약 ${range(Math.round(t.p/hi/100)*100, Math.round(t.p/lo/100)*100, v=>v.toLocaleString("ko-KR"))}원 <small>(1강권 ${won(LIST)})</small></span>`+
-`<span class="val">1강권 기준 약 ${range(lo*LIST/1e4, hi*LIST/1e4, v=>Math.round(v).toLocaleString("ko-KR"))}만원어치</span>`+
-`<span class="per">1년 동안 받을 강의 예상 ${range(lo,hi,v=>v)}강 · 약 ${Math.round((1-t.p/(lo*LIST))*100)}% 이상 저렴</span>`+
-`<span class="per">지금 열린 ${total}강만 1강권으로 들어도 ${won(full)}</span>`
-: `<span class="per">라이브 강의가 ${t.minLive}강 이상 되면 판매합니다 (지금 ${LIVE}강)</span>`;
+for(const t of PASS_TIERS){
+const cur = t===now, done = !cur && tierDone(t), open = tierOpen(t);
+const dleft = Math.ceil((untilMs(t) - Date.now()) / 864e5);
+const seats = cur && t.to > PASS_SOLD ? `<span class="badges"><span class="seats">남은 자리 ${t.to-PASS_SOLD}${t.from===1?` / ${t.to}`:""}</span>${t.until?`<span class="seats">${untilText(t)}까지 · D-${dleft}</span>`:""}</span>` : "";
+const perlec = t.covers
+? `<span class="perlec">${GOAL}강 완성 시 1강당 ${won(Math.round(t.p/GOAL))}</span>`
+: `<span class="perlec">1강당 약 ${range(Math.round(t.p/hi/100)*100, Math.round(t.p/lo/100)*100, v=>v.toLocaleString("ko-KR"))}원</span>`;
+const detail = !open
+? `<span class="per">라이브 강의가 ${t.minLive}강 이상 되면 판매합니다 (지금 ${LIVE}강)</span>`
+: t.covers
+? `<span class="val">${GOAL}강을 1강권으로 들으면 ${won(GOAL*LIST)} → 약 ${Math.round((1-t.p/(GOAL*LIST))*100)}% 저렴</span><span class="per">${coverText(t)} 열리는 강의 모두 포함</span>`
+: `<span class="val">1강권 기준 약 ${range(lo*LIST/1e4, hi*LIST/1e4, v=>Math.round(v).toLocaleString("ko-KR"))}만원어치</span><span class="per">1년 동안 받을 강의 예상 ${range(lo,hi,v=>v)}강 · 약 ${Math.round((1-t.p/(lo*LIST))*100)}% 이상 저렴</span>`;
 card(done?"done":cur?"best":"", done?"마감":cur?"지금 가격":"",
-`<span class="name">올패스</span><span class="tier">${t.k}</span><span class="price">${t.p.toLocaleString("ko-KR")}<small>원</small></span>`+value+seats,
+`<span class="name">올패스</span><span class="tier">${t.k}${t.until?` · ${untilText(t)}까지`:""}</span><span class="price">${t.p.toLocaleString("ko-KR")}<small>원</small></span>`+perlec+detail+seats,
 cur?`<ul><li>지금 열린 ${total}강 전부 (라이브 ${LIVE}강 + 9월 강연 ${TALKS}편${t.from===1?" 바로 시청":""})</li><li>${coverText(t)} 새로 열리는 강의 모두 포함, 비밀 시리즈도 포함, 추가 비용 없음 (${PACE}씩, ${GOAL_BY} 목표 ${GOAL}강)</li><li>모든 라이브 강의 녹화본 제공, 놓쳐도 다시 보기</li><li>강의 자료 제공 (체크리스트 · 템플릿 · 슬라이드 PDF)</li><li>올패스 전용 단톡방 · 켄트와의 그룹 Q&amp;A</li></ul>`
-:`<span>${done?(PASS_SOLD>=t.to?"선착순 마감":"기간 마감"):"앞 차수가 마감되면 이 가격이 됩니다"}</span><span>9월 강연 ${TALKS}편 포함 · ${coverText(t)} 추가 강의 포함</span>`);
+:`<span>${done?(PASS_SOLD>=t.to?"선착순 마감":"기간 마감"):"앞 차수가 마감되면 이 가격이 됩니다"}</span><span>${coverText(t)} 새로 열리는 강의 포함 · 혜택은 지금 가격과 같습니다</span>`);
 }
-const step = t => t===now ? "지금" : tierDone(t) ? (PASS_SOLD>=t.to ? "선착순 마감" : "기간 마감") : !tierOpen(t) ? `라이브 ${t.minLive}강 이상부터` : "예정";
-card("ladder", "", `<span class="name">올패스 가격 단계</span><span class="per">먼저 신청할수록 쌉니다</span>`,
-`<ol class="steps">${PASS_TIERS.map(t=>`<li class="${t===now?"cur":tierDone(t)?"done":""}"><span class="st-k">${t.k}${t.until?` · ${untilText(t)}까지`:""}</span><b>${won(t.p)}</b><em>${step(t)} · ${t.covers?"2027년 말까지 강의 포함":"구매일부터 1년"}</em></li>`).join("")}</ol>`);
 }
 function renderGoal(){
 const el=document.getElementById("goal"), n=COURSES.length, pct=Math.min(100, Math.round(n/GOAL*100));
