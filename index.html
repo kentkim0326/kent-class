@@ -172,6 +172,10 @@ section{padding-block:56px 0;display:grid;gap:24px}
 .log time{font-family:var(--mono);font-size:14px;color:var(--accent);font-weight:600}
 .policy{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .policy .rule h3{font-size:16px}
+.topbar{margin-top:16px;background:var(--ink);color:var(--bg);border-radius:14px;padding:12px 14px 12px 18px;display:flex;gap:10px 16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.topbar b{font-family:var(--display);font-weight:400;font-size:clamp(17px,2.4vw,22px);line-height:1.3;word-break:keep-all}
+.topbar span{font-size:13px;opacity:.75;display:block}
+.topbar .btn{min-height:40px;padding:0 18px;font-size:15px;background:var(--bg);color:var(--ink)}
 .final{background:var(--ink);color:var(--bg);border-radius:18px;padding:36px 28px;display:grid;gap:14px;justify-items:start}
 .final h2{font-family:var(--display);font-weight:400;font-size:clamp(26px,4vw,38px);line-height:1.2}
 .final p{opacity:.8}
@@ -192,6 +196,7 @@ footer{padding-block:32px 0;font-size:13px;color:var(--muted)}
 </head>
 <body>
 <div class="wrap">
+<div class="topbar" id="topbar" role="region" aria-label="올패스 선착순 안내"></div>
 <header class="hero">
 <div class="stage">
 <span class="eyebrow">켄트김의 100강 시리즈 · 2027년 말 완성 목표</span>
@@ -377,7 +382,7 @@ footer{padding-block:32px 0;font-size:13px;color:var(--muted)}
 <section id="apply">
 <div class="final">
 <span class="eyebrow" style="color:inherit;opacity:.7">수강 신청</span>
-<h2>올패스 590,000원은 선착순 30명, 12월 31일까지입니다</h2>
+<h2 id="applyHead">올패스 590,000원은 선착순 30명, 12월 31일까지입니다</h2>
 <p>신청서에 이용권과 듣고 싶은 강의를 적어 주시면 결제와 일정 안내를 이메일로 보내 드립니다. 신청 순서대로 차수 가격이 정해집니다.</p>
 <a class="btn btn-primary apply" href="#apply">수강 신청하기</a>
 </div>

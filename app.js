@@ -127,7 +127,7 @@ const untilMs = t => t.until ? Date.parse(t.until + "T24:00:00+09:00") : Infinit
 const ended = t => Date.now() >= untilMs(t);
 const tierDone = t => PASS_SOLD >= t.to || ended(t);
 const passNow = () => { const i = PASS_TIERS.findIndex(t=>!tierDone(t)); return tierOpen(PASS_TIERS[i]) ? PASS_TIERS[i] : PASS_TIERS[i-1]; };
-const untilText = t => { const [, m, d] = t.until.split("-").map(Number); return `${m}월 ${d}일`; };
+const untilText = t => { const [, m, d] = t.until.split("-").map(Number); return `${m}월\u00a0${d}일`; };
 // 라이브 live개와 9월 강연 talk개를 1강권으로만 들을 때 필요한 장수 (1강권은 어느 강의에나 쓸 수 있고, 장마다 9월 강연 1편 증정)
 const ticketsFor = (live, talk) => { let k = live; while(k + Math.min(k, BONUS_MAX) < live + talk) k++; return k; };
 const won = v => v.toLocaleString("ko-KR") + "원";
@@ -295,4 +295,17 @@ document.getElementById("series").innerHTML =
 `<ul class="series-list">${parts.map(p=>`<li><a href="${p[4]}"><i class="${p[0]}"></i><b>${p[2]} ${p[1]}${p[0]==="s-secret"?"편":"강"}</b><em>${p[3]}</em></a></li>`).join("")}</ul>`+
 `<p class="series-note">지금 ${LIVE+TALKS}강 공개 · ${PACE}씩 추가 · ${GOAL_BY}까지 ${GOAL}강</p>`;
 }
-renderSeries(); renderGoal(); renderSecrets(); renderTickets(); renderFilters(); renderCourses(); renderCart();
+function passHeadline(){
+const t = passNow();
+return t.from===1 && t.until && !tierDone(t) ? `올패스 ${won(t.p)}은 선착순 ${t.to}명, ${untilText(t)}까지입니다` : `지금 올패스는 ${t.k.split(" · ")[0]} 가격 ${won(t.p)}입니다`;
+}
+function renderTopbar(){
+const t = passNow(), bits = [];
+if(isFinite(t.to)) bits.push(`남은 자리 ${t.to-PASS_SOLD}${t.from===1?` / ${t.to}`:""}`);
+if(t.until && !tierDone(t)) bits.push(`D-${Math.ceil((untilMs(t)-Date.now())/864e5)}`);
+bits.push(`지금 ${COURSES.length}강 + 1년 동안 새 강의 포함`);
+document.getElementById("topbar").innerHTML = `<div><b></b><span>${bits.join(" · ")}</span></div><a class="btn apply" href="#apply">수강 신청하기</a>`;
+document.querySelector("#topbar b").textContent = passHeadline();
+document.getElementById("applyHead").textContent = passHeadline();
+}
+renderTopbar(); renderSeries(); renderGoal(); renderSecrets(); renderTickets(); renderFilters(); renderCourses(); renderCart();
