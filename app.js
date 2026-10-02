@@ -115,7 +115,7 @@ const CIRC = n => String.fromCharCode(n<=20 ? 0x245F+n : 0x323C+n);
 const LIST = 50000;
 // 올패스 선착순 가격. 올패스가 한 장 팔릴 때마다 PASS_SOLD를 1씩 올려 주세요.
 // minLive가 있는 차수는 공개된 강의가 그 수 이상일 때만 열리고, 그 전에는 앞 차수 가격이 이어집니다.
-const PASS_SOLD = 0;
+const PASS_SOLD = 1;
 // until: 이 날(한국 시간) 밤 12시가 지나면 자리가 남아도 다음 차수로 넘어갑니다.
 // covers: 이 날까지 열리는 강의를 모두 포함(없으면 구매일부터 1년).
 const PASS_TIERS = [{k:"1차 · 선착순 30명",from:1,to:30,p:590000,until:"2026-12-31",covers:"2027-12-31",perk:"강의를 녹화할 때 Zoom으로 함께 참여하고 바로 질문 (1차 30명만, 녹화 일정은 단톡방으로 안내)"},{k:"2차 · 60번까지",from:31,to:60,p:690000},{k:"3차 · 61~90번",from:61,to:90,p:790000},{k:"4차 · 91번부터",from:91,to:Infinity,p:990000,minLive:25}];
@@ -326,10 +326,13 @@ return t.from===1 && t.until && !tierDone(t) ? `올패스 ${won(t.p)}은 선착�
 }
 function renderTopbar(){
 const t = passNow(), bits = [];
-if(t.to > PASS_SOLD && isFinite(t.to)) bits.push(`남은 자리 ${t.to-PASS_SOLD}${t.from===1?` / ${t.to}`:""}`);
+const showSeats = t.from===1 && t.to > PASS_SOLD && isFinite(t.to), left = t.to-PASS_SOLD;
+if(t.to > PASS_SOLD && isFinite(t.to) && !showSeats) bits.push(`남은 자리 ${left}`);
 if(t.until && !tierDone(t)) bits.push(`D-${Math.ceil((untilMs(t)-Date.now())/864e5)}`);
 bits.push(t.covers ? `${GOAL}강 완성 시 1강당 ${won(Math.round(t.p/GOAL))}` : `지금 ${OPEN}편 + 공개 예정 ${SOON}강 + 1년 동안 새 강의 포함`);
-document.getElementById("topbar").innerHTML = `<div><b></b><span>${bits.join(" · ")}</span></div><a class="btn apply" href="#apply">수강 신청하기</a>`;
+const seatBox = showSeats ? `<div class="seat-box" role="img" aria-label="선착순 ${t.to}명 중 ${left}자리 남음"><small>남은 자리</small><strong>${left}<em>/${t.to}</em></strong></div>` : "";
+const dots = showSeats ? `<div class="seat-dots" aria-hidden="true">${Array.from({length:t.to},(_,i)=>`<i${i<PASS_SOLD?' class="on"':""}></i>`).join("")}</div><span>${PASS_SOLD}명 신청 완료 · ${bits.join(" · ")}</span>` : `<span>${bits.join(" · ")}</span>`;
+document.getElementById("topbar").innerHTML = `${seatBox}<div class="tb-main"><b></b>${dots}</div><a class="btn apply" href="#apply">수강 신청하기</a>`;
 document.querySelector("#topbar b").textContent = passHeadline();
 document.getElementById("applyHead").textContent = passHeadline();
 }
