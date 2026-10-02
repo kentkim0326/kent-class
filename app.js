@@ -33,11 +33,11 @@ const COURSES = [
 const SECRET_CATS = {money:"돈·투자", world:"글로벌", digital:"AI·디지털", grow:"교육·성장", law:"세금·가족", power:"사회", life:"건강·보험", faith:"종교"};
 const SECRETS = [
 {"n": 1, "cat": "money", "t": "대한민국 부자의 비밀"},
-{"n": 2, "cat": "money", "t": "은행의 비밀"},
+{"n": 2, "cat": "money", "t": "은행의 비밀", "img": "covers/bank.jpg", "ct": "대한민국 은행의 비밀", "sub": "은행의 역사와 사건으로 읽는 돈과 책임"},
 {"n": 3, "cat": "money", "t": "부동산의 비밀"},
 {"n": 4, "cat": "money", "t": "대출의 비밀"},
 {"n": 5, "cat": "law", "t": "세무조사의 비밀"},
-{"n": 6, "cat": "law", "t": "증여와 상속의 비밀"},
+{"n": 6, "cat": "law", "t": "증여와 상속의 비밀", "img": "covers/inheritance.jpg", "ct": "대한민국 상속의 비밀", "sub": "재산을 남기는 선택, 가족의 미래를 바꾸다"},
 {"n": 7, "cat": "law", "t": "이혼과 재산분할의 비밀"},
 {"n": 8, "cat": "life", "t": "보험금의 비밀"},
 {"n": 9, "cat": "power", "t": "재벌가의 비밀"},
@@ -268,8 +268,23 @@ b.setAttribute("aria-pressed", String(sFilter===k));
 b.addEventListener("click",()=>{sFilter=k; sMore=false; renderSecrets();});
 f.appendChild(b);
 }
-const el = document.getElementById("secretList"); el.innerHTML = "";
 const full = votes.size >= VOTE_MAX;
+const cv = document.getElementById("secretCovers"); cv.innerHTML = "";
+for(const x of SECRETS.filter(x=>x.img)){
+const on = votes.has(x.n);
+const b = document.createElement("button");
+b.type="button"; b.className="cover"+(on?" on":"");
+b.setAttribute("aria-pressed", String(on));
+b.disabled = full && !on;
+b.innerHTML = `<img alt="" loading="lazy" width="720" height="1020"><span class="cv-t"></span><span class="cv-s"></span><span class="cv-v">${on?"✓ 투표함":"+ 이 주제에 투표"}</span>`;
+b.querySelector("img").src = x.img;
+b.querySelector("img").alt = x.ct+" 표지";
+b.querySelector(".cv-t").textContent = x.ct;
+b.querySelector(".cv-s").textContent = x.sub;
+b.addEventListener("click",()=>{ votes.has(x.n)?votes.delete(x.n):votes.add(x.n); saveVotes(); renderSecrets(); });
+cv.appendChild(b);
+}
+const el = document.getElementById("secretList"); el.innerHTML = "";
 const shown = SECRETS.filter(x=>sFilter==="all" || x.cat===sFilter);
 const cut = !sMore && shown.length > SECRET_PREVIEW;
 for(const x of cut ? shown.slice(0, SECRET_PREVIEW) : shown){

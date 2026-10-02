@@ -116,6 +116,15 @@ section{padding-block:56px 0;display:grid;gap:24px}
 .goal-track{height:10px;border-radius:999px;background:var(--line);overflow:hidden}
 .goal-track span{display:block;height:100%;background:var(--accent);border-radius:999px}
 .goal p{font-size:14px;color:var(--muted)}
+.covers-head{margin:0 0 10px;color:var(--muted);font-size:14px}.covers-head b{color:var(--ink);margin-right:6px}
+.covers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.cover{display:flex;flex-direction:column;gap:4px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 8px 12px;color:var(--ink);font-family:var(--body);cursor:pointer}
+.cover img{width:100%;height:auto;aspect-ratio:720/1020;object-fit:cover;border-radius:8px;display:block;margin-bottom:6px}
+.cover .cv-t{font-weight:700;font-size:15px;word-break:keep-all}
+.cover .cv-s{font-size:13px;color:var(--muted);word-break:keep-all}
+.cover .cv-v{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:4px}
+.cover.on{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}.cover.on .cv-v{color:var(--accent)}
+.cover:disabled{opacity:.45;cursor:not-allowed}
 .secrets{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .secret{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--ink);font-family:var(--body);font-size:15px;cursor:pointer}
 .secret .sn{font-family:var(--mono);font-size:12px;color:var(--muted)}
@@ -199,7 +208,7 @@ footer{padding-block:32px 0;font-size:13px;color:var(--muted)}
 .cart-actions{display:flex;gap:8px;align-items:center}
 .cart .btn{min-height:42px;padding:0 18px;font-size:15px}
 .link-btn{background:none;border:0;color:var(--muted);font-size:14px;cursor:pointer;text-decoration:underline;font-family:var(--body)}
-@media (max-width:860px){.tickets,.vids,.secrets{grid-template-columns:repeat(2,1fr)}.courses,.policy,.bio,.press{grid-template-columns:1fr}}
+@media (max-width:860px){.tickets,.vids,.secrets,.covers{grid-template-columns:repeat(2,1fr)}.courses,.policy,.bio,.press{grid-template-columns:1fr}}
 @media (max-width:620px){.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(3){padding-left:0;border-left:0}.stat:nth-child(n+3){border-top:1px solid var(--line)}.format,.tickets,.career,.awards,.secrets{grid-template-columns:1fr}.format div+div{border-left:0;border-top:1px solid var(--line)}.log div{grid-template-columns:1fr;gap:2px}}
 </style>
 </head>
@@ -254,6 +263,8 @@ footer{padding-block:32px 0;font-size:13px;color:var(--muted)}
 <div class="sec-head"><span class="eyebrow">공개 예정 · 비밀 시리즈 후보 77편</span><h2>켄트김의 비밀 시리즈</h2>
 <p>우리가 매일 접하지만, 누구도 제대로 가르쳐주지 않았던 돈·권력·법률·종교·기술의 숨은 구조를 살펴봅니다. 1편 최소 90분 온라인 강의로 매달 6~7편씩 공개합니다.</p>
 <p><b style="color:var(--ink)">어떤 주제부터 만들까요?</b> 먼저 듣고 싶은 주제를 최대 5개 골라 신청서로 보내 주세요. 표가 많은 주제부터 만들고, 표가 적은 주제는 만들지 않거나 다른 주제로 바꿀 수 있습니다.</p></div>
+<p class="covers-head"><b>표지 먼저 공개</b> 표를 많이 받으면 이런 표지로 만들어 올립니다.</p>
+<div class="covers" id="secretCovers"></div>
 <div class="filters" role="group" aria-label="비밀 시리즈 분야 필터" id="secretFilters"></div>
 <div class="secrets" id="secretList"></div>
 <button class="btn btn-ghost more-btn" type="button" id="secretMore" hidden></button>
