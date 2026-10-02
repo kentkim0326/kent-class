@@ -59,7 +59,6 @@ const SECRETS = [
 {"n": 28, "cat": "money", "t": "ETF의 비밀"},
 {"n": 29, "cat": "money", "t": "달러의 비밀"},
 {"n": 30, "cat": "money", "t": "공매도의 비밀"},
-{"n": 31, "cat": "money", "t": "상장과 공모주의 비밀"},
 {"n": 32, "cat": "world", "t": "미국 카지노 산업의 비밀"},
 {"n": 33, "cat": "money", "t": "로또의 비밀", "img": "covers/lotto.jpg", "ct": "로또의 비밀", "sub": "확률과 욕망, 그리고 당첨금의 행방"},
 {"n": 34, "cat": "money", "t": "대한민국 아파트의 비밀"},
@@ -70,13 +69,11 @@ const SECRETS = [
 {"n": 40, "cat": "law", "t": "대한민국 유언장의 비밀"},
 {"n": 41, "cat": "money", "t": "미국 주식의 비밀"},
 {"n": 44, "cat": "world", "t": "패밀리오피스의 비밀", "img": "covers/familyoffice.jpg", "ct": "패밀리오피스의 비밀", "sub": "초부자들은 재산을 어떻게 지키는가"},
-{"n": 45, "cat": "law", "t": "국세청의 비밀"},
 {"n": 46, "cat": "world", "t": "조세피난처의 비밀", "img": "covers/taxhaven.jpg", "ct": "조세피난처의 비밀", "sub": "세금이 사라지는 섬들의 지도"},
 {"n": 47, "cat": "world", "t": "스위스 은행의 비밀", "img": "covers/swissbank.jpg", "ct": "스위스 은행의 비밀", "sub": "비밀계좌의 신화와 현실"},
 {"n": 48, "cat": "digital", "t": "저작권의 비밀"},
 {"n": 49, "cat": "world", "t": "실리콘밸리의 비밀", "img": "covers/siliconvalley.jpg", "ct": "실리콘밸리의 비밀", "sub": "아이디어가 돈이 되는 곳의 규칙"},
 {"n": 52, "cat": "digital", "t": "데이팅앱의 비밀"},
-{"n": 57, "cat": "grow", "t": "시간관리의 비밀"},
 {"n": 60, "cat": "world", "t": "중동 오일머니의 비밀"},
 {"n": 65, "cat": "faith", "t": "사이비 종교의 비밀"},
 {"n": 66, "cat": "world", "t": "중국 경제의 비밀"},
@@ -86,8 +83,8 @@ const SECRETS = [
 {"n": 72, "cat": "digital", "t": "반도체 산업의 비밀", "img": "covers/semiconductor.jpg", "ct": "반도체 산업의 비밀", "sub": "한 장의 칩이 세계 패권을 가른다"},
 {"n": 73, "cat": "digital", "t": "다크웹의 비밀", "img": "covers/darkweb.jpg", "ct": "다크웹의 비밀", "sub": "검색되지 않는 인터넷의 깊은 곳"},
 {"n": 74, "cat": "life", "t": "국민연금의 비밀", "img": "covers/pension.jpg", "ct": "대한민국 연금의 비밀", "sub": "내가 낸 돈은 언제, 얼마나 돌아오는가"},
-{"n": 75, "cat": "life", "t": "병원의 비밀", "img": "covers/hospital.jpg", "ct": "대한민국 병원의 비밀", "sub": "진료실 밖에서 결정되는 것들"},
-{"n": 76, "cat": "life", "t": "의사의 비밀"},
+{"n": 75, "cat": "life", "t": "대한민국 병원들의 비밀", "img": "covers/hospital.jpg", "ct": "대한민국 병원들의 비밀", "sub": "진료실 밖에서 결정되는 것들"},
+{"n": 76, "cat": "life", "t": "대한민국 의사들의 비밀"},
 {"n": 77, "cat": "life", "t": "제약회사의 비밀", "img": "covers/pharma.jpg", "ct": "미국 제약회사의 비밀", "sub": "신약 하나에 걸린 돈과 권력"},
 {"n": 78, "cat": "world", "t": "일본 파친코 산업의 비밀", "img": "covers/pachinko.jpg", "ct": "일본 파친코 산업의 비밀", "sub": "구슬 하나로 움직이는 거대한 회색 경제"},
 {"n": 79, "cat": "digital", "t": "클로드의 비밀", "img": "covers/claude.jpg", "ct": "클로드의 비밀", "sub": "가장 똑똑한 AI 동료를 쓰는 법"},
@@ -108,7 +105,10 @@ const SECRETS = [
 {"n": 94, "cat": "digital", "t": "AI로 고소장 만드는 비밀", "img": "covers/aicomplaint.jpg", "ct": "AI로 고소장 만드는 비밀", "sub": "법률 문서 초안을 AI로 쓰는 법"},
 {"n": 95, "cat": "digital", "t": "AI로 HTML5 게임 만드는 비밀", "img": "covers/html5.jpg", "ct": "AI로 HTML5 게임 만드는 비밀", "sub": "코딩 몰라도 웹 게임 하나 완성하기"},
 {"n": 96, "cat": "digital", "t": "AI로 유니티 게임 만드는 비밀", "img": "covers/unity.jpg", "ct": "AI로 유니티 게임 만드는 비밀", "sub": "모바일 게임을 AI와 함께 만드는 법"},
-{"n": 97, "cat": "digital", "t": "AI로 언리얼 게임 만드는 비밀", "img": "covers/unreal.jpg", "ct": "AI로 언리얼 게임 만드는 비밀", "sub": "영화 같은 3D 게임을 AI로 만드는 법"}
+{"n": 97, "cat": "digital", "t": "AI로 언리얼 게임 만드는 비밀", "img": "covers/unreal.jpg", "ct": "AI로 언리얼 게임 만드는 비밀", "sub": "영화 같은 3D 게임을 AI로 만드는 법"},
+{"n": 98, "cat": "money", "t": "대한민국 부동산의 비밀"},
+{"n": 99, "cat": "law", "t": "대한민국 세금의 비밀"},
+{"n": 100, "cat": "power", "t": "홀덤의 비밀", "sub": "전세계에서 유일하게 홀덤이 불법인 대한민국"}
 ];
 const VOTE_MAX = 5;
 const CIRC = n => String.fromCharCode(n<=20 ? 0x245F+n : 0x323C+n);
@@ -269,21 +269,6 @@ b.addEventListener("click",()=>{sFilter=k; sMore=false; renderSecrets();});
 f.appendChild(b);
 }
 const full = votes.size >= VOTE_MAX;
-const cv = document.getElementById("secretCovers"); cv.innerHTML = "";
-for(const x of SECRETS.filter(x=>x.img)){
-const on = votes.has(x.n);
-const b = document.createElement("button");
-b.type="button"; b.className="cover"+(on?" on":"");
-b.setAttribute("aria-pressed", String(on));
-b.disabled = full && !on;
-b.innerHTML = `<img alt="" loading="lazy" width="720" height="1020"><span class="cv-t"></span><span class="cv-s"></span><span class="cv-v">${on?"✓ 투표함":(full?"5개 다 골랐어요":"+ 이 주제에 투표")}</span>`;
-b.querySelector("img").src = x.img;
-b.querySelector("img").alt = x.ct+" 표지";
-b.querySelector(".cv-t").textContent = x.ct;
-b.querySelector(".cv-s").textContent = x.sub;
-b.addEventListener("click",()=>{ votes.has(x.n)?votes.delete(x.n):votes.add(x.n); saveVotes(); renderSecrets(); });
-cv.appendChild(b);
-}
 const ey = document.getElementById("secretEyebrow"); if(ey) ey.textContent = `공개 예정 · 비밀 시리즈 후보 ${SECRETS.length}편`;
 const el = document.getElementById("secretList"); el.innerHTML = "";
 const shown = SECRETS.filter(x=>sFilter==="all" || x.cat===sFilter);
@@ -291,11 +276,13 @@ const cut = !sMore && shown.length > SECRET_PREVIEW;
 for(const x of cut ? shown.slice(0, SECRET_PREVIEW) : shown){
 const on = votes.has(x.n);
 const b = document.createElement("button");
-b.type="button"; b.className="secret"+(on?" on":"");
+b.type="button"; b.className="ctile"+(on?" on":"");
 b.setAttribute("aria-pressed", String(on));
 b.disabled = full && !on;
-b.innerHTML = `<span class="sn">${String(x.n).padStart(2,"0")}</span><span class="st"></span><span class="sv">${on?"✓":"+"}</span>`;
-b.querySelector(".st").textContent = x.t;
+b.innerHTML = (x.img ? `<img alt="" loading="lazy" width="720" height="1020">` : `<span class="ft"></span>`) + `<span class="cb" aria-hidden="true">${on?"✓":"+"}</span>`;
+if(x.img) b.querySelector("img").src = x.img; else b.querySelector(".ft").textContent = x.t;
+b.setAttribute("aria-label", (x.ct||x.t) + (x.sub ? " · "+x.sub : "") + (on ? " · 투표함" : ""));
+b.title = x.ct||x.t;
 b.addEventListener("click",()=>{ votes.has(x.n)?votes.delete(x.n):votes.add(x.n); saveVotes(); renderSecrets(); });
 el.appendChild(b);
 }
