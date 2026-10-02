@@ -278,7 +278,7 @@ const b = document.createElement("button");
 b.type="button"; b.className="cover"+(on?" on":"");
 b.setAttribute("aria-pressed", String(on));
 b.disabled = full && !on;
-b.innerHTML = `<img alt="" loading="lazy" width="720" height="1020"><span class="cv-t"></span><span class="cv-s"></span><span class="cv-v">${on?"✓ 투표함":"+ 이 주제에 투표"}</span>`;
+b.innerHTML = `<img alt="" loading="lazy" width="720" height="1020"><span class="cv-t"></span><span class="cv-s"></span><span class="cv-v">${on?"✓ 투표함":(full?"5개 다 골랐어요":"+ 이 주제에 투표")}</span>`;
 b.querySelector("img").src = x.img;
 b.querySelector("img").alt = x.ct+" 표지";
 b.querySelector(".cv-t").textContent = x.ct;
