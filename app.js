@@ -39,17 +39,17 @@ const SECRETS = [
 {"n": 5, "cat": "law", "t": "세무조사의 비밀"},
 {"n": 6, "cat": "law", "t": "증여와 상속의 비밀", "img": "covers/inheritance.jpg", "ct": "대한민국 상속의 비밀", "sub": "재산을 남기는 선택, 가족의 미래를 바꾸다"},
 {"n": 7, "cat": "law", "t": "이혼과 재산분할의 비밀"},
-{"n": 8, "cat": "life", "t": "보험금의 비밀"},
-{"n": 9, "cat": "power", "t": "재벌가의 비밀"},
+{"n": 8, "cat": "life", "t": "보험금의 비밀", "img": "covers/insurance.jpg", "ct": "대한민국 보험의 비밀", "sub": "보험료와 보험금 사이, 아무도 알려주지 않은 계산"},
+{"n": 9, "cat": "power", "t": "재벌가의 비밀", "img": "covers/chaebol.jpg", "ct": "대한민국 재벌의 비밀", "sub": "가문과 기업, 승계와 지배구조의 이야기"},
 {"n": 10, "cat": "money", "t": "주식시장의 비밀"},
 {"n": 11, "cat": "digital", "t": "코인의 비밀"},
 {"n": 12, "cat": "digital", "t": "보이스피싱의 비밀"},
-{"n": 13, "cat": "digital", "t": "해킹의 비밀"},
+{"n": 13, "cat": "digital", "t": "해킹의 비밀", "img": "covers/hacking.jpg", "ct": "해킹의 비밀", "sub": "뚫는 사람과 막는 사람, 보이지 않는 전쟁"},
 {"n": 14, "cat": "digital", "t": "인공지능의 비밀"},
 {"n": 15, "cat": "digital", "t": "유튜브 알고리즘의 비밀"},
 {"n": 16, "cat": "grow", "t": "사교육의 비밀"},
 {"n": 17, "cat": "grow", "t": "명문대의 비밀"},
-{"n": 18, "cat": "world", "t": "미국 월가의 비밀"},
+{"n": 18, "cat": "world", "t": "미국 월가의 비밀", "img": "covers/wallstreet.jpg", "ct": "미국 월가의 비밀", "sub": "세계의 돈이 모이고 움직이는 곳"},
 {"n": 19, "cat": "world", "t": "미국의 비밀"},
 {"n": 20, "cat": "digital", "t": "빅테크의 비밀"},
 {"n": 21, "cat": "world", "t": "일본 야쿠자의 비밀"},
@@ -64,30 +64,26 @@ const SECRETS = [
 {"n": 30, "cat": "money", "t": "공매도의 비밀"},
 {"n": 31, "cat": "money", "t": "상장과 공모주의 비밀"},
 {"n": 32, "cat": "world", "t": "미국 카지노 산업의 비밀"},
-{"n": 33, "cat": "money", "t": "로또의 비밀"},
+{"n": 33, "cat": "money", "t": "로또의 비밀", "img": "covers/lotto.jpg", "ct": "로또의 비밀", "sub": "확률과 욕망, 그리고 당첨금의 행방"},
 {"n": 34, "cat": "money", "t": "대한민국 아파트의 비밀"},
 {"n": 35, "cat": "money", "t": "환율의 비밀"},
-{"n": 36, "cat": "digital", "t": "코인 거래소의 비밀"},
+{"n": 36, "cat": "digital", "t": "코인 거래소의 비밀", "img": "covers/exchange.jpg", "ct": "코인 거래소의 비밀", "sub": "거래소 대표가 직접 본 코인 시장의 안쪽"},
 {"n": 37, "cat": "money", "t": "금융사기의 비밀"},
 {"n": 38, "cat": "money", "t": "금 투자의 비밀"},
-{"n": 39, "cat": "world", "t": "미국 대마 산업의 비밀"},
+{"n": 39, "cat": "world", "t": "미국 대마 산업의 비밀", "img": "covers/cannabis.jpg", "ct": "미국 대마 산업의 비밀", "sub": "불법에서 합법으로, 거대한 시장의 탄생"},
 {"n": 40, "cat": "law", "t": "유언장의 비밀"},
 {"n": 41, "cat": "money", "t": "미국 주식의 비밀"},
 {"n": 42, "cat": "law", "t": "결혼의 비밀"},
 {"n": 43, "cat": "money", "t": "스타트업 투자의 비밀"},
-{"n": 44, "cat": "world", "t": "패밀리오피스의 비밀"},
+{"n": 44, "cat": "world", "t": "패밀리오피스의 비밀", "img": "covers/familyoffice.jpg", "ct": "패밀리오피스의 비밀", "sub": "초부자들은 재산을 어떻게 지키는가"},
 {"n": 45, "cat": "law", "t": "국세청의 비밀"},
-{"n": 46, "cat": "world", "t": "조세피난처의 비밀"},
-{"n": 47, "cat": "world", "t": "스위스 은행의 비밀"},
+{"n": 46, "cat": "world", "t": "조세피난처의 비밀", "img": "covers/taxhaven.jpg", "ct": "조세피난처의 비밀", "sub": "세금이 사라지는 섬들의 지도"},
+{"n": 47, "cat": "world", "t": "스위스 은행의 비밀", "img": "covers/swissbank.jpg", "ct": "스위스 은행의 비밀", "sub": "비밀계좌의 신화와 현실"},
 {"n": 48, "cat": "digital", "t": "저작권의 비밀"},
-{"n": 49, "cat": "world", "t": "실리콘밸리의 비밀"},
+{"n": 49, "cat": "world", "t": "실리콘밸리의 비밀", "img": "covers/siliconvalley.jpg", "ct": "실리콘밸리의 비밀", "sub": "아이디어가 돈이 되는 곳의 규칙"},
 {"n": 50, "cat": "power", "t": "선거의 비밀"},
-{"n": 51, "cat": "grow", "t": "하버드의 비밀"},
 {"n": 52, "cat": "digital", "t": "데이팅앱의 비밀"},
 {"n": 53, "cat": "grow", "t": "미국 유학의 비밀"},
-{"n": 54, "cat": "grow", "t": "영어 공부의 비밀"},
-{"n": 55, "cat": "grow", "t": "학벌의 비밀"},
-{"n": 56, "cat": "grow", "t": "세계 리더들의 비밀"},
 {"n": 57, "cat": "grow", "t": "시간관리의 비밀"},
 {"n": 58, "cat": "power", "t": "직장인과 연봉의 비밀"},
 {"n": 59, "cat": "world", "t": "미국 이민의 비밀"},
@@ -100,15 +96,20 @@ const SECRETS = [
 {"n": 66, "cat": "world", "t": "중국 경제의 비밀"},
 {"n": 67, "cat": "digital", "t": "SNS의 비밀"},
 {"n": 68, "cat": "grow", "t": "아이비리그의 비밀"},
-{"n": 69, "cat": "digital", "t": "개인정보의 비밀"},
 {"n": 70, "cat": "digital", "t": "랜섬웨어의 비밀"},
 {"n": 71, "cat": "digital", "t": "AI 에이전트의 비밀"},
 {"n": 72, "cat": "digital", "t": "반도체의 비밀"},
-{"n": 73, "cat": "digital", "t": "다크웹의 비밀"},
-{"n": 74, "cat": "life", "t": "국민연금의 비밀"},
-{"n": 75, "cat": "life", "t": "병원의 비밀"},
+{"n": 73, "cat": "digital", "t": "다크웹의 비밀", "img": "covers/darkweb.jpg", "ct": "다크웹의 비밀", "sub": "검색되지 않는 인터넷의 깊은 곳"},
+{"n": 74, "cat": "life", "t": "국민연금의 비밀", "img": "covers/pension.jpg", "ct": "대한민국 연금의 비밀", "sub": "내가 낸 돈은 언제, 얼마나 돌아오는가"},
+{"n": 75, "cat": "life", "t": "병원의 비밀", "img": "covers/hospital.jpg", "ct": "대한민국 병원의 비밀", "sub": "진료실 밖에서 결정되는 것들"},
 {"n": 76, "cat": "life", "t": "의사의 비밀"},
-{"n": 77, "cat": "life", "t": "제약회사의 비밀"}
+{"n": 77, "cat": "life", "t": "제약회사의 비밀", "img": "covers/pharma.jpg", "ct": "미국 제약회사의 비밀", "sub": "신약 하나에 걸린 돈과 권력"},
+{"n": 78, "cat": "world", "t": "일본 파친코 산업의 비밀", "img": "covers/pachinko.jpg", "ct": "일본 파친코 산업의 비밀", "sub": "구슬 하나로 움직이는 거대한 회색 경제"},
+{"n": 79, "cat": "digital", "t": "클로드의 비밀", "img": "covers/claude.jpg", "ct": "클로드의 비밀", "sub": "가장 똑똑한 AI 동료를 쓰는 법"},
+{"n": 80, "cat": "digital", "t": "퍼플렉시티의 비밀", "img": "covers/perplexity.jpg", "ct": "퍼플렉시티의 비밀", "sub": "검색이 대화가 되는 순간"},
+{"n": 81, "cat": "digital", "t": "챗GPT의 비밀", "img": "covers/chatgpt.jpg", "ct": "챗GPT의 비밀", "sub": "세상을 바꾼 AI를 제대로 부리는 법"},
+{"n": 82, "cat": "digital", "t": "제미나이의 비밀", "img": "covers/gemini.jpg", "ct": "제미나이의 비밀", "sub": "구글이 만든 AI의 모든 것"},
+{"n": 83, "cat": "digital", "t": "그록의 비밀", "img": "covers/grok.jpg", "ct": "그록의 비밀", "sub": "일론 머스크의 AI는 무엇이 다른가"}
 ];
 const VOTE_MAX = 5;
 const CIRC = n => String.fromCharCode(n<=20 ? 0x245F+n : 0x323C+n);
@@ -256,7 +257,7 @@ el.innerHTML=`<div class="goal-top"><b>지금 볼 수 있는 강의 ${OPEN}편</
 let sFilter = "all", sMore = false;
 const SECRET_PREVIEW = 21;
 const votes = new Set();
-try { JSON.parse(localStorage.getItem("kc-votes7")||"[]").forEach(n=>votes.add(n)); } catch(e){}
+try { JSON.parse(localStorage.getItem("kc-votes7")||"[]").forEach(n=>{ if(SECRETS.some(x=>x.n===n)) votes.add(n); }); } catch(e){}
 function saveVotes(){ try{ localStorage.setItem("kc-votes7", JSON.stringify([...votes])); }catch(e){} }
 const voteText = () => [...votes].sort((a,b)=>a-b).map(n=>SECRETS.find(x=>x.n===n).t).join(", ");
 function renderSecrets(){
@@ -284,6 +285,7 @@ b.querySelector(".cv-s").textContent = x.sub;
 b.addEventListener("click",()=>{ votes.has(x.n)?votes.delete(x.n):votes.add(x.n); saveVotes(); renderSecrets(); });
 cv.appendChild(b);
 }
+const ey = document.getElementById("secretEyebrow"); if(ey) ey.textContent = `공개 예정 · 비밀 시리즈 후보 ${SECRETS.length}편`;
 const el = document.getElementById("secretList"); el.innerHTML = "";
 const shown = SECRETS.filter(x=>sFilter==="all" || x.cat===sFilter);
 const cut = !sMore && shown.length > SECRET_PREVIEW;
