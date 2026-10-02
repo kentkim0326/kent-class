@@ -95,7 +95,7 @@ footer a{color:var(--muted)}
   </section>
 
   <div class="get">
-    <div><b>▶ 90분 세미나 녹화본</b><span>신청하면 이 화면에서 바로 시청</span></div>
+    <div><b>▶ 90분 세미나 녹화본</b><span>이메일 인증 후 이 화면에서 바로 시청</span></div>
     <div><b>📘 e북</b><span>출간되면 이메일로 보내 드립니다</span></div>
   </div>
 
@@ -122,7 +122,21 @@ footer a{color:var(--muted)}
         </details>
       </div>
       <p class="msg" id="msg" role="alert"></p>
-      <button class="go" type="submit" id="go">무료로 녹화본 보기</button>
+      <button class="go" type="submit" id="go">인증번호 받기</button>
+    </form>
+  </section>
+
+  <section class="box" id="codeBox" hidden>
+    <h2>이메일로 보낸 인증번호 6자리를 입력해 주세요</h2>
+    <p style="color:var(--muted);font-size:14px;margin-bottom:14px"><b id="sentTo" style="color:var(--ink)"></b>(으)로 보냈습니다. 1~2분 안에 오지 않으면 스팸함도 확인해 주세요.</p>
+    <form id="cf" novalidate>
+      <input type="text" name="code" id="code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]*" maxlength="6" placeholder="000000" aria-label="인증번호 6자리" style="font-family:var(--mono);font-size:28px;letter-spacing:10px;text-align:center">
+      <p class="msg" id="cmsg" role="alert"></p>
+      <button class="go" type="submit" id="cgo">확인하고 녹화본 보기</button>
+      <div style="display:flex;gap:10px">
+        <button type="button" class="btn ghost" id="resend" style="flex:1;background:none;font:inherit;cursor:pointer">다시 보내기</button>
+        <button type="button" class="btn ghost" id="back" style="flex:1;background:none;font:inherit;cursor:pointer">이메일 고치기</button>
+      </div>
     </form>
   </section>
 
@@ -145,36 +159,85 @@ footer a{color:var(--muted)}
   </footer>
 </main>
 <script>
-const API = "https://zsnreihgjuihbpvwvxdc.supabase.co/rest/v1/rpc/kc_signup", KEY = "sb_publishable_jQ2ZA72UQC_EBHSaDpBhZg_Kw7DuPew";
-const VIDEO = "https://www.youtube-nocookie.com/embed/oQ_TuHhB8DA?rel=0";
-const f = document.getElementById("f"), msg = document.getElementById("msg"), go = document.getElementById("go");
+const FN = "https://zsnreihgjuihbpvwvxdc.supabase.co/functions/v1/kc-free", KEY = "sb_publishable_jQ2ZA72UQC_EBHSaDpBhZg_Kw7DuPew";
+const $ = id => document.getElementById(id);
+const f = $("f"), msg = $("msg"), go = $("go"), cf = $("cf"), cmsg = $("cmsg"), cgo = $("cgo"), resend = $("resend");
 const src = (new URLSearchParams(location.search).get("src") || "").slice(0, 40) || null;
-function showDone(){
-  document.getElementById("formBox").hidden = true;
-  document.getElementById("done").hidden = false;
-  document.getElementById("yt").src = VIDEO;
-  document.getElementById("done").scrollIntoView({behavior:"smooth", block:"start"});
+const ERR = {
+  email: "이메일 주소를 다시 확인해 주세요.",
+  name: "이름을 다시 확인해 주세요.",
+  wait: "방금 보내 드렸어요. 1분 뒤에 다시 보낼 수 있습니다.",
+  hourly: "인증번호를 너무 여러 번 요청하셨어요. 1시간 뒤에 다시 시도해 주세요.",
+  daily: "오늘 신청이 많아 잠시 마감됐어요. 내일 다시 신청해 주세요.",
+  mail: "인증 메일을 보내지 못했어요. 이메일 주소를 확인하고 다시 시도해 주세요.",
+  wrong: "인증번호가 맞지 않아요. 다시 확인해 주세요.",
+  expired: "인증번호 유효 시간(10분)이 지났어요. '다시 보내기'를 눌러 주세요.",
+  tries: "여러 번 틀려서 이 번호는 더 쓸 수 없어요. '다시 보내기'를 눌러 주세요.",
+  nocode: "인증번호를 먼저 받아 주세요."
+};
+const FALLBACK = "잠시 문제가 생겼어요. 잠시 뒤 다시 눌러 주세요. 계속 안 되면 kentkim@gmail.com으로 알려 주세요.";
+let pending = null, cooldown = 0, timer = null;
+async function call(body){
+  const r = await fetch(FN, {method:"POST", headers:{"apikey":KEY, "Content-Type":"application/json"}, body: JSON.stringify(body)});
+  let j = {}; try { j = await r.json(); } catch(e) {}
+  return {ok: r.ok && j.ok, err: j.error, video: j.video};
 }
-try { if (localStorage.getItem("kc-free-done")) showDone(); } catch(e) {}
+function showDone(video){
+  $("formBox").hidden = true; $("codeBox").hidden = true; $("done").hidden = false;
+  $("yt").src = video;
+  $("done").scrollIntoView({behavior:"smooth", block:"start"});
+}
+function tick(){
+  if (cooldown > 0) { resend.disabled = true; resend.textContent = `다시 보내기 (${cooldown}초)`; cooldown--; }
+  else { resend.disabled = false; resend.textContent = "다시 보내기"; clearInterval(timer); timer = null; }
+}
+function startCooldown(){ cooldown = 60; tick(); if (!timer) timer = setInterval(tick, 1000); }
+try { const v = localStorage.getItem("kc-free-video"); if (v) showDone(v); } catch(e) {}
+
 f.addEventListener("submit", async e => {
   e.preventDefault(); msg.textContent = "";
   const d = new FormData(f), name = (d.get("name")||"").trim(), email = (d.get("email")||"").trim();
   if (d.get("website")) return;
   if (!name) { msg.textContent = "이름을 적어 주세요."; f.elements.name.focus(); return; }
-  if (!/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(email)) { msg.textContent = "이메일 주소를 다시 확인해 주세요."; f.elements.email.focus(); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(email)) { msg.textContent = ERR.email; f.elements.email.focus(); return; }
   if (!f.elements.privacy.checked) { msg.textContent = "개인정보 수집·이용에 동의해 주셔야 녹화본을 보내 드릴 수 있어요."; return; }
+  pending = {action:"start", name, email, job:(d.get("job")||"").trim(), marketing:f.elements.marketing.checked, source:src};
   go.disabled = true; go.textContent = "보내는 중…";
   try {
-    const r = await fetch(API, {method:"POST", headers:{"apikey":KEY, "Content-Type":"application/json"},
-      body: JSON.stringify({p_name:name, p_email:email, p_job:(d.get("job")||"").trim(), p_marketing:f.elements.marketing.checked, p_source:src})});
-    if (!r.ok) throw new Error(await r.text());
-    try { localStorage.setItem("kc-free-done", "1"); } catch(e) {}
-    showDone();
-  } catch(err) {
-    msg.textContent = "신청이 저장되지 않았어요. 잠시 뒤 다시 눌러 주세요. 계속 안 되면 kentkim@gmail.com으로 알려 주세요.";
-    go.disabled = false; go.textContent = "무료로 녹화본 보기";
-  }
+    const r = await call(pending);
+    if (!r.ok && r.err !== "wait") { msg.textContent = ERR[r.err] || FALLBACK; return; }
+    $("sentTo").textContent = email;
+    $("formBox").hidden = true; $("codeBox").hidden = false; cmsg.textContent = "";
+    startCooldown(); $("code").focus();
+  } catch(err) { msg.textContent = FALLBACK; }
+  finally { go.disabled = false; go.textContent = "인증번호 받기"; }
 });
+
+cf.addEventListener("submit", async e => {
+  e.preventDefault(); cmsg.textContent = "";
+  const code = $("code").value.replace(/\D/g, "");
+  if (code.length !== 6) { cmsg.textContent = "인증번호 6자리를 입력해 주세요."; return; }
+  cgo.disabled = true; cgo.textContent = "확인 중…";
+  try {
+    const r = await call({action:"verify", email:pending.email, code});
+    if (!r.ok) { cmsg.textContent = ERR[r.err] || FALLBACK; return; }
+    try { localStorage.setItem("kc-free-video", r.video); } catch(e) {}
+    showDone(r.video);
+  } catch(err) { cmsg.textContent = FALLBACK; }
+  finally { cgo.disabled = false; cgo.textContent = "확인하고 녹화본 보기"; }
+});
+$("code").addEventListener("input", e => { e.target.value = e.target.value.replace(/\D/g, "").slice(0, 6); if (e.target.value.length === 6) cf.requestSubmit(); });
+
+resend.addEventListener("click", async () => {
+  cmsg.textContent = ""; resend.disabled = true;
+  try {
+    const r = await call(pending);
+    if (!r.ok) { cmsg.textContent = ERR[r.err] || FALLBACK; if (r.err !== "wait") { resend.disabled = false; return; } }
+    else cmsg.textContent = "새 인증번호를 보냈어요. 가장 최근 메일의 번호를 입력해 주세요.";
+    startCooldown();
+  } catch(err) { cmsg.textContent = FALLBACK; resend.disabled = false; }
+});
+$("back").addEventListener("click", () => { $("codeBox").hidden = true; $("formBox").hidden = false; $("code").value = ""; f.elements.email.focus(); });
 </script>
 </body>
 </html>
