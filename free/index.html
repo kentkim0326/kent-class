@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>무료 AI 세미나 녹화본 · 켄트 김</title>
+<meta name="description" content="코드 한 줄 못 쓰던 사람이 6개월 동안 AI로 앱 50개, 게임 10개를 만든 방법. 90분 세미나 녹화본을 무료로 보내 드립니다.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="[무료] 6개월 동안 AI로 앱 50개, 게임 10개 만들기 · 90분 녹화본">
+<meta property="og:description" content="코드 한 줄 못 쓰던 사람이 AI로 실제로 만든 방법과 시행착오. 이름과 이메일만 남기면 바로 볼 수 있습니다.">
+<meta property="og:image" content="https://kent-class.vercel.app/covers/aiapp.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+:root{
+color-scheme:dark;
+--bg:#0E121A; --surface:#161C27; --ink:#E9EDF5; --muted:#9AA4B8; --line:#283144;
+--accent:#8497FF; --accent-ink:#0E121A; --accent-soft:#1E2640;
+--tag:#F2B035; --tag-ink:#2A1E00; --err:#FF8A8A;
+--display:"Black Han Sans","Noto Sans KR",system-ui,sans-serif;
+--body:"Noto Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo",sans-serif;
+--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65;padding:max(20px,env(safe-area-inset-top)) 16px 80px}
+.wrap{max-width:640px;margin:0 auto;display:grid;gap:28px}
+h1,h2{margin:0;word-break:keep-all;text-wrap:balance}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--tag);font-weight:600}
+.hero{display:grid;gap:14px;padding-top:12px}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(32px,7.4vw,52px);line-height:1.15}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.lead{color:var(--muted);font-size:17px;word-break:keep-all}
+.free{display:inline-block;background:var(--tag);color:var(--tag-ink);font-weight:700;font-size:13px;border-radius:999px;padding:3px 10px;margin-right:6px;vertical-align:2px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
+.box h2{font-size:17px;margin-bottom:10px}
+ul.list{margin:0;padding-left:20px;display:grid;gap:6px;color:var(--ink)}
+ul.list li{word-break:keep-all}
+ul.list li::marker{color:var(--accent)}
+.get{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.get div{background:var(--accent-soft);border-radius:12px;padding:14px}
+.get b{display:block;font-size:15px}
+.get span{font-size:13px;color:var(--muted)}
+form{display:grid;gap:14px}
+label.f{display:grid;gap:6px;font-size:14px;font-weight:500}
+label.f small{color:var(--muted);font-weight:400}
+input[type=text],input[type=email]{width:100%;min-height:48px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;padding:10px 14px}
+input:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.agree{display:grid;gap:10px;border-top:1px solid var(--line);padding-top:14px}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:14px;cursor:pointer}
+.chk input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--accent);flex:none}
+.chk em{font-style:normal;font-weight:700;color:var(--tag)}
+.chk em.opt{color:var(--muted)}
+details{font-size:13px;color:var(--muted);margin-left:30px}
+details summary{cursor:pointer;width:max-content}
+details table{border-collapse:collapse;margin-top:6px;width:100%}
+details td{border:1px solid var(--line);padding:6px 8px;vertical-align:top}
+details td:first-child{white-space:nowrap;color:var(--ink)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+button.go{min-height:54px;border:0;border-radius:12px;background:var(--accent);color:var(--accent-ink);font:inherit;font-size:18px;font-weight:700;cursor:pointer}
+button.go:disabled{opacity:.6;cursor:wait}
+.msg{font-size:14px;color:var(--err);min-height:1em}
+.done{display:grid;gap:16px}
+.done h2{font-family:var(--display);font-weight:400;font-size:28px}
+.video{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.btn{display:flex;align-items:center;justify-content:center;min-height:50px;border-radius:12px;font-weight:700;text-decoration:none;padding:0 18px;text-align:center}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{border:1px solid var(--line);color:var(--ink)}
+.about{display:flex;gap:14px;align-items:center;font-size:14px;color:var(--muted)}
+.about img{width:72px;border-radius:8px;flex:none}
+footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;line-height:1.7}
+footer a{color:var(--muted)}
+@media (max-width:420px){.get{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="hero">
+    <p class="eyebrow">켄트 김 · 무료 AI 세미나 녹화본</p>
+    <h1>6개월 동안 AI로<br><em>앱 50개, 게임 10개</em> 만들기</h1>
+    <p class="lead"><span class="free">무료</span>2년 전에는 코드를 한 줄도 쓰지 못했습니다. 그런 사람이 혼자서 AI로 실제로 만든 방법과 시행착오를 90분 세미나에 담았습니다.</p>
+  </header>
+
+  <section class="box">
+    <h2>이런 분께 권합니다</h2>
+    <ul class="list">
+      <li>가게 홈페이지나 예약 페이지를 외주 없이 직접 만들어 보고 싶은 사장님</li>
+      <li>AI를 써 보긴 했는데 일에 어떻게 붙여야 할지 막막한 분</li>
+      <li>코딩을 몰라도 앱·게임을 만들 수 있는지 직접 확인하고 싶은 분</li>
+    </ul>
+  </section>
+
+  <div class="get">
+    <div><b>▶ 90분 세미나 녹화본</b><span>신청하면 이 화면에서 바로 시청</span></div>
+    <div><b>📘 e북</b><span>출간되면 이메일로 보내 드립니다</span></div>
+  </div>
+
+  <section class="box" id="formBox">
+    <h2>이름과 이메일만 남겨 주세요</h2>
+    <form id="f" novalidate>
+      <label class="f">이름<input type="text" name="name" maxlength="40" autocomplete="name" required></label>
+      <label class="f">이메일<input type="email" name="email" maxlength="254" autocomplete="email" inputmode="email" required></label>
+      <label class="f">하시는 일 <small>(선택 · 예: 카페 운영, 온라인 쇼핑몰)</small><input type="text" name="job" maxlength="60"></label>
+      <label class="hp" aria-hidden="true">비워 두세요<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      <div class="agree">
+        <label class="chk"><input type="checkbox" name="privacy" required><span><em>[필수]</em> 개인정보 수집·이용에 동의합니다</span></label>
+        <details><summary>자세히 보기</summary>
+          <table>
+            <tr><td>항목</td><td>이름, 이메일, 하시는 일(선택)</td></tr>
+            <tr><td>목적</td><td>세미나 녹화본·e북 발송, 신청 문의 응대</td></tr>
+            <tr><td>보유 기간</td><td>신청일로부터 2년, 또는 삭제를 요청하실 때까지</td></tr>
+          </table>
+          <p style="margin-top:6px">동의하지 않으실 수 있으며, 이 경우 신청할 수 없습니다.</p>
+        </details>
+        <label class="chk"><input type="checkbox" name="marketing"><span><em class="opt">[선택]</em> 새 강의·할인 소식을 이메일로 받겠습니다 (광고성 정보 수신 동의)</span></label>
+        <details><summary>자세히 보기</summary>
+          <p style="margin-top:6px">켄트 김의 새 강의, 올패스 모집, 할인 안내를 이메일로 보내 드립니다. 동의하지 않아도 녹화본은 똑같이 받으실 수 있고, 메일마다 있는 안내에 따라 언제든 수신을 거부하실 수 있습니다.</p>
+        </details>
+      </div>
+      <p class="msg" id="msg" role="alert"></p>
+      <button class="go" type="submit" id="go">무료로 녹화본 보기</button>
+    </form>
+  </section>
+
+  <section class="done" id="done" hidden aria-live="polite">
+    <h2>신청해 주셔서 감사합니다</h2>
+    <div class="video"><iframe id="yt" title="6개월 동안 AI로 앱 50개, 게임 10개 만들기 세미나 녹화본" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe></div>
+    <a class="btn ghost" href="https://youtu.be/oQ_TuHhB8DA" target="_blank" rel="noopener">유튜브에서 열기</a>
+    <div class="box">
+      <h2>더 깊게 배우고 싶다면</h2>
+      <p style="color:var(--muted);margin-bottom:14px">녹화본에서 다룬 방법을 강의 100편으로 하나씩 풀어 드리는 '켄트김의 100강 시리즈'를 열었습니다. 올패스 1차는 선착순 30명입니다.</p>
+      <a class="btn primary" href="/?src=free">100강 시리즈 보러 가기</a>
+    </div>
+  </section>
+
+  <div class="about"><img src="/covers/aiapp.jpg" alt="AI로 앱 만드는 비밀 표지" width="72" height="102"><p>켄트 김(김형섭) · 디아더(Deother) 대표. 30억 투자 유치, 코인빗 대표이사, 공모전 300개 도전, 최근 6개월 동안 AI로 앱 50개와 게임 10개를 만들었습니다.</p></div>
+
+  <footer>
+    운영: 디아더(Deother) 김형섭 · <a href="mailto:kentkim@gmail.com">kentkim@gmail.com</a><br>
+    개인정보 삭제나 수신거부는 위 이메일로 '삭제' 또는 '수신거부'라고 보내 주시면 바로 처리해 드립니다.
+  </footer>
+</main>
+<script>
+const API = "https://zsnreihgjuihbpvwvxdc.supabase.co/rest/v1/rpc/kc_signup", KEY = "sb_publishable_jQ2ZA72UQC_EBHSaDpBhZg_Kw7DuPew";
+const VIDEO = "https://www.youtube-nocookie.com/embed/oQ_TuHhB8DA?rel=0";
+const f = document.getElementById("f"), msg = document.getElementById("msg"), go = document.getElementById("go");
+const src = (new URLSearchParams(location.search).get("src") || "").slice(0, 40) || null;
+function showDone(){
+  document.getElementById("formBox").hidden = true;
+  document.getElementById("done").hidden = false;
+  document.getElementById("yt").src = VIDEO;
+  document.getElementById("done").scrollIntoView({behavior:"smooth", block:"start"});
+}
+try { if (localStorage.getItem("kc-free-done")) showDone(); } catch(e) {}
+f.addEventListener("submit", async e => {
+  e.preventDefault(); msg.textContent = "";
+  const d = new FormData(f), name = (d.get("name")||"").trim(), email = (d.get("email")||"").trim();
+  if (d.get("website")) return;
+  if (!name) { msg.textContent = "이름을 적어 주세요."; f.elements.name.focus(); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(email)) { msg.textContent = "이메일 주소를 다시 확인해 주세요."; f.elements.email.focus(); return; }
+  if (!f.elements.privacy.checked) { msg.textContent = "개인정보 수집·이용에 동의해 주셔야 녹화본을 보내 드릴 수 있어요."; return; }
+  go.disabled = true; go.textContent = "보내는 중…";
+  try {
+    const r = await fetch(API, {method:"POST", headers:{"apikey":KEY, "Content-Type":"application/json"},
+      body: JSON.stringify({p_name:name, p_email:email, p_job:(d.get("job")||"").trim(), p_marketing:f.elements.marketing.checked, p_source:src})});
+    if (!r.ok) throw new Error(await r.text());
+    try { localStorage.setItem("kc-free-done", "1"); } catch(e) {}
+    showDone();
+  } catch(err) {
+    msg.textContent = "신청이 저장되지 않았어요. 잠시 뒤 다시 눌러 주세요. 계속 안 되면 kentkim@gmail.com으로 알려 주세요.";
+    go.disabled = false; go.textContent = "무료로 녹화본 보기";
+  }
+});
+</script>
+</body>
+</html>
