@@ -75,7 +75,6 @@ const SECRETS = [
 {"n": 52, "cat": "digital", "t": "데이팅앱의 비밀"},
 {"n": 60, "cat": "world", "t": "중동 오일머니의 비밀"},
 {"n": 65, "cat": "faith", "t": "사이비 종교의 비밀"},
-{"n": 66, "cat": "world", "t": "중국 경제의 비밀"},
 {"n": 67, "cat": "digital", "t": "SNS의 비밀"},
 {"n": 68, "cat": "grow", "t": "아이비리그의 비밀"},
 {"n": 71, "cat": "digital", "t": "AI 에이전트의 비밀"},
@@ -108,7 +107,8 @@ const SECRETS = [
 {"n": 98, "cat": "money", "t": "대한민국 부동산의 비밀"},
 {"n": 99, "cat": "law", "t": "대한민국 세금의 비밀"},
 {"n": 100, "cat": "power", "t": "홀덤의 비밀", "sub": "전세계에서 유일하게 홀덤이 불법인 대한민국"},
-{"n": 101, "cat": "money", "t": "스테이블 코인의 비밀"}
+{"n": 101, "cat": "money", "t": "스테이블 코인의 비밀"},
+{"n": 102, "cat": "digital", "t": "AI로 앱 만드는 비밀"}
 ];
 const VOTE_MAX = 5;
 const CIRC = n => String.fromCharCode(n<=20 ? 0x245F+n : 0x323C+n);
