@@ -35,7 +35,6 @@ const SECRETS = [
 {"n": 1, "cat": "money", "t": "대한민국 부자의 비밀"},
 {"n": 2, "cat": "money", "t": "은행의 비밀", "img": "covers/bank.jpg", "ct": "대한민국 은행의 비밀", "sub": "은행의 역사와 사건으로 읽는 돈과 책임"},
 {"n": 3, "cat": "money", "t": "부동산의 비밀"},
-{"n": 4, "cat": "money", "t": "대출의 비밀"},
 {"n": 5, "cat": "law", "t": "세무조사의 비밀"},
 {"n": 6, "cat": "law", "t": "증여와 상속의 비밀", "img": "covers/inheritance.jpg", "ct": "대한민국 상속의 비밀", "sub": "재산을 남기는 선택, 가족의 미래를 바꾸다"},
 {"n": 7, "cat": "law", "t": "이혼과 재산분할의 비밀"},
@@ -108,7 +107,8 @@ const SECRETS = [
 {"n": 97, "cat": "digital", "t": "AI로 언리얼 게임 만드는 비밀", "img": "covers/unreal.jpg", "ct": "AI로 언리얼 게임 만드는 비밀", "sub": "영화 같은 3D 게임을 AI로 만드는 법"},
 {"n": 98, "cat": "money", "t": "대한민국 부동산의 비밀"},
 {"n": 99, "cat": "law", "t": "대한민국 세금의 비밀"},
-{"n": 100, "cat": "power", "t": "홀덤의 비밀", "sub": "전세계에서 유일하게 홀덤이 불법인 대한민국"}
+{"n": 100, "cat": "power", "t": "홀덤의 비밀", "sub": "전세계에서 유일하게 홀덤이 불법인 대한민국"},
+{"n": 101, "cat": "money", "t": "스테이블 코인의 비밀"}
 ];
 const VOTE_MAX = 5;
 const CIRC = n => String.fromCharCode(n<=20 ? 0x245F+n : 0x323C+n);
