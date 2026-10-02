@@ -34,7 +34,6 @@ const SECRET_CATS = {money:"돈·투자", world:"글로벌", digital:"AI·디지
 const SECRETS = [
 {"n": 1, "cat": "money", "t": "대한민국 부자의 비밀", "img": "covers/rich.jpg", "ct": "대한민국 부자의 비밀", "sub": "부자들은 돈을 어떻게 다르게 쓰는가"},
 {"n": 2, "cat": "money", "t": "은행의 비밀", "img": "covers/bank.jpg", "ct": "대한민국 은행의 비밀", "sub": "은행의 역사와 사건으로 읽는 돈과 책임"},
-{"n": 3, "cat": "money", "t": "부동산의 비밀", "img": "covers/realestate.jpg", "ct": "부동산의 비밀", "sub": "땅과 집값을 움직이는 보이지 않는 손"},
 {"n": 5, "cat": "law", "t": "세무조사의 비밀", "img": "covers/taxaudit.jpg", "ct": "세무조사의 비밀", "sub": "조사관이 문을 두드리기 전에 알아야 할 것"},
 {"n": 6, "cat": "law", "t": "증여와 상속의 비밀", "img": "covers/inheritance.jpg", "ct": "대한민국 상속의 비밀", "sub": "재산을 남기는 선택, 가족의 미래를 바꾸다"},
 {"n": 7, "cat": "law", "t": "이혼과 재산분할의 비밀", "img": "covers/divorce.jpg", "ct": "이혼과 재산분할의 비밀", "sub": "헤어질 때 재산은 어떻게 나뉘는가"},
@@ -60,7 +59,6 @@ const SECRETS = [
 {"n": 30, "cat": "money", "t": "공매도의 비밀", "img": "covers/shortselling.jpg", "ct": "공매도의 비밀", "sub": "주가가 떨어질 때 돈을 버는 사람들"},
 {"n": 32, "cat": "world", "t": "미국 카지노 산업의 비밀", "img": "covers/uscasino.jpg", "ct": "미국 카지노 산업의 비밀", "sub": "라스베이거스는 어떻게 돈을 버는가"},
 {"n": 33, "cat": "money", "t": "로또의 비밀", "img": "covers/lotto.jpg", "ct": "로또의 비밀", "sub": "확률과 욕망, 그리고 당첨금의 행방"},
-{"n": 34, "cat": "money", "t": "대한민국 아파트의 비밀", "img": "covers/apartment.jpg", "ct": "대한민국 아파트의 비밀", "sub": "아파트 한 채에 걸린 인생"},
 {"n": 36, "cat": "digital", "t": "코인 거래소의 비밀", "img": "covers/exchange.jpg", "ct": "코인 거래소의 비밀", "sub": "거래소 대표가 직접 본 코인 시장의 안쪽"},
 {"n": 37, "cat": "money", "t": "대한민국 금융사기의 비밀", "img": "covers/fraud.jpg", "ct": "대한민국 금융사기의 비밀", "sub": "누가, 어떻게 속이는가"},
 {"n": 38, "cat": "money", "t": "금 투자의 비밀", "img": "covers/gold.jpg", "ct": "금 투자의 비밀", "sub": "가장 오래된 안전자산의 진실"},
@@ -106,9 +104,11 @@ const SECRETS = [
 {"n": 97, "cat": "digital", "t": "AI로 언리얼 게임 만드는 비밀", "img": "covers/unreal.jpg", "ct": "AI로 언리얼 게임 만드는 비밀", "sub": "영화 같은 3D 게임을 AI로 만드는 법"},
 {"n": 98, "cat": "money", "t": "대한민국 부동산의 비밀", "img": "covers/krrealestate.jpg", "ct": "대한민국 부동산의 비밀", "sub": "집값은 누가, 어떻게 움직이는가"},
 {"n": 99, "cat": "law", "t": "대한민국 세금의 비밀", "img": "covers/krtax.jpg", "ct": "대한민국 세금의 비밀", "sub": "아는 만큼 덜 내는 세금 구조"},
-{"n": 100, "cat": "power", "t": "홀덤의 비밀", "sub": "전세계에서 유일하게 홀덤이 불법인 대한민국", "img": "covers/holdem.jpg", "ct": "홀덤의 비밀"},
+{"n": 100, "cat": "power", "t": "홀덤의 비밀", "sub": "홀덤이 불법인 나라, 대한민국", "img": "covers/holdem.jpg", "ct": "홀덤의 비밀"},
 {"n": 101, "cat": "money", "t": "스테이블 코인의 비밀", "img": "covers/stablecoin.jpg", "ct": "스테이블 코인의 비밀", "sub": "흔들리지 않는 디지털 달러의 구조"},
-{"n": 102, "cat": "digital", "t": "AI로 앱 만드는 비밀", "img": "covers/aiapp.jpg", "ct": "AI로 앱 만드는 비밀", "sub": "코딩 몰라도 앱 50개를 만든 방법"}
+{"n": 102, "cat": "digital", "t": "AI로 앱 만드는 비밀", "img": "covers/aiapp.jpg", "ct": "AI로 앱 만드는 비밀", "sub": "코딩 몰라도 앱 50개를 만든 방법"},
+{"n": 103, "cat": "digital", "t": "온리팬스의 비밀", "sub": "크리에이터 이코노미의 시대", "img": "covers/onlyfans.jpg", "ct": "온리팬스의 비밀"},
+{"n": 104, "cat": "digital", "t": "AI로 웹 만드는 비밀", "sub": "코딩 없이 홈페이지를 완성하는 법", "img": "covers/aiweb.jpg", "ct": "AI로 웹 만드는 비밀"}
 ];
 const VOTE_MAX = 5;
 const CIRC = n => String.fromCharCode(n<=20 ? 0x245F+n : 0x323C+n);
@@ -259,6 +259,24 @@ const votes = new Set();
 try { JSON.parse(localStorage.getItem("kc-votes7")||"[]").forEach(n=>{ if(SECRETS.some(x=>x.n===n)) votes.add(n); }); } catch(e){}
 function saveVotes(){ try{ localStorage.setItem("kc-votes7", JSON.stringify([...votes])); }catch(e){} }
 const voteText = () => [...votes].sort((a,b)=>a-b).map(n=>SECRETS.find(x=>x.n===n).t).join(", ");
+// 투표 집계 (Supabase RPC). 실패해도 사이트는 그대로 동작합니다.
+const VOTE_API = "https://zsnreihgjuihbpvwvxdc.supabase.co/rest/v1/rpc/", VOTE_KEY = "sb_publishable_jQ2ZA72UQC_EBHSaDpBhZg_Kw7DuPew";
+const counts = new Map();
+let voter = null;
+try { voter = localStorage.getItem("kc-voter"); if(!voter){ voter = crypto.randomUUID(); localStorage.setItem("kc-voter", voter); } } catch(e){ voter = (crypto.randomUUID ? crypto.randomUUID() : null); }
+function rpc(name, body){ return fetch(VOTE_API+name, {method:"POST", headers:{"apikey":VOTE_KEY, "Content-Type":"application/json"}, body:JSON.stringify(body||{})}); }
+function sendVote(n, on){ if(voter) rpc("kc_vote", {p_voter:voter, p_topic:n, p_on:on}).catch(()=>{}); }
+async function loadCounts(){
+try { const r = await rpc("kc_vote_counts"); if(!r.ok) return; counts.clear(); for(const row of await r.json()) counts.set(row.topic, row.votes); renderSecrets(); } catch(e){}
+}
+(function syncOldVotes(){ try{ if(localStorage.getItem("kc-voter-synced")) return; votes.forEach(n=>sendVote(n,true)); localStorage.setItem("kc-voter-synced","1"); }catch(e){} })();
+function toggleVote(n){
+if(votes.has(n)){ votes.delete(n); counts.set(n, Math.max(0,(counts.get(n)||0)-1)); sendVote(n,false); }
+else { if(votes.size >= VOTE_MAX) return; votes.add(n); counts.set(n,(counts.get(n)||0)+1); sendVote(n,true); }
+saveVotes(); renderSecrets(); if(cvOpen!==null) renderViewer();
+}
+const ranked = () => [...SECRETS].sort((a,b)=>(counts.get(b.n)||0)-(counts.get(a.n)||0) || a.n-b.n);
+function rankOf(n){ if(!(counts.get(n)>0)) return 0; const r = ranked(); return r.findIndex(x=>x.n===n)+1; }
 function renderSecrets(){
 const f = document.getElementById("secretFilters"); f.innerHTML = "";
 for(const [k,label] of [["all","전체 "+SECRETS.length], ...Object.entries(SECRET_CATS).map(([k,v])=>[k, v+" "+SECRETS.filter(x=>x.cat===k).length])]){
@@ -270,21 +288,29 @@ f.appendChild(b);
 }
 const full = votes.size >= VOTE_MAX;
 const ey = document.getElementById("secretEyebrow"); if(ey) ey.textContent = `공개 예정 · 비밀 시리즈 후보 ${SECRETS.length}편`;
+const total = [...counts.values()].reduce((a,b)=>a+b,0);
+const head = document.getElementById("coversHead");
+if(head) head.innerHTML = total ? `<b>지금 인기 순위</b> 지금까지 ${total.toLocaleString("ko-KR")}표 · 표가 많은 순서로 보여 드립니다. 표지를 누르면 크게 보입니다.` : `<b>표지를 눌러 크게 보고 투표하세요</b> 듣고 싶은 주제를 최대 5개까지 고를 수 있습니다.`;
 const el = document.getElementById("secretList"); el.innerHTML = "";
-const shown = SECRETS.filter(x=>sFilter==="all" || x.cat===sFilter);
+const shown = ranked().filter(x=>sFilter==="all" || x.cat===sFilter);
 const cut = !sMore && shown.length > SECRET_PREVIEW;
+cvList = shown;
 for(const x of cut ? shown.slice(0, SECRET_PREVIEW) : shown){
-const on = votes.has(x.n);
-const b = document.createElement("button");
-b.type="button"; b.className="ctile"+(on?" on":"");
-b.setAttribute("aria-pressed", String(on));
-b.disabled = full && !on;
-b.innerHTML = (x.img ? `<img alt="" loading="lazy" width="360" height="510">` : `<span class="ft"></span>`) + `<span class="cb" aria-hidden="true">${on?"✓":"+"}</span>`;
-if(x.img) b.querySelector("img").src = x.img.replace("covers/","covers/sm/"); else b.querySelector(".ft").textContent = x.t;
-b.setAttribute("aria-label", (x.ct||x.t) + (x.sub ? " · "+x.sub : "") + (on ? " · 투표함" : ""));
-b.title = x.ct||x.t;
-b.addEventListener("click",()=>{ votes.has(x.n)?votes.delete(x.n):votes.add(x.n); saveVotes(); renderSecrets(); });
-el.appendChild(b);
+const on = votes.has(x.n), c = counts.get(x.n)||0, rk = rankOf(x.n);
+const t = document.createElement("div");
+t.className = "ctile"+(on?" on":"");
+t.innerHTML = `<button type="button" class="copen">${x.img ? `<img alt="" loading="lazy" width="360" height="510">` : `<span class="ft"></span>`}</button>`+
+(c ? `<span class="ccount${rk && rk<=5 ? " top" : ""}">${rk && rk<=5 ? `TOP ${rk} · ` : ""}${c.toLocaleString("ko-KR")}표</span>` : "")+
+`<button type="button" class="cb" aria-pressed="${on}">${on?"✓":"+"}</button>`;
+const open = t.querySelector(".copen");
+if(x.img) open.querySelector("img").src = x.img.replace("covers/","covers/sm/"); else open.querySelector(".ft").textContent = x.t;
+open.setAttribute("aria-label", (x.ct||x.t)+" 크게 보기");
+open.addEventListener("click",()=>openViewer(x.n));
+const cb = t.querySelector(".cb");
+cb.setAttribute("aria-label", (x.ct||x.t) + (on ? " 투표 취소" : " 투표하기"));
+cb.disabled = full && !on;
+cb.addEventListener("click",()=>toggleVote(x.n));
+el.appendChild(t);
 }
 const more = document.getElementById("secretMore");
 more.hidden = !cut;
@@ -294,11 +320,41 @@ document.getElementById("voteText").textContent = votes.size ? voteText() : "듣
 document.getElementById("voteSend").disabled = !votes.size;
 syncApply();
 }
+// 표지 크게 보기
+let cvList = [], cvOpen = null;
+const cvDlg = document.getElementById("coverViewer");
+function openViewer(n){ cvOpen = n; renderViewer(); if(!cvDlg.open) cvDlg.showModal(); }
+function stepViewer(d){ const i = cvList.findIndex(x=>x.n===cvOpen); if(i<0) return; cvOpen = cvList[(i+d+cvList.length)%cvList.length].n; renderViewer(); }
+function renderViewer(){
+const x = SECRETS.find(s=>s.n===cvOpen); if(!x) return;
+const on = votes.has(x.n), c = counts.get(x.n)||0, rk = rankOf(x.n), full = votes.size >= VOTE_MAX;
+const img = document.getElementById("cvImg");
+if(x.img){ img.src = x.img; img.alt = (x.ct||x.t)+" 표지"; img.hidden = false; } else img.hidden = true;
+document.getElementById("cvTitle").textContent = x.ct||x.t;
+document.getElementById("cvSub").textContent = x.sub||"";
+document.getElementById("cvMeta").textContent = [SECRET_CATS[x.cat], c ? `${c.toLocaleString("ko-KR")}표` : "아직 표 없음", rk && rk<=5 ? `인기 TOP ${rk}` : ""].filter(Boolean).join(" · ");
+const btn = document.getElementById("cvVote");
+btn.textContent = on ? "✓ 투표함 · 다시 누르면 취소" : (full ? "5개를 다 골랐어요" : "+ 이 주제에 투표");
+btn.disabled = full && !on;
+btn.classList.toggle("on", on);
+document.getElementById("cvLeft").textContent = `${votes.size} / ${VOTE_MAX}개 선택`;
+}
+document.getElementById("cvVote").addEventListener("click",()=>toggleVote(cvOpen));
+document.getElementById("cvPrev").addEventListener("click",()=>stepViewer(-1));
+document.getElementById("cvNext").addEventListener("click",()=>stepViewer(1));
+document.getElementById("cvClose").addEventListener("click",()=>cvDlg.close());
+cvDlg.addEventListener("click",e=>{ if(e.target===cvDlg) cvDlg.close(); });
+cvDlg.addEventListener("close",()=>{ cvOpen = null; });
+cvDlg.addEventListener("keydown",e=>{ if(e.key==="ArrowLeft") stepViewer(-1); if(e.key==="ArrowRight") stepViewer(1); });
+let cvX = null;
+cvDlg.addEventListener("touchstart",e=>{ cvX = e.touches[0].clientX; },{passive:true});
+cvDlg.addEventListener("touchend",e=>{ if(cvX===null) return; const dx = e.changedTouches[0].clientX-cvX; if(Math.abs(dx)>50) stepViewer(dx<0?1:-1); cvX = null; });
 document.getElementById("voteSend").addEventListener("click", ()=>{
 window.open(applyUrl(), "_blank", "noopener");
 document.getElementById("voteMsg").textContent = "신청서를 열었어요. 고른 주제가 '하고 싶은 말' 칸에 채워져 있어요.";
 });
 document.getElementById("secretMore").addEventListener("click",()=>{sMore=true; renderSecrets();});
+loadCounts(); setInterval(()=>{ if(!document.hidden) loadCounts(); }, 60000);
 function renderSeries(){
 const parts = [["s-talk", TALKS, "AI 특강", "지금 다시보기", "#courses"], ["s-live", LIVE, "직접 해본 것만 강의", "순서대로 공개 · 지금 신청", "#courses"], ["s-secret", SECRETS.length, "비밀 시리즈", "투표로 골라 제작", "#secrets"]];
 const total = parts.reduce((t,p)=>t+p[1],0);
