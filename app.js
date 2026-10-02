@@ -80,10 +80,7 @@ const SECRETS = [
 {"n": 52, "cat": "digital", "t": "데이팅앱의 비밀"},
 {"n": 57, "cat": "grow", "t": "시간관리의 비밀"},
 {"n": 60, "cat": "world", "t": "중동 오일머니의 비밀"},
-{"n": 61, "cat": "faith", "t": "불교의 비밀"},
-{"n": 62, "cat": "faith", "t": "기독교의 비밀"},
 {"n": 63, "cat": "faith", "t": "가톨릭의 비밀"},
-{"n": 64, "cat": "faith", "t": "이슬람의 비밀"},
 {"n": 65, "cat": "faith", "t": "사이비 종교의 비밀"},
 {"n": 66, "cat": "world", "t": "중국 경제의 비밀"},
 {"n": 67, "cat": "digital", "t": "SNS의 비밀"},
@@ -108,7 +105,10 @@ const SECRETS = [
 {"n": 87, "cat": "digital", "t": "드론 산업의 비밀"},
 {"n": 88, "cat": "digital", "t": "자율주행의 비밀"},
 {"n": 89, "cat": "digital", "t": "수노의 비밀"},
-{"n": 90, "cat": "digital", "t": "미드저니의 비밀"}
+{"n": 90, "cat": "digital", "t": "미드저니의 비밀"},
+{"n": 91, "cat": "digital", "t": "AI로 돈 버는 비밀"},
+{"n": 92, "cat": "digital", "t": "AI로 세금 신고하는 비밀"},
+{"n": 93, "cat": "digital", "t": "AI로 PC 원격 조종하는 비밀"}
 ];
 const VOTE_MAX = 5;
 const CIRC = n => String.fromCharCode(n<=20 ? 0x245F+n : 0x323C+n);
