@@ -85,8 +85,6 @@ const SECRETS = [
 {"n": 52, "cat": "digital", "t": "데이팅앱의 비밀"},
 {"n": 53, "cat": "grow", "t": "미국 유학의 비밀"},
 {"n": 57, "cat": "grow", "t": "시간관리의 비밀"},
-{"n": 58, "cat": "power", "t": "직장인과 연봉의 비밀"},
-{"n": 59, "cat": "world", "t": "미국 이민의 비밀"},
 {"n": 60, "cat": "world", "t": "중동 오일머니의 비밀"},
 {"n": 61, "cat": "faith", "t": "불교의 비밀"},
 {"n": 62, "cat": "faith", "t": "기독교의 비밀"},
@@ -98,7 +96,7 @@ const SECRETS = [
 {"n": 68, "cat": "grow", "t": "아이비리그의 비밀"},
 {"n": 70, "cat": "digital", "t": "랜섬웨어의 비밀"},
 {"n": 71, "cat": "digital", "t": "AI 에이전트의 비밀"},
-{"n": 72, "cat": "digital", "t": "반도체의 비밀"},
+{"n": 72, "cat": "digital", "t": "반도체 산업의 비밀"},
 {"n": 73, "cat": "digital", "t": "다크웹의 비밀", "img": "covers/darkweb.jpg", "ct": "다크웹의 비밀", "sub": "검색되지 않는 인터넷의 깊은 곳"},
 {"n": 74, "cat": "life", "t": "국민연금의 비밀", "img": "covers/pension.jpg", "ct": "대한민국 연금의 비밀", "sub": "내가 낸 돈은 언제, 얼마나 돌아오는가"},
 {"n": 75, "cat": "life", "t": "병원의 비밀", "img": "covers/hospital.jpg", "ct": "대한민국 병원의 비밀", "sub": "진료실 밖에서 결정되는 것들"},
@@ -109,7 +107,8 @@ const SECRETS = [
 {"n": 80, "cat": "digital", "t": "퍼플렉시티의 비밀", "img": "covers/perplexity.jpg", "ct": "퍼플렉시티의 비밀", "sub": "검색이 대화가 되는 순간"},
 {"n": 81, "cat": "digital", "t": "챗GPT의 비밀", "img": "covers/chatgpt.jpg", "ct": "챗GPT의 비밀", "sub": "세상을 바꾼 AI를 제대로 부리는 법"},
 {"n": 82, "cat": "digital", "t": "제미나이의 비밀", "img": "covers/gemini.jpg", "ct": "제미나이의 비밀", "sub": "구글이 만든 AI의 모든 것"},
-{"n": 83, "cat": "digital", "t": "그록의 비밀", "img": "covers/grok.jpg", "ct": "그록의 비밀", "sub": "일론 머스크의 AI는 무엇이 다른가"}
+{"n": 83, "cat": "digital", "t": "그록의 비밀", "img": "covers/grok.jpg", "ct": "그록의 비밀", "sub": "일론 머스크의 AI는 무엇이 다른가"},
+{"n": 84, "cat": "power", "t": "방위산업의 비밀"}
 ];
 const VOTE_MAX = 5;
 const CIRC = n => String.fromCharCode(n<=20 ? 0x245F+n : 0x323C+n);
