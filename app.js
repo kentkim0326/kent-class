@@ -113,6 +113,8 @@ const SECRETS = [
 const VOTE_MAX = 5;
 const CIRC = n => String.fromCharCode(n<=20 ? 0x245F+n : 0x323C+n);
 const LIST = 50000;
+// 라이트 패스: 12개월치를 한 번에 결제, 매달 1강씩 골라 듣기 (1강당 LITE/LITE_N)
+const LITE = 120000, LITE_N = 12;
 // 올패스 선착순 가격. 올패스가 한 장 팔릴 때마다 PASS_SOLD를 1씩 올려 주세요.
 // minLive가 있는 차수는 공개된 강의가 그 수 이상일 때만 열리고, 그 전에는 앞 차수 가격이 이어집니다.
 const PASS_SOLD = 1;
@@ -195,7 +197,7 @@ const best = Math.min(single, pass.p);
 document.getElementById("cartTitle").innerHTML = `${n}개 담음 ${list} → <span class="amt">${won(best)}</span>`;
 const free = Math.min(k, BONUS_MAX), left = Math.min(free - Math.max(0, talk - (k - live)), TALKS - talk);
 const sub = single <= pass.p
-? `1강권 ×${k} (${won(single)}) + AI 특강 ${free}편 증정` + (left>0?` · AI 특강 ${left}편 더 고를 수 있어요`:"") + ` · 1강권 ${Math.floor(pass.p/LIST)+1}개부터는 올패스(${won(pass.p)})가 더 저렴해요`
+? `1강권 ×${k} (${won(single)}) + AI 특강 ${free}편 증정` + (left>0?` · AI 특강 ${left}편 더 고를 수 있어요`:"") + (single > LITE && n <= LITE_N ? ` · 한 달에 1강씩 천천히 들으면 라이트 패스(${won(LITE)}, 12개월)가 더 저렴해요` : "") + ` · 1강권 ${Math.floor(pass.p/LIST)+1}개부터는 올패스(${won(pass.p)})가 더 저렴해요`
 : `올패스 ${pass.k} ${won(pass.p)} · 1강권으로 사면 ${won(single)} · 지금 볼 수 있는 ${OPEN}편 + 공개 예정 ${SOON}강 + ${coverText(pass)} 추가되는 강의 포함`;
 document.getElementById("cartSub").textContent = sub;
 }
@@ -226,6 +228,9 @@ el.appendChild(d);
 document.getElementById("single").innerHTML =
 `<div class="s-main"><span class="name">1강권</span><span class="price">${LIST.toLocaleString("ko-KR")}<small>원</small></span></div>`+
 `<div class="s-info"><span class="seats">1개 사면 AI 특강 1편 증정</span><span>원하는 강의 1개 · 원하는 AI 특강을 1편씩 최대 ${BONUS_MAX}편까지 드립니다 · 나중에 올패스로 바꾸면 낸 금액을 빼 드립니다</span></div>`;
+document.getElementById("lite").innerHTML =
+`<div class="s-main"><span class="name">라이트 패스 · 12개월</span><span class="price">${LITE.toLocaleString("ko-KR")}<small>원</small></span></div>`+
+`<div class="s-info"><span class="seats">1강당 ${won(LITE/LITE_N)} · 월 1만원꼴</span><span>12개월치를 한 번에 결제하고 매달 새로 열리는 강의 중 1강씩, 모두 ${LITE_N}강을 골라 듣습니다 · AI 특강 1편 증정 · 나중에 올패스로 바꾸면 낸 금액을 빼 드립니다</span></div>`;
 const lo = Math.min(GOAL, OPEN + 12*PACE_MIN), hi = Math.min(GOAL, OPEN + 12*PACE_MAX);
 const range = (a,b,f) => a===b ? f(a) : `${f(a)}~${f(b)}`;
 for(const t of PASS_TIERS){
